@@ -1,0 +1,79 @@
+﻿@model int
+
+<div class="u-basket d-inline-block g-z-index-3" ng-app="simpl.shoppingCart" ng-controller="shoppingCartListCtrl as vm" ng-cloak>
+    <div class="g-py-10 g-px-6">
+        <a href="#" id="basket-bar-invoker" class="u-icon-v1 g-color-white-opacity-0_8 g-color-primary--hover g-font-size-17 g-text-underline--none--hover"
+           aria-controls="basket-bar"
+           aria-haspopup="true"
+           aria-expanded="false"
+           data-dropdown-event="hover"
+           data-dropdown-target="#basket-bar"
+           data-dropdown-type="css-animation"
+           data-dropdown-duration="300"
+           data-dropdown-hide-on-scroll="false"
+           data-dropdown-animation-in="fadeIn"
+           data-dropdown-animation-out="fadeOut">
+            <span class="u-badge-v1--sm g-color-white g-bg-primary g-font-size-11 g-line-height-1_4 g-rounded-50x g-pa-4" style="top: 7px !important; right: 3px !important;">@Model</span>
+            <i class="icon-hotel-restaurant-105 u-line-icon-pro"></i>
+        </a>
+    </div>
+
+    <div id="basket-bar" class="u-basket__bar u-dropdown--css-animation u-dropdown--hidden g-text-transform-none g-bg-white g-brd-around g-brd-gray-light-v4"
+         aria-labelledby="basket-bar-invoker">
+        <div class="g-brd-bottom g-brd-gray-light-v4 g-pa-15 g-mb-10">
+            <span class="d-block h6 text-center text-uppercase mb-0">Giỏ hàng</span>
+        </div>
+        <div class="js-scrollbar g-height-200" ng-if="vm.cart.items.length">
+            <!-- Product -->
+            <div class="u-basket__product g-brd-none g-px-20" ng-repeat="cartItem in vm.cart.items">
+                <div class="row no-gutters g-pb-5">
+                    <div class="col-4 pr-3">
+                        <a class="u-basket__product-img" href="#">
+                            <img class="img-fluid" ng-src="{{cartItem.productImage}}">
+                        </a>
+                    </div>
+
+                    <div class="col-8">
+                        <h6 class="g-font-weight-400 g-font-size-default">
+                            <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#">{{cartItem.productName}}</a>
+                        </h6>
+                        <small class="g-color-primary g-font-size-12">{{cartItem.quantity}} x {{cartItem.productPriceString}}</small>
+                    </div>
+                </div>
+                <button type="button" ng-click="vm.removeShoppingCartItem(cartItem)" class="u-basket__product-remove">&times;</button>
+            </div>
+            <!-- End Product -->
+        </div>
+        <div class="clearfix g-px-15" ng-if="!vm.cart.items.length">
+            <div class="row align-items-center text-center g-brd-y g-brd-gray-light-v4 g-font-size-default">
+                <div class="col g-brd-right g-brd-gray-light-v4">
+                    <strong class="d-block g-py-10 g-color-main g-font-weight-500 g-py-10">Bạn chưa chọn sản phẩm nào</strong>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix g-px-15" ng-if="vm.cart.items.length">
+            <div class="row align-items-center text-center g-brd-y g-brd-gray-light-v4 g-font-size-default">
+                <div class="col g-brd-right g-brd-gray-light-v4">
+                    <strong class="d-block g-py-10 text-uppercase g-color-main g-font-weight-500 g-py-10">Tổng</strong>
+                </div>
+                <div class="col">
+                    <strong class="d-block g-py-10 g-color-main g-font-weight-500 g-py-10">{{vm.cart.orderTotalString}}</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="g-pa-20" ng-if="vm.cart.items.length">
+            <div class="text-center g-mb-15">
+                <a class="text-uppercase g-color-primary g-color-main--hover g-font-weight-400 g-font-size-13 g-text-underline--none--hover" href="page-checkout-1.html">
+                    Xem giỏ đồ
+                    <i class="ml-2 icon-finance-100 u-line-icon-pro"></i>
+                </a>
+            </div>
+            <a class="btn btn-block u-btn-black g-brd-primary--hover g-bg-primary--hover g-font-size-12 text-uppercase rounded g-py-10" href="page-checkout-1.html">Thanh toán</a>
+        </div>
+    </div>
+</div>
+
+<script src="~/_content/SimplCommerce.Module.ShoppingCart/shoppingcart-list.js"></script>
+<script src="~/_content/SimplCommerce.Module.ShoppingCart/shoppingcart-service.js"></script>
+

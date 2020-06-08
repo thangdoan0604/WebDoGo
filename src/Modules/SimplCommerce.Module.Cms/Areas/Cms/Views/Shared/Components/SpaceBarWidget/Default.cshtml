@@ -1,0 +1,33 @@
+﻿@model SimplCommerce.Module.Cms.Areas.Cms.ViewModels.SpaceBarWidgetComponentVm
+    <!-- Features -->
+<div class="g-brd-bottom g-brd-gray-light-v4">
+    <div class="container g-py-30">
+        <div class="row justify-content-center">
+            @for (int i = 0; i < Model.Items.Count; i++)
+            {
+                if (i == 0 || i == (Model.Items.Count - 1))
+                {
+<div class="col-md-4 mx-auto g-py-15">
+    <div class="media g-px-50--lg">
+        <i class="d-flex g-color-black g-font-size-30 g-pos-rel g-top-3 mr-4 @Model.Items[i].IconHtml u-line-icon-pro"></i>
+        <div class="media-body">
+            <span class="d-block g-font-weight-500 g-font-size-default text-uppercase">@Model.Items[i].Title</span>
+            <span class="d-block g-color-gray-dark-v4">@Model.Items[i].Description</span>
+        </div>
+    </div>
+</div>}
+else
+{
+<div class="col-md-4 mx-auto g-brd-x--md g-brd-gray-light-v3 g-py-15">
+    <div class="media g-px-50--lg">
+        <i class="d-flex g-color-black g-font-size-30 g-pos-rel g-top-3 mr-4 @Model.Items[i].IconHtml u-line-icon-pro"></i>
+        <div class="media-body">
+            <span class="d-block g-font-weight-500 g-font-size-default text-uppercase">@Model.Items[i].Title</span>
+            <span class="d-block g-color-gray-dark-v4">@Model.Items[i].Description</span>
+        </div>
+    </div>
+</div>}
+            }
+        </div>
+    </div>
+</div>

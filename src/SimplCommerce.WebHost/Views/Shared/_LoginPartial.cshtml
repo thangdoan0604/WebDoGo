@@ -1,0 +1,38 @@
+﻿@using SimplCommerce.Module.Core.Models
+@using SimplCommerce.Module.Core.Extensions
+
+@inject IWorkContext WorkContext
+@inject SignInManager<User> SignInManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+<li class="list-inline-item g-mx-4">
+    <a class="g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" asp-area="Core" asp-controller="Manage" asp-action="Index" title="@Localizer["Manage"]">@Localizer["Hello {0}!", (await WorkContext.GetCurrentUser()).FullName]</a>
+</li>
+                <li class="list-inline-item g-color-white-opacity-0_3 g-mx-4">|</li> 
+                if (User.IsInRole("admin") || User.IsInRole("vendor"))
+                                {
+<li class="list-inline-item g-mx-4">
+    <a class="g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" asp-area="Core" asp-controller="HomeAdmin" asp-action="Index">Trang quản trị</a>
+</li> 
+<li class="list-inline-item g-color-white-opacity-0_3 g-mx-4">|</li>
+}
+<li class="list-inline-item g-mx-4">
+    <form asp-area="Core" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="">
+        <button style="background-color: Transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    " class="g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" type="submit">Đăng xuất</button>
+    </form>
+</li>
+}
+else
+{
+<li class="list-inline-item g-mx-4">
+    <a class="g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" asp-area="Core" asp-controller="Account" asp-action="Login">Đăng nhập</a>
+</li>
+                <li class="list-inline-item g-color-white-opacity-0_3 g-mx-4">|</li>
+                                <li class="list-inline-item g-mx-4">
+                                    <a class="g-color-white-opacity-0_6 g-color-primary--hover g-font-weight-400 g-text-underline--none--hover" asp-area="Core" asp-controller="Account" asp-action="Register">Đăng ký</a>
+                                </li>}

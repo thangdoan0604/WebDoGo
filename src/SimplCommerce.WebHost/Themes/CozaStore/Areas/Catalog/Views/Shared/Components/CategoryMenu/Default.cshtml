@@ -1,0 +1,35 @@
+﻿@model IEnumerable<SimplCommerce.Module.Catalog.Areas.Catalog.ViewModels.CategoryMenuItem>
+
+@inject IViewLocalizer Localizer
+
+@foreach (var item in Model)
+{
+    if (item.ChildItems.Any())
+    {
+<li class="nav-item hs-has-sub-menu g-mx-10--lg g-mx-15--xl">
+    <a id="nav-link--home" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="/@item.Slug"
+       aria-haspopup="true"
+       aria-expanded="false"
+       aria-controls="nav-submenu--home">
+        @item.Name
+    </a>
+    <ul id="nav-submenu--home" class="hs-sub-menu list-unstyled u-shadow-v11 g-min-width-220 g-brd-top g-brd-primary g-brd-top-2 g-mt-17"
+        aria-labelledby="nav-link--home">
+        @foreach (var childItem in item.ChildItems)
+        {
+<li class="dropdown-item">
+    <a class="nav-link g-color-gray-dark-v4" href="/@childItem.Slug">@childItem.Name</a>
+</li>
+}
+    </ul>
+    <span class="arrow-main-menu-m d-md-none">
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+    </span>
+</li> }
+else
+{
+<li class="nav-item g-ml-10--lg">
+    <a class="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="/@item.Slug">@item.Name</a>
+</li>
+}
+}
