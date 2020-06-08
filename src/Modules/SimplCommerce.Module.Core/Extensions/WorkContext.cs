@@ -60,16 +60,16 @@ namespace SimplCommerce.Module.Core.Extensions
             }
 
             userGuid = Guid.NewGuid();
-            var dummyEmail = string.Format("{0}@guest.simplcommerce.com", userGuid);
+            var dummyEmail = string.Format("{0}@guest.com", userGuid);
             _currentUser = new User
             {
-                FullName = "Guest",
+                FullName = "Khách",
                 UserGuid = userGuid.Value,
                 Email = dummyEmail,
                 UserName = dummyEmail,
                 Culture = _configuration.GetValue<string>("Global.DefaultCultureUI") ?? GlobalConfiguration.DefaultCulture
             };
-            var abc = await _userManager.CreateAsync(_currentUser, "1qazZAQ!");
+            var abc = await _userManager.CreateAsync(_currentUser, "abcde12345-");
             await _userManager.AddToRoleAsync(_currentUser, "guest");
             SetUserGuidCookies(_currentUser.UserGuid);
             return _currentUser;

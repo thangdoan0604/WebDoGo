@@ -9,10 +9,10 @@
                 vm.cart = {};
 
                 function cartDataCallback(result) {
-                    if (result.data.error) {
+                    if (result.data && result.data.error) {
                         toastr.error(result.data.message);
                     }
-                    else {
+                    else if (result.data) {
                         vm.cart = result.data;
                         $('.cart-badge .badge').text(vm.cart.items.length);
                     }
@@ -27,7 +27,7 @@
                 };
 
                 vm.increaseQuantity = function increaseQuantity(item) {
-                    shoppingCartService.updateQuantity(item.id, item.quantity + 1 ).then(cartDataCallback);
+                    shoppingCartService.updateQuantity(item.id, item.quantity + 1).then(cartDataCallback);
                 };
 
                 vm.decreaseQuantity = function decreaseQuantity(item) {
@@ -61,7 +61,7 @@
                     });
                 };
 
-                 getShoppingCartItems();
+                getShoppingCartItems();
             }
         ]);
 })();

@@ -9,8 +9,6 @@
     @RenderSection("additionalMeta", false)
 
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,500,700,900">
-    @*<link simpl-append-version="true" rel="stylesheet" href="~/libs.min.css" />
-        <link simpl-append-version="true" rel="stylesheet" href="~/_content/SimplCommerce.Module.Core/site.css" />*@
 
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="~/assets/vendor/bootstrap/bootstrap.min.css">
@@ -578,7 +576,7 @@
 
     <!-- JS Plugins Init. -->
     <script>
-        $(document).on('ready', function () {
+        $(document).ready(function () {
             // initialization of carousel
             $.HSCore.components.HSCarousel.init('[class*="js-carousel"]');
 
@@ -729,7 +727,6 @@
         });
 
         function navTo(url) {
-            console.log(1);
             window.location.href = url;
         }
     </script>

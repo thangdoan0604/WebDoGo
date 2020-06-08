@@ -56,7 +56,7 @@ namespace SimplCommerce.WebHost.Extensions
                 //    module.Name = moduleMetadata.name;
                 //}
 
-                if(!module.IsBundledWithHost)
+                if (!module.IsBundledWithHost)
                 {
                     TryLoadModuleAssembly(module.Id, module);
                     if (module.Assembly == null)
@@ -113,7 +113,7 @@ namespace SimplCommerce.WebHost.Extensions
             (this IMvcBuilder mvc, IServiceCollection services)
         {
             return mvc.AddMvcOptions(o =>
-            {                
+            {
                 var factory = services.BuildServiceProvider().GetService<IStringLocalizerFactory>();
                 var L = factory.Create(null);
 
@@ -203,7 +203,8 @@ namespace SimplCommerce.WebHost.Extensions
                         OnRemoteFailure = ctx => HandleRemoteLoginFailure(ctx)
                     };
                 })
-                .AddLocalApi(JwtBearerDefaults.AuthenticationScheme, option => {
+                .AddLocalApi(JwtBearerDefaults.AuthenticationScheme, option =>
+                {
                     option.ExpectedScope = "api.simplcommerce";
                 });
 

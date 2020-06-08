@@ -1,42 +1,58 @@
 ﻿<div class="panel panel-default">
     <div class="panel-heading">
-        <h2 ng-if="!vm.isEditMode">{{::vm.translate.get('Create Customer Group')}}</h2>
-        <h2 ng-if="vm.isEditMode">{{::vm.translate.get('Edit Customer Group')}}</h2>
+        <h2 ng-if="!vm.isEditMode">Thêm nhóm khách hàng</h2>
+        <h2 ng-if="vm.isEditMode">Sửa nhóm khách hàng</h2>
     </div>
-    <div class="panel-body">
+
+    <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-15 g-pa-20--md g-mb-30">
         <form name="customergroupForm" class="form-horizontal">
+            <!-- Validation -->
             <div class="col-sm-offset-2 bg-danger" ng-show="vm.validationErrors">
                 <ul>
                     <li ng-repeat="error in vm.validationErrors track by $index">{{error}}</li>
                 </ul>
             </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Name')}}</label>
-                <div class="col-sm-10">
-                    <input name="name" ng-model="vm.customergroup.name" class="form-control" />
-                </div>
-            </div>
+            <!-- End Validation -->
+            <!-- Group Name -->
+            <div class="form-group g-mb-30">
+                <label class="g-mb-10" for="name">Tên nhóm</label>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Description')}}</label>
-                <div class="col-sm-10">
-                    <textarea name="description" ng-model="vm.customergroup.description" class="form-control" rows="3" />
+                <div class="g-pos-rel">
+                    <span class="g-pos-abs g-top-0 g-right-0 d-block g-width-40 h-100 opacity-0 g-opacity-1--success">
+                        <i class="hs-admin-check g-absolute-centered g-font-size-default g-color-secondary"></i>
+                    </span>
+                    <input name="name" ng-model="vm.customergroup.name" class="form-control form-control-md g-brd-gray-light-v7 g-brd-gray-light-v3--focus g-rounded-4 g-px-14 g-py-10" type="text">
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" ng-model="vm.customergroup.isActive"> {{::vm.translate.get('Is Active')}}
-                        </label>
-                    </div>
+            <!-- End Group Name -->
+            <!-- Description -->
+            <div class="form-group g-mb-30">
+                <label class="g-mb-10" for="description">Mô tả</label>
+
+                <div class="g-pos-rel">
+                    <span class="g-pos-abs g-top-0 g-right-0 d-block g-width-40 h-100 opacity-0 g-opacity-1--success">
+                        <i class="hs-admin-check g-absolute-centered g-font-size-default g-color-secondary"></i>
+                    </span>
+                    <textarea name="description" class="form-control form-control-md g-brd-gray-light-v7 g-brd-gray-light-v3--focus g-rounded-4" rows="3" ng-model="vm.customergroup.description"></textarea>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button class="btn btn-primary" ng-click="vm.save()"><span class="glyphicon glyphicon-ok"></span> {{::vm.translate.get('Save')}}</button>
-                    <button ui-sref="customergroups" class="btn btn-default">{{::vm.translate.get('Cancel')}}</button>
+            <!-- End Description -->
+            <!-- Active Checkbox -->
+            <label class="form-check-inline u-check g-pl-25">
+                <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" checked="" type="checkbox" ng-model="vm.customergroup.isActive">
+                <div class="u-check-icon-checkbox-v6 g-absolute-centered--y g-left-0">
+                    <i class="fa" data-check-icon="&#xf00c"></i>
                 </div>
+                Đang hoạt động
+            </label>
+            <!-- End Active Checkbox -->
+            <div class="form-group g-mb-10 g-mb-0--md g-mt-10 row">
+                <a class="btn btn-xl u-btn-secondary g-width-160--md g-font-size-default g-ml-15" ng-click="vm.save()">
+                    Thêm
+                </a>
+                <a class="btn btn-xl u-btn-primary g-width-160--md g-font-size-default g-ml-30" ui-sref="customergroups">
+                    Xóa
+                </a>
             </div>
         </form>
     </div>

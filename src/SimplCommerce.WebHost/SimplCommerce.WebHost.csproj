@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Views\Shared\_AdminLayout.cshtml" />
+    <None Remove="wwwroot\admin-assets\css\custom.css" />
   </ItemGroup>
 
   <ItemGroup>

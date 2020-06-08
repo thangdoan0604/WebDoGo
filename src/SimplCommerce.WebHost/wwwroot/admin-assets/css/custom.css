@@ -1,0 +1,11 @@
+﻿#textSignoutAdmin {
+    color: #d4dade !important;
+}
+
+    #textSignoutAdmin:hover {
+        color: #e62154 !important;
+    }
+
+[class*="u-table--v3"] td {
+    font-weight: 500 !important;
+}
