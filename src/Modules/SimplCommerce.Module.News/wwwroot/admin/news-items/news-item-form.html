@@ -1,7 +1,7 @@
 ﻿<div class="panel panel-default">
     <div class="panel-heading">
-        <h2 ng-if="!vm.isEditMode"> {{::vm.translate.get('Create News Item')}} </h2>
-        <h2 ng-if="vm.isEditMode"> {{::vm.translate.get('Edit News Item')}} </h2>
+        <h2 ng-if="!vm.isEditMode">Thêm bài viết</h2>
+        <h2 ng-if="vm.isEditMode">Chỉnh sửa bài vết</h2>
     </div>
     <div class="panel-body">
         <form name="pageForm" class="form-horizontal">
@@ -11,37 +11,37 @@
                 </ul>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('News Item Name')}} </label>
+                <label class="col-sm-2 control-label">Tên bài viết</label>
                 <div class="col-sm-10">
                     <input name="name" ng-model="vm.newsItem.name" ng-change="vm.updateSlug()" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Slug')}} </label>
+                <label class="col-sm-2 control-label">Đường dẫn </label>
                 <div class="col-sm-10">
                     <input name="slug" ng-model="vm.newsItem.slug" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Meta Title')}}</label>
+                <label class="col-sm-2 control-label">Tiêu đề meta</label>
                 <div class="col-sm-10">
                     <input name="metaTitle" ng-model="vm.newsItem.metaTitle" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Meta Keywords')}}</label>
+                <label class="col-sm-2 control-label">Từ khóa meta</label>
                 <div class="col-sm-10">
                     <textarea name="metaKeywords" ng-model="vm.newsItem.metaKeywords" class="form-control" rows="2"></textarea>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Meta Description')}}</label>
+                <label class="col-sm-2 control-label">Mô tả meta</label>
                 <div class="col-sm-10">
                     <textarea name="metaDescription" ng-model="vm.newsItem.metaDescription" class="form-control" rows="3"></textarea>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Thumbnail Image')}}</label>
+                <label class="col-sm-2 control-label">Ảnh đại diện</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="file" ngf-select ng-model="vm.newsItem.thumbnailImage" name="thumbnailImage" ngf-accept="'image/*'">
                     <img ngf-src="vm.newsItem.thumbnailImage" ngf-resize="{width: 200, height: 200, quality: 0.9}">
@@ -49,13 +49,13 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Short Description')}} </label>
+                <label class="col-sm-2 control-label">Mô tả ngắn</label>
                 <div class="col-sm-10">
                     <summernote editor="vm.shortDescEditor" ng-model="vm.newsItem.shortContent"></summernote>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Description')}}</label>
+                <label class="col-sm-2 control-label">Mô tả</label>
                 <div class="col-sm-10">
                     <summernote on-image-upload="vm.imageUpload(files)" editor="vm.descEditor" ng-model="vm.newsItem.fullContent"></summernote>
                 </div>
@@ -64,13 +64,13 @@
                 <div class="col-sm-offset-2 col-sm-10">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" ng-model="vm.newsItem.isPublished"> {{::vm.translate.get('Is Published')}}
+                            <input type="checkbox" ng-model="vm.newsItem.isPublished"> Phát hành
                         </label>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">Belong to categories</label>
+                <label class="col-sm-2 control-label">Thuộc danh mục bài viết</label>
                 <div class="col-sm-10">
                     <div ng-repeat="newsCategory in vm.newsCategories">
                         <md-checkbox ng-checked="vm.newsItem.newsCategoryIds.indexOf(newsCategory.id) > -1" ng-click="vm.toggleNewsCategories(newsCategory.id)">
@@ -82,7 +82,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button class="btn btn-primary" ng-click="vm.save()"><span class="glyphicon glyphicon-ok"></span> Save</button>
+                    <button class="btn btn-primary" ng-click="vm.save()">Save</button>
                     <button ui-sref="news-items" class="btn btn-default">Cancel</button>
                 </div>
             </div>

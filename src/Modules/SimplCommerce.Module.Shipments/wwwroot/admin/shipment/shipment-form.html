@@ -1,16 +1,16 @@
 ﻿<div class="page-header">
     <div class="row">
         <div class="col-md-6">
-            <h2>{{::vm.translate.get('Add Shipment for Order')}} #{{vm.orderId}}</h2>
+            <h2>Thêm phương thức vận chuyển cho đơn hàng #{{vm.orderId}}</h2>
         </div>
         <div class="col-md-6 text-right">
             <form class="form-inline">
                 <div class="form-group">
-                    <label>{{::vm.translate.get('Tracking number')}}</label>
+                    <label>Số theo dõi</label>
                     <input class="form-control" ng-model="vm.shipmentForm.trackingNumber" />
                 </div>
                 <div class="form-group">
-                    <label>{{::vm.translate.get('Warehouse')}}</label>
+                    <label>Kho</label>
                     <select class="form-control" ng-model="vm.selectedWarehouseId"
                             ng-options="warehouse.id as warehouse.name for warehouse in vm.warehouses"></select>
                 </div>
@@ -22,11 +22,11 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>{{::vm.translate.get('Product Name')}}</th>
-            <th>{{::vm.translate.get('Product Sku')}}</th>
-            <th>{{::vm.translate.get('Quantity')}}</th>
-            <th>{{::vm.translate.get('Quantity to ship')}}</th>
-            <th>{{::vm.translate.get('Available Quantity')}}</th>
+            <th>Tên sản phẩm</th>
+            <th>SKU</th>
+            <th>Số lượng</th>
+            <th>Số lượng vận chuyển</th>
+            <th>Số lượng cho phép</th>
         </tr>
     </thead>
     <tbody>
@@ -45,6 +45,6 @@
     </tbody>
 </table>
 <div class="text-right">
-    <button class="btn btn-primary" ng-click="vm.save()"><span class="glyphicon glyphicon-ok"></span> {{::vm.translate.get('Save')}}</button>
-    <button  ui-sref="order-detail({id: vm.orderId})" class="btn btn-default">{{::vm.translate.get('Back')}}</button>
+    <button class="btn btn-primary" ng-click="vm.save()">Lưu lại</button>
+    <button  ui-sref="order-detail({id: vm.orderId})" class="btn btn-default">Quay về</button>
 </div>

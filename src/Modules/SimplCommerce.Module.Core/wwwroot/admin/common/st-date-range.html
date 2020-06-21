@@ -1,21 +1,19 @@
 ﻿<div class="date-filter">
-    <label>From</label>
-    <div class="input-group">
-        <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" ng-model="after" is-open="isAfterOpen"
+    <div class="input-group mb-2 custom-date-picker">
+        <input type="text" placeholder="Từ ngày" class="form-control custom-date-picker-input g-bg-transparent g-color-gray-dark-v6 g-pr-80 g-pl-15 g-py-9 flatpickr-input" uib-datepicker-popup="dd/MM/yyyy" ng-model="after" is-open="isAfterOpen"
                close-text="Close" ng-change="changeDate(after)" />
         <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="openAfter($event)">
-                <i class="glyphicon glyphicon-calendar"></i>
+                <i class="hs-admin-calendar"></i>
             </button>
         </span>
     </div>
-    <label>To</label>
-    <div class="input-group">
-        <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" ng-model="before" is-open="isBeforeOpen"
+    <div class="input-group custom-date-picker">
+        <input type="text" placeholder="Đến ngày" class="form-control custom-date-picker-input g-bg-transparent g-color-gray-dark-v6 g-pr-80 g-pl-15 g-py-9 flatpickr-input" uib-datepicker-popup="dd/MM/yyyy" ng-model="before" is-open="isBeforeOpen"
                close-text="Close" ng-change="changeDate(before)" />
         <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="openBefore($event)">
-                <i class="glyphicon glyphicon-calendar"></i>
+                <i class="hs-admin-calendar"></i>
             </button>
         </span>
     </div>

@@ -1,75 +1,70 @@
-﻿<div class="page-header">
-    <div class="row">
-        <div class="col-md-8">
-            <h2>{{::vm.translate.get('Management products for warehouse')}} <strong>{{ vm.selectedWarehouse.name }}</strong></h2>
+﻿<div class="card rounded-0">
+    <div class="row card-header g-brd-transparent rounded-0 mb-0 mx-0">
+        <div class="col-md-8 px-0 row">
+            <h3 class="table-title">
+                Quản lý sản phẩm trong kho
+            </h3>
+            <select style="width:150px; margin-left: 10px;" class="form-control" ng-change="vm.wareHouseSelectChange()" ng-model="vm.selectedWarehouse" ng-options="warehouse as warehouse.name for warehouse in vm.warehouses"></select>
         </div>
-        <div class="col-md-4 text-right">
-            <form class="form-inline">
-                <div class="form-group">
-                    <label>{{::vm.translate.get('Warehouse')}}</label>
-                    <select class="form-control" ng-change="vm.wareHouseSelectChange()" ng-model="vm.selectedWarehouse"
-                            ng-options="warehouse as warehouse.name for warehouse in vm.warehouses"></select>
-                </div>
-                <button class="btn btn-primary" ng-click="vm.addAllProducts()">{{::vm.translate.get('Add All Products')}}</button>
-            </form>
+        <div class="col-md-4 px-0 text-right">
+            <button class="btn btn-primary" style="float:right;" ng-click="vm.addAllProducts()">Thêm tất cả</button>
         </div>
     </div>
-</div>
+    <div class="table-responsive">
+        <table ng-if="vm.selectedWarehouse" class="table table-striped" st-pipe="vm.getProducts" st-table="vm.products">
+            <thead>
+                <tr>
+                    <th style="min-width:300px" st-sort="Name" class="sortable">Tên sản phẩm</th>
+                    <th style="min-width:150px" st-sort="Sku" class="sortable">SKU</th>
+                    <th class="text-center" style="min-width:150px">Tồn tại</th>
+                    <th style="min-width:150px" class="text-center">Chọn để thêm</th>
+                </tr>
+                <tr>
+                    <th>
+                        <div class="form-group">
+                            <input class="form-control" st-search="ProductName" placeholder="Tìm kiếm theo tên sản phẩm ... " />
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-group">
+                            <input class="form-control" st-search="ProductSku" placeholder="Tìm kiếm theo mã SKU ... " />
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-group">
+                            <select class="form-control" st-search="IsExistInWarehouse">
+                                <option value="">Tất cả</option>
+                                <option value="true">Có</option>
+                                <option value="false">Không</option>
+                            </select>
+                        </div>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody ng-show="!vm.isLoading">
+                <tr ng-repeat="item in vm.products">
+                    <td>{{item.name}}</td>
+                    <td>{{item.sku}}</td>
+                    <td class="text-center">{{item.isExistInWarehouse}}</td>
+                    <td class="text-center">
+                        <input type="checkbox" ng-disabled="item.isExistInWarehouse" class="productid-select" name="selectedProductIds" value="{{item.id}}">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                    <td><button class="btn btn-primary" ng-click="vm.addSelectedProducts()">Thêm sản phẩm đã chọn</button></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="text-center" st-pagination="" st-items-by-page="50" st-displayed-pages="10" colspan="3"></td>
 
-<table ng-if="vm.selectedWarehouse" class="table table-striped" st-pipe="vm.getProducts" st-table="vm.products">
-    <thead>
-        <tr>
-            <th st-sort="Name" class="sortable">{{::vm.translate.get('Product Name')}}</th>
-            <th st-sort="Sku" class="sortable">{{::vm.translate.get('Product Sku')}}</th>
-            <th>{{::vm.translate.get('Exist')}}</th>
-            <th>{{::vm.translate.get('Select to add')}}</th>
-        </tr>
-        <tr>
-            <th>
-                <div class="form-group">
-                    <input class="form-control" st-search="ProductName" />
-                </div>
-            </th>
-            <th>
-                <div class="form-group">
-                    <input class="form-control" st-search="ProductSku" />
-                </div>
-            </th>
-            <th>
-                <div class="form-group">
-                    <select class="form-control" st-search="IsExistInWarehouse">
-                        <option value="">{{::vm.translate.get('All')}}</option>
-                        <option value="true">{{::vm.translate.get('Yes')}}</option>
-                        <option value="false">{{::vm.translate.get('No')}}</option>
-                    </select>
-                </div>
-            </th>
-            <th></th>
-        </tr>
-        <tr>
-            <th ng-show="!vm.isLoading" colspan="4">{{vm.tableStateRef.pagination.totalItemCount | number:0}} {{::vm.translate.get('records found')}}</th>
-        </tr>
-    </thead>
-    <tbody ng-show="!vm.isLoading">
-        <tr ng-repeat="item in vm.products">
-            <td>{{item.name}}</td>
-            <td>{{item.sku}}</td>
-            <td>{{item.isExistInWarehouse}}</td>
-            <td><input type="checkbox" ng-disabled="item.isExistInWarehouse" class="productid-select" name="selectedProductIds" value="{{item.id}}"></td>
-        </tr>
-        <tr>
-            <td colspan="3"></td>
-            <td><button class="btn btn-primary" ng-click="vm.addSelectedProducts()"><span class="glyphicon glyphicon-ok"></span> {{::vm.translate.get('Add selected products')}}</button></td>
-        </tr>
-    </tbody>
-    <tbody ng-show="vm.isLoading">
-        <tr>
-            <td colspan="4" class="text-center">Loading ... </td>
-        </tr>
-    </tbody>
-    <tfoot>
-        <tr>
-            <td class="text-center" st-pagination="" st-items-by-page="50" st-displayed-pages="10" colspan="4"></td>
-        </tr>
-    </tfoot>
-</table>
+                    <td ng-show="!vm.isLoading">Tìm thấy {{vm.tableStateRef.pagination.totalItemCount || '0'}} kết quả</td>
+
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+</div>

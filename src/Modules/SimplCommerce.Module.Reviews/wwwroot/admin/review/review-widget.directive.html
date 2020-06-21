@@ -1,13 +1,13 @@
 ﻿<table class="table table-striped">
     <thead>
         <tr>
-            <th>{{::vm.translate.get('Customer')}}</th>
-            <th>{{::vm.translate.get('Entity Name')}}</th>
-            <th>{{::vm.translate.get('Rating')}}</th>
-            <th>{{::vm.translate.get('Title')}}</th>
-            <th>{{::vm.translate.get('Comment')}}</th>
-            <th>{{::vm.translate.get('Created On')}}</th>
-            <th>{{::vm.translate.get('Status')}}</th>
+            <th>Khách hàng</th>
+            <th>Sản phẩm</th>
+            <th>Đánh giá</th>
+            <th>Tiêu đề</th>
+            <th>Bình luận</th>
+            <th>Tạo lúc</th>
+            <th>Trạng thái</th>
         </tr>
     </thead>
     <tbody>
@@ -17,7 +17,7 @@
             <td>{{review.rating}}</td>
             <td>{{review.title}}</td>
             <td>{{review.comment}}</td>
-            <td>{{review.createdOn | date:'medium'}}</td>
+            <td>{{review.createdOn | date:'dd/MM/yyyy hh:mm'}}</td>
             <td>{{review.status }}</td>
         </tr>
     </tbody>

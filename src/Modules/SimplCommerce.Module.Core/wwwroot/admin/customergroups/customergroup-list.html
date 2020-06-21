@@ -1,62 +1,66 @@
-﻿<div class="page-header">
-    <div class="row">
-        <div class="col-md-8">
-            <h2>{{::vm.translate.get('Customer Groups')}}</h2>
+﻿<div class="card rounded-0">
+    <div class="row card-header g-brd-transparent rounded-0 mb-0 mx-0">
+        <div class="col-8 px-0">
+            <h3 class="table-title">
+                Nhóm khách hàng
+            </h3>
         </div>
-        <div class="col-md-4 text-right">
-            <a ui-sref="customergroup-create" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> {{::vm.translate.get('Create Customer Group')}}</a>
+        <div class="col-4 px-0 text-right">
+            <a ui-sref="customergroup-create" title="Thêm" class="btn btn-md u-btn-pink px-1 pt-0 pb-0"><i class="hs-admin-plus"></i></a>
         </div>
     </div>
+    <div class="table-responsive">
+        <table class="table table-hover u-table--v1 mb-0" st-pipe="vm.getCustomerGroups" st-table="vm.customergroups">
+            <thead>
+                <tr>
+                    <th st-sort="Email" style="min-width:300px">Tên</th>
+                    <th st-sort="Description" style="min-width:200px">Mô tả</th>
+                    <th  class="text-center" style="min-width:150px">Đang hoạt động</th>
+                    <th st-sort="CreatedOn" style="min-width: 180px">Ngày tạo</th>
+                    <th style="min-width: 80px; max-width: 80px">Tùy chọn</th>
+                </tr>
+                <tr>
+                    <th>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Tìm theo tên ..." st-search="Name" />
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-group">
+                            <input class="form-control"  placeholder="Tìm theo mô tả ..." st-search="Description" />
+                        </div>
+                    </th>
+                    <th class="text-center"></th>
+                    <!--<th class="text-center"><st-date-range predicate="CreatedOn" before="query.before" after="query.after"></st-date-range></th>-->
+                    <th class="text-center"></th>
+                </tr>
+            </thead>
+            <tbody ng-show="!vm.isLoading">
+                <tr ng-repeat="customergroup in vm.customergroups">
+                    <td>{{customergroup.name}}</td>
+                    <td>{{customergroup.description}}</td>
+                    <td class="text-center"><i ng-attr-class="{{customergroup.isActive && 'hs-admin-check' || 'hs-admin-check-o'}}"></i></td>
+                    <td>{{customergroup.createdOn | date:'dd/MM/yyyy hh:mm' }}</td>
+                    <td class="text-center">
+                        <a class="js-edit u-link-v5 g-color-gray-light-v6 g-color-secondary--hover" ui-sref="customergroup-edit({id: customergroup.id})" title="Sửa">
+                            <i class="hs-admin-pencil"></i>
+                        </a>
+                        <a class="u-link-v5 g-color-gray-light-v6 g-color-secondary--hover g-text-underline--none--hover g-ml-12" title="Xóa" ng-click="vm.deleteCustomerGroup(customergroup)">
+                            <i class="hs-admin-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody ng-show="vm.isLoading">
+                <tr>
+                    <td colspan="5" class="text-center">Đang tải ... </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="text-center" st-pagination="" st-items-by-page="50" st-displayed-pages="10" colspan="5"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
-
-<table class="table table-striped" st-pipe="vm.getCustomerGroups" st-table="vm.customergroups">
-    <thead>
-        <tr>
-            <th st-sort="Name" class="sortable">{{::vm.translate.get('Name')}}</th>
-            <th st-sort="Description" class="sortable">{{::vm.translate.get('Description')}}</th>
-            <th class="text-center">{{::vm.translate.get('Is Active')}}</th>
-            <th st-sort="CreatedOn" class="sortable">{{::vm.translate.get('Created On')}}</th>
-            <th>{{::vm.translate.get('Actions')}}</th>
-        </tr>
-        <tr>
-            <th>
-                <div class="form-group">
-                    <input class="form-control" st-search="Name" />
-                </div>
-            </th>
-            <th>
-                <div class="form-group">
-                    <input class="form-control" st-search="Description" />
-                </div>
-            </th>
-            <th></th>
-            <th><st-date-range predicate="CreatedOn" before="query.before" after="query.after"></st-date-range></th>
-            <th></th>
-        </tr>
-        <tr>
-            <th ng-show="!vm.isLoading" colspan="5">{{vm.tableStateRef.pagination.totalItemCount | number:0}} {{::vm.translate.get('records found')}}</th>
-        </tr>
-    </thead>
-    <tbody ng-show="!vm.isLoading">
-        <tr ng-repeat="customergroup in vm.customergroups">
-            <td>{{customergroup.name}}</td>
-            <td>{{customergroup.description}}</td>
-            <td class="text-center"><i ng-attr-class="{{customergroup.isActive && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
-            <td>{{customergroup.createdOn | date:'medium' }}</td>
-            <td>
-                <a ui-sref="customergroup-edit({id: customergroup.id})" title="Edit" class="btn btn-primary btn-xs"> <span class="glyphicon glyphicon-pencil"></span></a>
-                <button ng-click="vm.deleteCustomerGroup(customergroup)" class="btn btn-danger btn-xs delete"> <span class="glyphicon glyphicon-remove"></span></button>
-            </td>
-        </tr>
-    </tbody>
-    <tbody ng-show="vm.isLoading">
-        <tr>
-            <td colspan="5" class="text-center">Loading ... </td>
-        </tr>
-    </tbody>
-    <tfoot>
-        <tr>
-            <td class="text-center" st-pagination="" st-items-by-page="50" st-displayed-pages="10" colspan="5"></td>
-        </tr>
-    </tfoot>
-</table>

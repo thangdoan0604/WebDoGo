@@ -13,10 +13,14 @@ namespace SimplCommerce.Module.Catalog.Areas.Catalog.Controllers
     public class ProductAttributeGroupApiController : Controller
     {
         private IRepository<ProductAttributeGroup> _productAttrGroupRepository;
+        private IRepository<ProductAttribute> _productAttrRepository;
+        private IRepository<ProductAttributeValue> _productAttributeValueRepository;
 
-        public ProductAttributeGroupApiController(IRepository<ProductAttributeGroup> productAttrGroupRepository)
+        public ProductAttributeGroupApiController(IRepository<ProductAttributeGroup> productAttrGroupRepository, IRepository<ProductAttribute> productAttrRepository, IRepository<ProductAttributeValue> productAttributeValueRepository)
         {
             _productAttrGroupRepository = productAttrGroupRepository;
+            _productAttrRepository = productAttrRepository;
+            _productAttributeValueRepository = productAttributeValueRepository;
         }
 
         [HttpGet]
@@ -92,7 +96,21 @@ namespace SimplCommerce.Module.Catalog.Areas.Catalog.Controllers
                 return NotFound();
             }
 
+            var productAttribute = _productAttrRepository.Query().Where(x => x.GroupId == id);
+            foreach (var item in productAttribute)
+            {
+                var productAttributeValueOption = _productAttributeValueRepository.Query().Where(x => x.AttributeId == item.Id);
+                foreach (var value in productAttributeValueOption)
+                {
+                    _productAttributeValueRepository.Remove(value);
+                }
+                _productAttrRepository.Remove(item);
+            }
+            _productAttributeValueRepository.SaveChanges();
+            _productAttributeValueRepository.SaveChanges();
+
             _productAttrGroupRepository.Remove(productAttributeGroup);
+            _productAttrGroupRepository.SaveChanges();
             return Json(true);
         }
     }

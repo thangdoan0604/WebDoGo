@@ -1,53 +1,58 @@
-﻿<h2>{{::vm.translate.get('Shipment Details')}}: #{{vm.shipment.id}}</h2>
-
-<div class="panel panel-default">
+﻿<div class="page-header mx-3">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="table-title">Chi tiết vận đơn: #{{vm.shipment.id}}</h2>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default order-panel">
     <div class="panel-body">
         <div class="row">
             <div class="col-md-6">
-                <h5>Shipping Information</h5>
+                <h5>Thông tin vận đơn</h5>
                 <table class="table">
                     <tr>
-                        <td>Created Date</td>
-                        <td>{{vm.shipment.createdOn | date:'medium'}}</td>
+                        <td>Ngày tạo</td>
+                        <td>{{vm.shipment.createdOn | date:'dd/MM/yyyy hh:mm'}}</td>
                     </tr>
                     <tr>
-                        <td>Tracking Number</td>
+                        <td>Số theo dõi</td>
                         <td>{{vm.shipment.trackingNumber}}</td>
                     </tr>
                     <tr>
-                        <td>Warehouse</td>
+                        <td>Kho</td>
                         <td>{{vm.shipment.warehouseName}}</td>
                     </tr>
                     <tr>
-                        <td>Order Id</td>
+                        <td>Mã đơn hàng</td>
                         <td><a ui-sref="order-detail({id: vm.shipment.orderId})" title="View"># {{vm.shipment.orderId}}</a></td>
                     </tr>
                 </table>
             </div>
             <div class="col-md-6">
-                <h5>Shipping Address</h5>
+                <h5>Địa chỉ</h5>
                 <p>
                     {{vm.shipment.shippingAddress.contactName}} <br />
                     {{vm.shipment.shippingAddress.addressLine1}} <br />
                     {{vm.shipment.shippingAddress.districtName}}, {{vm.shipment.shippingAddress.stateOrProvinceName}} <br />
-                    Phone: {{vm.shipment.shippingAddress.phone}}
+                    Số điện thoại: {{vm.shipment.shippingAddress.phone}}
                 </p>
             </div>
         </div>
     </div>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-default order-panel">
     <div class="panel-heading">
-        <h3 class="panel-title">{{::vm.translate.get('Product Information')}}</h3>
+        <h3 class="panel-title">Thông tin sản phẩm</h3>
     </div>
     <div class="panel-body">
         <table class="table table-striped order-item-list">
             <thead>
                 <tr>
-                    <th>{{::vm.translate.get('Product')}}</th>
-                    <th>{{::vm.translate.get('Sku')}}</th>
-                    <th class="text-right">{{::vm.translate.get('Quantity')}}</th>
+                    <th>Sản phẩm</th>
+                    <th>SKU</th>
+                    <th class="text-right">Số lượng</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,5 +74,5 @@
 </div>
 
 <div>
-    <button ui-sref="shipments" class="btn btn-default">{{::vm.translate.get('Shipment List')}}</button>
+    <button style="margin-left: 20px; margin-bottom: 40px;" ui-sref="shipments" class="btn btn-default">Danh sách vận đơn</button>
 </div>

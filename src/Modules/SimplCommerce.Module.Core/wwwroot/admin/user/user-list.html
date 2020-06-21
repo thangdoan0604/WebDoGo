@@ -1,85 +1,84 @@
-﻿<div class="page-header">
-    <div class="row">
-        <div class="col-md-8">
-            <h2>Người dùng</h2>
+﻿<div class="card rounded-0">
+    <div class="row card-header g-brd-transparent rounded-0 mb-0 mx-0">
+        <div class="col-8 px-0">
+            <h3 class="table-title">
+                Người dùng
+            </h3>
         </div>
-        <div class="col-md-4 text-right">
-            <a ui-sref="user-create" class="btn btn-primary">Thêm</a>
+        <div class="col-4 px-0 text-right">
+            <a ui-sref="user-create" title="Thêm" class="btn btn-md u-btn-pink px-1 pt-0 pb-0"><i class="hs-admin-plus"></i></a>
         </div>
     </div>
+    <div class="table-responsive">
+        <table class="table table-hover u-table--v1 mb-0" st-pipe="vm.getUsers" st-table="vm.users">
+            <thead>
+                <tr>
+                    <th st-sort="Email" style="min-width:400px">Email</th>
+                    <th st-sort="FullName" style="min-width:150px">Tên</th>
+                    <th style="min-width:150px">Vai trò</th>
+                    <th style="min-width:150px">Nhóm khách hàng</th>
+                    <th st-sort="CreatedOn" style="min-width: 180px">Ngày tạo</th>
+                    <th style="min-width: 80px; max-width: 80px">Tùy chọn</th>
+                </tr>
+                <tr>
+                    <th class="text-center">
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Tìm theo email" st-search="Email" />
+                        </div>
+                    </th>
+                    <th class="text-center">
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Tìm theo tên" st-search="FullName" />
+                        </div>
+                    </th>
+                    <th class="text-center">
+                        <div class="form-group">
+                            <select class="form-control" st-search="RoleId">
+                                <option value="">Tất cả</option>
+                                <option ng-repeat="role in vm.roles" value="{{role.id}}">{{role.name}}</option>
+                            </select>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-group">
+                            <select class="form-control" st-search="CustomerGroupId">
+                                <option value="">{{::vm.translate.get('All')}}</option>
+                                <option ng-repeat="group in vm.customerGroups" value="{{group.id}}">{{group.name}}</option>
+                            </select>
+                        </div>
+                    </th>
+                    <th class="text-center"></th>
+                    <!--<th class="text-center"><st-date-range predicate="CreatedOn" before="query.before" after="query.after"></st-date-range></th>-->
+                    <th class="text-center"></th>
+                </tr>
+            </thead>
+            <tbody ng-show="!vm.isLoading">
+                <tr ng-repeat="user in vm.users">
+                    <td>{{user.email}}</td>
+                    <td>{{user.fullName}}</td>
+                    <td>{{user.roles.join(', ')}}</td>
+                    <td>{{user.customerGroups.join(', ')}}</td>
+                    <td>{{user.createdOn | date:'dd/MM/yyyy HH:mm' }}</td>
+                    <td class="text-center">
+                        <a class="js-edit u-link-v5 g-color-gray-light-v6 g-color-secondary--hover" ui-sref="user-edit({id: user.id})" title="Sửa">
+                            <i class="hs-admin-pencil"></i>
+                        </a>
+                        <a class="u-link-v5 g-color-gray-light-v6 g-color-secondary--hover g-text-underline--none--hover g-ml-12" title="Xóa" ng-click="vm.deleteUser(user)">
+                            <i class="hs-admin-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody ng-show="vm.isLoading">
+                <tr>
+                    <td colspan="6" class="text-center">Đang tải ... </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="text-center" st-pagination="" st-items-by-page="50" st-displayed-pages="10" colspan="6"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
-<div class="table-responsive">
-    <table class="js-editable-table table u-table--v3 u-editable-table--v1 g-color-black" st-pipe="vm.getUsers" st-table="vm.users">
-        <thead>
-            <tr>
-                <th st-sort="Email" class="sortable">Email</th>
-                <th st-sort="FullName" class="sortable">Tên</th>
-                <th>Vai trò</th>
-                <!--<th>Nhóm khách hàng</th>-->
-                <th st-sort="CreatedOn" class="sortable">Ngày tạo</th>
-                <th></th>
-            </tr>
-            <tr>
-                <th>
-                    <div class="form-group">
-                        <input class="form-control" st-search="Email" />
-                    </div>
-                </th>
-                <th>
-                    <div class="form-group">
-                        <input class="form-control" st-search="FullName" />
-                    </div>
-                </th>
-                <th>
-                    <div class="form-group">
-                        <select class="form-control" st-search="RoleId">
-                            <option value="">Tất cả</option>
-                            <option ng-repeat="role in vm.roles" value="{{role.id}}">{{role.name}}</option>
-                        </select>
-                    </div>
-                </th>
-                <!--<th>
-                    <div class="form-group">
-                        <select class="form-control" st-search="CustomerGroupId">
-                            <option value="">{{::vm.translate.get('All')}}</option>
-                            <option ng-repeat="group in vm.customerGroups" value="{{group.id}}">{{group.name}}</option>
-                        </select>
-                    </div>
-                </th>-->
-                <th><!--<st-date-range predicate="CreatedOn" before="query.before" after="query.after"></st-date-range>--></th>
-                <th></th>
-            </tr>
-            <tr>
-                <th ng-show="!vm.isLoading" colspan="6">Tìm thấy {{vm.tableStateRef.pagination.totalItemCount | number:0}} bản ghi</th>
-            </tr>
-        </thead>
-        <tbody ng-show="!vm.isLoading">
-            <tr ng-repeat="user in vm.users">
-                <td>{{user.email}}</td>
-                <td>{{user.fullName}}</td>
-                <td>{{user.roles.join(', ')}}</td>
-                <!--<td>{{user.customerGroups.join(', ')}}</td>-->
-                <td>{{user.createdOn | date:'dd/MM/yyyy HH:mm:ss' }}</td>
-                <td>
-                    <a class="js-edit u-link-v5 g-color-gray-light-v6 g-color-secondary--hover" ui-sref="user-edit({id: user.id})" title="Edit">
-                        <i class="hs-admin-pencil"></i>
-                    </a>
-                    <a class="u-link-v5 g-color-gray-light-v6 g-color-secondary--hover g-text-underline--none--hover g-ml-12" ng-click="vm.deleteUser(user)">
-                        <i class="hs-admin-trash"></i>
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-        <tbody ng-show="vm.isLoading">
-            <tr>
-                <td colspan="6" class="text-center">Đang tải ... </td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td class="text-center" st-pagination="" st-items-by-page="50" st-displayed-pages="10" colspan="6"></td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
-

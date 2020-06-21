@@ -2,17 +2,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">{{vm.title}}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
                 <table class="table table-striped" st-pipe="vm.getProducts" st-table="vm.products">
                     <thead>
                         <tr>
-                            <th>Selected</th>
-                            <th st-sort="Name" class="sortable">Name</th>
-                            <th class="text-center">Is Allowed<br />To Order</th>
-                            <th class="text-center">Is Published</th>
+                            <th>Chọn</th>
+                            <th st-sort="Name" class="sortable">Tên</th>
+                            <th class="text-center">Cho phép đặt hàng</th>
+                            <th class="text-center">Hiển thị</th>
                         </tr>
                         <tr>
                             <th></th>
@@ -35,13 +35,13 @@
                                 </div>
                             </td>
                             <td>{{product.name}}</td>
-                            <td class="text-center"><i ng-attr-class="{{product.isAllowToOrder && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
-                            <td class="text-center"><i ng-attr-class="{{product.isPublished && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
+                            <td class="text-center"><i ng-attr-class="{{product.isAllowToOrder && 'hs-admin-check' || 'hs-admin-check-o'}}"></i></td>
+                            <td class="text-center"><i ng-attr-class="{{product.isPublished && 'hs-admin-check' || 'hs-admin-check-o'}}"></i></td>
                         </tr>
                     </tbody>
                     <tbody ng-show="vm.isLoading">
                         <tr>
-                            <td colspan="4" class="text-center">Loading ... </td>
+                            <td colspan="4" class="text-center">Đang tải ... </td>
                         </tr>
                     </tbody>
                     <tfoot>

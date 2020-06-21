@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Datepicker wrapper.
  *
  * @author Htmlstream
@@ -46,7 +46,6 @@
      */
 
     init: function (selector, config) {
-
       this.collection = selector && $(selector).length ? $(selector) : $();
       if (!$(selector).length) return;
 

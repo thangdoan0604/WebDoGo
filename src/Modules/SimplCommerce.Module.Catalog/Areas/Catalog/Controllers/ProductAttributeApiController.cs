@@ -13,10 +13,12 @@ namespace SimplCommerce.Module.Catalog.Areas.Catalog.Controllers
     public class ProductAttributeApiController : Controller
     {
         private readonly IRepository<ProductAttribute> _productAttrRepository;
+        private readonly IRepository<ProductAttributeValue> _productAttributeValueRepository;
 
-        public ProductAttributeApiController(IRepository<ProductAttribute> productAttrRepository)
+        public ProductAttributeApiController(IRepository<ProductAttribute> productAttrRepository, IRepository<ProductAttributeValue> productAttributeValueRepository)
         {
             _productAttrRepository = productAttrRepository;
+            _productAttributeValueRepository = productAttributeValueRepository;
         }
 
         [HttpGet]
@@ -94,8 +96,16 @@ namespace SimplCommerce.Module.Catalog.Areas.Catalog.Controllers
             {
                 return NotFound();
             }
+            
+            var productAttributeValueOption = _productAttributeValueRepository.Query().Where(x => x.AttributeId == id);
+            foreach (var item in productAttributeValueOption)
+            {
+                _productAttributeValueRepository.Remove(item);
+            }
+            _productAttributeValueRepository.SaveChanges();
 
             _productAttrRepository.Remove(productAttribute);
+            _productAttrRepository.SaveChanges();
             return Json(true);
         }
     }

@@ -1,7 +1,7 @@
 ﻿<div class="panel panel-default">
     <div class="panel-heading">
-        <h2 ng-if="!vm.isEditMode">{{::vm.translate.get('Create Cart Pricing Rule')}}</h2>
-        <h2 ng-if="vm.isEditMode">{{::vm.translate.get('Edit Cart Pricing Rule')}}</h2>
+        <h2 ng-if="!vm.isEditMode">Thêm quy tắc theo giá giỏ hàng</h2>
+        <h2 ng-if="vm.isEditMode">Cập nhật quy tắc giá giỏ hàng</h2>
     </div>
     <div class="panel-body">
         <form name="cartRuleForm" class="form-horizontal">
@@ -11,15 +11,15 @@
                 </ul>
             </div>
             <uib-tabset>
-                <uib-tab index="0" heading="{{::vm.translate.get('General Information')}}">
+                <uib-tab index="0" heading="Thông tin chung">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Name')}} *</label>
+                        <label class="col-sm-2 control-label">Tên *</label>
                         <div class="col-sm-10">
                             <input name="name" ng-model="vm.cartRule.name" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Description')}}</label>
+                        <label class="col-sm-2 control-label">Mô tả</label>
                         <div class="col-sm-10">
                             <textarea name="description" ng-model="vm.cartRule.description" rows="3" class="form-control" />
                         </div>
@@ -28,34 +28,34 @@
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" ng-model="vm.cartRule.isCouponRequired">{{::vm.translate.get('Require coupon code')}}
+                                    <input type="checkbox" ng-model="vm.cartRule.isCouponRequired">Yêu cầu mã giảm giá
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div ng-show="vm.cartRule.isCouponRequired" class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Coupon code')}} *</label>
+                        <label class="col-sm-2 control-label">Mã giảm giá *</label>
                         <div class="col-sm-10">
                             <input name="couponCode" ng-model="vm.cartRule.couponCode" class="form-control" />
                         </div>
                     </div>
                     <div ng-show="vm.cartRule.isCouponRequired" class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Usage limit per coupon')}}</label>
+                        <label class="col-sm-2 control-label">Giới hạn theo mã giảm giá</label>
                         <div class="col-sm-10">
                             <input name="usageLimitPerCoupon" ng-model="vm.cartRule.usageLimitPerCoupon" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Usage limit per customer')}}</label>
+                        <label class="col-sm-2 control-label">Giói hạn theo khách hàng</label>
                         <div class="col-sm-10">
                             <input name="usageLimitPerCustomer" ng-model="vm.cartRule.usageLimitPerCustomer" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Start')}}</label>
+                        <label class="col-sm-2 control-label">Bắt đầu</label>
                         <div class="col-sm-10">
                             <p class="input-group">
-                                <input type="text" class="form-control" datetime-picker="dd MMM yyyy HH:mm" ng-model="vm.cartRule.startOn" is-open="vm.datePickerStartOn.open" datepicker-options="vm.datePickerStartOn.datepickerOptions" />
+                                <input type="text" class="form-control" datetime-picker="dd/MM/yyyy HH:mm" ng-model="vm.cartRule.startOn" is-open="vm.datePickerStartOn.open" datepicker-options="vm.datePickerStartOn.datepickerOptions" />
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default" ng-click="vm.openCalendar($event, 'datePickerStartOn')"><i class="fa fa-calendar"></i></button>
                                 </span>
@@ -63,10 +63,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('End')}}</label>
+                        <label class="col-sm-2 control-label">Kết thúc</label>
                         <div class="col-sm-10">
                             <p class="input-group">
-                                <input type="text" class="form-control" datetime-picker="dd MMM yyyy HH:mm" ng-model="vm.cartRule.endOn" is-open="vm.datePickerEndOn.open" datepicker-options="vm.datePickerEndOn.datepickerOptions" />
+                                <input type="text" class="form-control" datetime-picker="dd/MM/yyyy HH:mm" ng-model="vm.cartRule.endOn" is-open="vm.datePickerEndOn.open" datepicker-options="vm.datePickerEndOn.datepickerOptions" />
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default" ng-click="vm.openCalendar($event, 'datePickerEndOn')"><i class="fa fa-calendar"></i></button>
                                 </span>
@@ -74,23 +74,23 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Apply')}} *</label>
+                        <label class="col-sm-2 control-label">Áp dụng *</label>
                         <div class="col-sm-10">
                             <select class="form-control" ng-model="vm.cartRule.ruleToApply">
-                                <option value="cart_fixed">{{::vm.translate.get('Fixed amount discount for whole cart')}}</option>
-                                <option value="by_percent">{{::vm.translate.get('Percent of product price discount')}}</option>
+                                <option value="cart_fixed">Giảm cho toàn bộ giỏ hàng</option>
+                                <option value="by_percent">Giảm theo phần trăm</option>
                                 <!--<option value="buy_x_get_y">Buy X Get Y Free (discount amount is Y)</option>-->
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Discount Amount')}} *</label>
+                        <label class="col-sm-2 control-label">Số tiền chiết khấu *</label>
                         <div class="col-sm-10">
                             <input name="discountAmount" ng-model="vm.cartRule.discountAmount" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Max Discount Amount')}}</label>
+                        <label class="col-sm-2 control-label">Số tiền chiết khấu tối đa</label>
                         <div class="col-sm-10">
                             <input name="maxDiscountAmount" ng-model="vm.cartRule.maxDiscountAmount" class="form-control" />
                         </div>
@@ -105,32 +105,32 @@
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" ng-model="vm.cartRule.isActive">{{::vm.translate.get('Is Active')}}
+                                    <input type="checkbox" ng-model="vm.cartRule.isActive">Đang hoạt động
                                 </label>
                             </div>
                         </div>
                     </div>
                 </uib-tab>
-                <uib-tab index="1" heading="{{::vm.translate.get('Products Selection')}}">
-                    <p>{{::vm.translate.get('Select products to apply or leave blank for all products')}}</p>
-                    <product-selection-directive model-id="productsSelector" title="{{::vm.translate.get('Add products')}}" selected-products="vm.cartRule.products"></product-selection-directive>
-                    <p><button type="button" class="btn btn-default" data-toggle="modal" data-target="#productsSelector">{{::vm.translate.get('Manage Products Selection')}}</button></p>
+                <uib-tab index="1" heading="Chọn sản phẩm">
+                    <p>Lựa chọn sản phẩm áp dụng. Nếu để trống quy tắc sẽ được áp dụng cho toàn bộ sản phẩm</p>
+                    <product-selection-directive model-id="productsSelector" title="Thêm sản phẩm" selected-products="vm.cartRule.products"></product-selection-directive>
+                    <p><button type="button" class="btn btn-default" data-toggle="modal" data-target="#productsSelector">Lựa chọn sản phẩm</button></p>
                     <table class="table table-striped">
                         <tr>
-                            <th>{{::vm.translate.get('Name')}}</th>
-                            <th class="text-center">{{::vm.translate.get('Is Published')}}</th>
+                            <th>Tên</th>
+                            <th class="text-center">Đang hiển thị</th>
                         </tr>
                         <tr ng-repeat="product in vm.cartRule.products">
                             <td>{{product.name}}</td>
-                            <td class="text-center"><i ng-attr-class="{{product.isPublished && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
+                            <td class="text-center"><i ng-attr-class="{{product.isPublished && 'hs-admin-check' || 'hs-admin-check-o'}}"></i></td>
                         </tr>
                     </table>
                 </uib-tab>
             </uib-tabset>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button class="btn btn-primary" ng-click="vm.save()"><span class="glyphicon glyphicon-ok"></span> {{::vm.translate.get('Save')}}</button>
-                    <button ui-sref="cart-rules" class="btn btn-default">{{::vm.translate.get('Cancel')}}</button>
+                    <button class="btn btn-primary" ng-click="vm.save()">Lưu lại</button>
+                    <button ui-sref="cart-rules" class="btn btn-default">Hủy bỏ</button>
                 </div>
             </div>
         </form>

@@ -2,11 +2,10 @@
 (function () {
     angular
         .module('simplAdmin.inventory')
-        .controller('WarehouseFormCtrl', ['warehouseService', 'translateService', '$state', '$stateParams', WarehouseFormCtrl]);
+        .controller('WarehouseFormCtrl', ['warehouseService', '$state', '$stateParams', WarehouseFormCtrl]);
 
-    function WarehouseFormCtrl(warehouseService, translateService, $state, $stateParams) {
+    function WarehouseFormCtrl(warehouseService, $state, $stateParams) {
         var vm = this;
-        vm.translate = translateService;
         vm.warehouseId = $stateParams.id;
         vm.isEditMode = vm.warehouseId > 0;
 
@@ -35,7 +34,7 @@
                             vm.validationErrors.push(error[key][0]);
                         }
                     } else {
-                        vm.validationErrors.push(translateService.get('Could not save Warehouse.'));
+                        vm.validationErrors.push('Không thể lưu thông tin kho.');
                     }
                 });
         };
@@ -44,6 +43,7 @@
             warehouseService.getCountries().then(function (result) {
                 vm.countries = result.data;
                 vm.warehouse.countryId = vm.warehouse.countryId || vm.countries[0].id.toString();
+                getStatesOrProvinces(result.data[0].id.toString());
             });
         };
 

@@ -21353,8 +21353,8 @@ var DATE_FORMATS_SPLIT = /((?:[^yMLdHhmsaZEwG']+)|(?:'(?:[^']|'')*')|(?:E+|y+|M+
  * @example
    <example name="filter-date">
      <file name="index.html">
-       <span ng-non-bindable>{{1288323623006 | date:'medium'}}</span>:
-           <span>{{1288323623006 | date:'medium'}}</span><br>
+       <span ng-non-bindable>{{1288323623006 | date:'dd/MM/yyyy hh:mm'}}</span>:
+           <span>{{1288323623006 | date:'dd/MM/yyyy hh:mm'}}</span><br>
        <span ng-non-bindable>{{1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>:
           <span>{{1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span><br>
        <span ng-non-bindable>{{1288323623006 | date:'MM/dd/yyyy @ h:mma'}}</span>:

@@ -1,6 +1,6 @@
 ﻿<div class="panel panel-default">
     <div class="panel-heading">
-        <h2>{{::vm.translate.get('Create Order')}}</h2>
+        <h2>Tạo đơn hàng</h2>
     </div>
     <div class="panel-body order-form">
         <form name="orderForm" novalidate class="form-horizontal">
@@ -10,28 +10,28 @@
                 </ul>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Customer')}}</label>
+                <label class="col-sm-2 control-label">Khách hàng</label>
                 <div class="col-sm-10 search-user">
-                    <input name="customer-search" ng-model="vm.customer.fullName" ng-change="vm.searchCustomers()" class="form-control" placeholder="Search user..." autocomplete="off" />
+                    <input name="customer-search" ng-model="vm.customer.fullName" ng-change="vm.searchCustomers()" class="form-control" placeholder="Tìm theo tên khách hàng ..." autocomplete="off" />
                     <div id="search-users-results" ng-show="vm.isSearchingCustomers">
                         <div class="users" ng-repeat="user in vm.searchedCustomers" ng-click="vm.selectCustomer(user)">{{user.fullName}} - {{user.email}} - {{user.phoneNumber}}</div>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Customer Name')}}</label>
+                <label class="col-sm-2 control-label">Tên khách hàng</label>
                 <div class="col-sm-10 search-user">
                     <input name="customer-name" ng-model="vm.customer.fullName" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Customer Email')}}</label>
+                <label class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-10 search-user">
                     <input name="customer-email" ng-model="vm.customer.email" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Customer Phone')}}</label>
+                <label class="col-sm-2 control-label">Số điện thoại</label>
                 <div class="col-sm-10 search-user">
                     <input name="customer-phone" ng-model="vm.customer.phoneNumber" class="form-control" />
                 </div>
@@ -39,36 +39,40 @@
 
             <table ng-show="vm.customer.id" class="table table-striped">
                 <tr>
-                    <th>{{::vm.translate.get('Product Id')}}</th>
-                    <th>{{::vm.translate.get('Product Name')}}</th>
-                    <th class="text-right">{{::vm.translate.get('Price')}}</th>
-                    <th>{{::vm.translate.get('Quantity')}}</th>
-                    <th>Actions</th>
+                    <th style="min-width: 100px; max-width: 100px;">Mã sản phẩm</th>
+                    <th style="min-width: 200px;">Tên sản phẩm</th>
+                    <th class="text-right">Giá</th>
+                    <th class="text-center">Số lượng</th>
+                    <th style="min-width: 80px; max-width: 80px;" class="text-center">Tùy chọn</th>
                 </tr>
                 <tr ng-repeat="item in vm.cart.items">
                     <td>{{item.productId}}</td>
                     <td>{{item.productName}}</td>
                     <td class="text-right">{{item.productPrice}}</td>
-                    <td><input class="form-control" ng-change="vm.updateCartItemQuantity(item)" ng-model="item.quantity" /></td>
-                    <td><button ng-click="vm.removeCartItem(item)" class="btn btn-danger btn-xs delete"> <span class="glyphicon glyphicon-remove"></span></button></td>
+                    <td class="text-right"><input class="form-control" ng-change="vm.updateCartItemQuantity(item)" ng-model="item.quantity" /></td>
+                    <td class="text-center">
+                        <a ng-click="vm.removeCartItem(item)" class="u-link-v5 g-color-gray-light-v6 g-color-secondary--hover g-text-underline--none--hover g-ml-12" title="Xóa">
+                            <i class="hs-admin-trash"></i>
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <td>
                         <input class="form-control" ng-model="vm.addingProduct.id" />
                     </td>
                     <td colspan="4" class="form-inline">
-                        <input class="form-control" placeholder="search by product name" ng-model="vm.addingProduct.name" ng-change="vm.searchProducts()" />
+                        <input class="form-control" placeholder="Tìm theo tên sản phẩm ..." ng-model="vm.addingProduct.name" ng-change="vm.searchProducts()" />
                         <div id="search-products-results" ng-show="vm.isSearchingProducts">
                             <div class="products" ng-repeat="product in vm.searchedProducts" ng-click="vm.selectProduct(product)">{{product.id}} - {{product.name}}</div>
                         </div>
-                        <button class="btn btn-default" ng-click="vm.addProduct()">Add Product</button>
+                        <button class="btn btn-primary" ng-click="vm.addProduct()">Thêm</button>
                     </td>
                 </tr>
             </table>
             <div ng-show="vm.customer.id && vm.cart.items.length > 0">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h4>Shipping address</h4>
+                        <h4>Địa chỉ nhận hàng</h4>
                         <div class="radio" ng-repeat="address in vm.customerAddress.addresses">
                             <label>
                                 <input type="radio" ng-change="vm.updateTaxAndShippingPrice()" name="shippingAddressId" value="{{address.userAddressId}}" ng-model="vm.selectedShippingAddressId">
@@ -81,26 +85,26 @@
                         <div class="radio">
                             <label>
                                 <input type="radio" ng-change="vm.updateTaxAndShippingPrice()" name="shippingAddressId" ng-model="vm.selectedShippingAddressId" value="0" />
-                                Add another address
+                                Thêm địa chỉ khác
                             </label>
                         </div>
                         <div ng-show="vm.selectedShippingAddressId == 0">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">{{::vm.translate.get('Country')}}</label>
+                                <label class="col-sm-2 control-label">Quốc gia</label>
                                 <div class="col-sm-10">
                                     <select required class="form-control" ng-model="vm.shippingAddress.countryId" ng-change="vm.onCountrySelected(vm.shippingAddress.countryId)" ng-options="country.id as country.name for country in vm.countries"></select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">{{::vm.translate.get('State Or Province')}}</label>
+                                <label class="col-sm-2 control-label">Tỉnh</label>
                                 <div class="col-sm-10">
                                     <select required class="form-control" ng-model="vm.shippingAddress.stateOrProvinceId" ng-change="vm.onStateOrProvinceSelected(vm.shippingAddress.stateOrProvinceId)" ng-options="stateOrProvince.id as stateOrProvince.name for stateOrProvince in vm.countryStatesOrProvinces.statesOrProvinces"></select>
                                 </div>
                             </div>
 
                             <div class="form-group" ng-show="vm.countryStatesOrProvinces.isDistrictEnabled">
-                                <label class="col-sm-2 control-label">{{::vm.translate.get('District')}}</label>
+                                <label class="col-sm-2 control-label">Huyện</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" ng-change="vm.updateTaxAndShippingPrice()" ng-model="vm.shippingAddress.districtId" ng-options="district.id as district.name for district in vm.districts">
                                         <option value="0">None</option>
@@ -109,35 +113,35 @@
                             </div>
 
                             <div class="form-group" ng-show="vm.countryStatesOrProvinces.isZipCodeEnabled">
-                                <label class="col-sm-2 control-label">{{::vm.translate.get('Postal Code')}}</label>
+                                <label class="col-sm-2 control-label">Mã bưu điện</label>
                                 <div class="col-sm-10">
                                     <input name="type" ng-change="vm.updateTaxAndShippingPrice()" ng-model="vm.shippingAddress.zipCode" class="form-control" />
                                 </div>
                             </div>
 
                             <div class="form-group" ng-show="vm.countryStatesOrProvinces.isCityEnabled">
-                                <label class="col-sm-2 control-label">{{::vm.translate.get('City')}}</label>
+                                <label class="col-sm-2 control-label">Thành phố</label>
                                 <div class="col-sm-10">
                                     <input name="type" ng-model="vm.shippingAddress.city" class="form-control" />
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">{{::vm.translate.get('Address Line 1')}}</label>
+                                <label class="col-sm-2 control-label">Địa chỉ 1</label>
                                 <div class="col-sm-10">
                                     <input name="type" required ng-model="vm.shippingAddress.addressLine1" class="form-control" />
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">{{::vm.translate.get('Contact Name')}}</label>
+                                <label class="col-sm-2 control-label">Tên liên hệ</label>
                                 <div class="col-sm-10">
                                     <input name="code" required ng-model="vm.shippingAddress.contactName" class="form-control" />
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">{{::vm.translate.get('Phone')}}</label>
+                                <label class="col-sm-2 control-label">Điện thoại</label>
                                 <div class="col-sm-10">
                                     <input name="type" required ng-model="vm.shippingAddress.phone" class="form-control" />
                                 </div>
@@ -145,10 +149,10 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <h4>Billing address</h4>
+                        <h4>Địa chỉ trên hóa đơn</h4>
                     </div>
                 </div>
-                <h4>Shipping options</h4>
+                <h4>Tùy chọn vận chuyển</h4>
                 <div>
                     <div class="radio" ng-repeat="option in vm.shippingOptions">
                         <label>
@@ -156,15 +160,15 @@
                         </label>
                     </div>
                 </div>
-                <h4>Order note</h4>
+                <h4>Lưu ý với đơn hàng</h4>
                 <textarea class="form-control" ng-model="vm.cart.orderNote" rows="3"></textarea>
-                <h4>Order summary</h4>
+                <h4>Tổng hợp thông tin</h4>
                 <table class="table table-striped">
                     <tr>
                         <th>Product</th>
-                        <th class="text-right">Quantity</th>
-                        <th class="text-right">Price</th>
-                        <th class="text-right">Total</th>
+                        <th class="text-right">Số lượng</th>
+                        <th class="text-right">Giá</th>
+                        <th class="text-right">Tổng cộng</th>
                     </tr>
                     <tr ng-repeat="item in vm.cart.items">
                         <td>{{item.productName}}</td>
@@ -173,26 +177,26 @@
                         <td class="text-right">{{item.totalString}}</td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-right">Subtotal: {{vm.cart.subTotalString}}</td>
+                        <td colspan="4" class="text-right">Giá đơn hàng: {{vm.cart.subTotalString}}</td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-right">Shipping: {{vm.cart.shippingAmountString}}</td>
+                        <td colspan="4" class="text-right">Phí vận chuyển: {{vm.cart.shippingAmountString}}</td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-right">Disount: {{vm.cart.discountString}}</td>
+                        <td colspan="4" class="text-right">Giảm giá: {{vm.cart.discountString}}</td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-right">Tax: {{vm.cart.taxAmountString}}</td>
+                        <td colspan="4" class="text-right">Thuế: {{vm.cart.taxAmountString}}</td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-right"><strong>Order Total: {{vm.cart.orderTotalString}}</strong></td>
+                        <td colspan="4" class="text-right"><strong>Tổng: {{vm.cart.orderTotalString}}</strong></td>
                     </tr>
                 </table>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button class="btn btn-primary" ng-disabled="!vm.selectedShippingOption || vm.cart.items.length === 0 || (vm.selectedShippingAddressId === '0' &&  orderForm.$invalid)" ng-click="vm.createOrder()"><span class="glyphicon glyphicon-ok"></span> {{::vm.translate.get('Create Order')}}</button>
-                    <button ui-sref="order" class="btn btn-default"> {{::vm.translate.get('Cancel')}}</button>
+                    <button class="btn btn-primary" ng-disabled="!vm.selectedShippingOption || vm.cart.items.length === 0 || (vm.selectedShippingAddressId === '0' &&  orderForm.$invalid)" ng-click="vm.createOrder()">Tạo đơn hàng</button>
+                    <button ui-sref="order" class="btn btn-default"> Hủy bỏ</button>
                 </div>
             </div>
         </form>

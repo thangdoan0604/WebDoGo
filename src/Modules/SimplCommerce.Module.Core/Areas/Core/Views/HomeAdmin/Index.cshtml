@@ -16,71 +16,69 @@
     var defaultCulture = Config.GetValue<string>("Global.DefaultCultureAdminUI") ?? Config.GetValue<string>("Global.DefaultCultureUI");
     var cultures = CultureRepository.Query().Where(x => x.Id != defaultCulture).Select(x => $"\"{x.Id}\"").ToArray(); }
 
-
 <!DOCTYPE html>
-<html ng-app="simplAdmin">
+<html ng-app="simplAdmin" lang="vi">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trang quản trị - Đồ gỗ</title>
-
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
+    <title>Trang quản trị</title>
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="~/assets/vendor/bootstrap/bootstrap.min.css">
+
     <!-- CSS Global Icons -->
     <link rel="stylesheet" href="~/assets/vendor/icon-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/assets/vendor/icon-line/css/simple-line-icons.css">
     <link rel="stylesheet" href="~/assets/vendor/icon-etlinefont/style.css">
     <link rel="stylesheet" href="~/assets/vendor/icon-line-pro/style.css">
     <link rel="stylesheet" href="~/assets/vendor/icon-hs/style.css">
-
     <link rel="stylesheet" href="~/admin-assets/vendor/hs-admin-icons/hs-admin-icons.css">
-
     <link rel="stylesheet" href="~/assets/vendor/animate.css">
     <link rel="stylesheet" href="~/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css">
-
-    <link rel="stylesheet" href="~/admin-assets/vendor/flatpickr/dist/css/flatpickr.min.css">
     <link rel="stylesheet" href="~/admin-assets/vendor/bootstrap-select/css/bootstrap-select.min.css">
-
     <link rel="stylesheet" href="~/admin-assets/vendor/chartist-js/chartist.min.css">
     <link rel="stylesheet" href="~/admin-assets/vendor/chartist-js-tooltip/chartist-plugin-tooltip.css">
-    <link rel="stylesheet" href="~/assets/vendor/fancybox/jquery.fancybox.min.css">
 
+    <link rel="stylesheet" href="~/assets/vendor/fancybox/jquery.fancybox.min.css">
     <link rel="stylesheet" href="~/assets/vendor/hamburgers/hamburgers.min.css">
 
+    <link rel="stylesheet" href="~/lib/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="~/lib/angular-bootstrap/ui-bootstrap-csp.css" />
+    <link rel="stylesheet" href="~/lib/toastr/build/toastr.min.css" />
+    <link rel="stylesheet" href="~/lib/summernote/summernote.css" />
+    <link rel="stylesheet" href="~/lib/angular-ui-tree/angular-ui-tree.min.css" />
+    <link rel="stylesheet" href="~/lib/angular-bootstrap-colorpicker/css/colorpicker.min.css" />
+    <link rel="stylesheet" href="~/_content/SimplCommerce.Module.Core/admin/admin-core.css" />
     <!-- CSS Unify -->
     <link rel="stylesheet" href="~/admin-assets/css/unify-admin.css">
     <link rel="stylesheet" href="~/admin-assets/css/custom.css">
-
 
     <script>
         window.Global_AssetVersion = "@Config["Global.AssetVersion"]";
         window.Global_EnableCultures = [@Html.Raw(string.Join(",", cultures))];
     </script>
-    <script src="~/lib/jquery/jquery-3.5.1.min.js"></script>
-    <script src="~/lib/jquery/jquery-migrate-1.4.1.min.js"></script>
-    <script simpl-append-version="true" src="~/lib/summernote/summernote.js"></script>
-    <script simpl-append-version="true" src="~/lib/angular/angular.js"></script>
-    <script simpl-append-version="true" src="~/lib/angular-ui-router/angular-ui-router.js"></script>
-    <script simpl-append-version="true" src="~/lib/angular-animate/angular-animate.js"></script>
-    <script simpl-append-version="true" src="~/lib/angular-aria/angular-aria.js"></script>
-    <script simpl-append-version="true" src="~/lib/angular-messages/angular-messages.js"></script>
-    <script simpl-append-version="true" src="~/lib/angular-material/angular-material.js"></script>
-    <script simpl-append-version="true" src="~/lib/angular-smart-table/dist/smart-table.js"></script>
-    <script simpl-append-version="true" src="~/lib/ng-file-upload/dist/ng-file-upload.js"></script>
-    <script simpl-append-version="true" src="~/lib/angular-bootstrap/ui-bootstrap.js"></script>
-    <script simpl-append-version="true" src="~/lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script simpl-append-version="true" src="~/lib/bootstrap-ui-datetime-picker/datetime-picker.js"></script>
-    <script simpl-append-version="true" src="~/lib/bootstrap-ui-datetime-picker/datetime-picker.tpls.js"></script>
-    <script simpl-append-version="true" src="~/lib/angular-summernote/angular-summernote.js"></script>
-    <script simpl-append-version="true" src="~/lib/angular-ui-tree/angular-ui-tree.js"></script>
-    <script simpl-append-version="true" src="~/lib/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js"></script>
-    <script simpl-append-version="true" src="~/lib/toastr/build/toastr.min.js"></script>
-    <script simpl-append-version="true" src="~/lib/bootbox/bootbox.js"></script>
-    <script simpl-append-version="true" src="~/lib/i18n/angular-locale_@(CultureInfo.CurrentCulture.Name.ToLower()).js"></script>
+    <script src="~/lib/jquery/jquery.js"></script>
+    @*<script src="~/lib/jquery/jquery-migrate-3.3.0.min.js"></script>*@
+    <script src="~/lib/summernote/summernote.js"></script>
+    <script src="~/lib/angular/angular.js"></script>
+    <script src="~/lib/angular-ui-router/angular-ui-router.js"></script>
+    <script src="~/lib/angular-animate/angular-animate.js"></script>
+    <script src="~/lib/angular-aria/angular-aria.js"></script>
+    <script src="~/lib/angular-messages/angular-messages.js"></script>
+    <script src="~/lib/angular-material/angular-material.js"></script>
+    <script src="~/lib/angular-smart-table/dist/smart-table.js"></script>
+    <script src="~/lib/ng-file-upload/dist/ng-file-upload.js"></script>
+    <script src="~/lib/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="~/lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="~/lib/bootstrap-ui-datetime-picker/datetime-picker.js"></script>
+    <script src="~/lib/bootstrap-ui-datetime-picker/datetime-picker.tpls.js"></script>
+    <script src="~/lib/angular-summernote/angular-summernote.js"></script>
+    <script src="~/lib/angular-ui-tree/angular-ui-tree.js"></script>
+    <script src="~/lib/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js"></script>
+    <script src="~/lib/toastr/build/toastr.min.js"></script>
+    <script src="~/lib/bootbox/bootbox.js"></script>
+    <script src="~/lib/i18n/angular-locale_@(CultureInfo.CurrentCulture.Name.ToLower()).js"></script>
 
-    <script simpl-append-version="true" src="~/_content/SimplCommerce.Module.Core/admin/common/slugify.js"></script>
+    <script src="~/_content/SimplCommerce.Module.Core/admin/common/slugify.js"></script>
     <script>
         angular.module('simplAdmin', [
             'ui.router',
@@ -102,14 +100,13 @@
             'simplAdmin.dashboard'
         ]);
     </script>
-    <script simpl-append-version="true" src="~/_content/SimplCommerce.Module.Core/admin/admin-app-config.js"></script>
-    <script simpl-append-version="true" src="~/_content/SimplCommerce.Module.Core/admin/common/common.js"></script>
-    <script simpl-append-version="true" src="~/_content/SimplCommerce.Module.Core/admin/common/summernote-service.js"></script>
-    <script simpl-append-version="true" src="~/_content/SimplCommerce.Module.Core/admin/common/st-date-range.js"></script>
-    <script simpl-append-version="true" src="~/_content/SimplCommerce.Module.Core/admin/common/translation-service.js"></script>
+    <script src="~/_content/SimplCommerce.Module.Core/admin/admin-app-config.js"></script>
+    <script src="~/_content/SimplCommerce.Module.Core/admin/common/common.js"></script>
+    <script src="~/_content/SimplCommerce.Module.Core/admin/common/summernote-service.js"></script>
+    <script src="~/_content/SimplCommerce.Module.Core/admin/common/st-date-range.js"></script>
+    <script src="~/_content/SimplCommerce.Module.Core/admin/common/translation-service.js"></script>
 
-    <script simpl-append-version="true" src="~/_content/SimplCommerce.Module.Core/admin/dashboard/dashboard.module.js"></script>
-
+    <script src="~/_content/SimplCommerce.Module.Core/admin/dashboard/dashboard.module.js"></script>
 
     @foreach (var module in GlobalConfiguration.Modules)
     {
@@ -131,21 +128,21 @@
                 {
                     if (assetBundling)
                     {
-<script simpl-append-version="true" src="~/_content/@module.Id/@outputFileName.Replace("wwwroot/", "")"></script>
- }
-else
-{
-foreach (string inputFile in configItems.inputFiles)
-{
-<script simpl-append-version="true" src="~/_content/@module.Id/@inputFile.Replace("wwwroot/", "")"></script>
-}
-}
-}
-}
-}
-}
+                        <script src="~/_content/@module.Id/@outputFileName.Replace("wwwroot/", "")"></script>
+                    }
+                    else
+                    {
+                        foreach (string inputFile in configItems.inputFiles)
+                        {
+                            <script src="~/_content/@module.Id/@inputFile.Replace("wwwroot/", "")"></script>
+                        }
+                    }
+                }
+            }
+        }
+    }
 </head>
-<body>
+<body class="has-fixed-sidebar">
     <!-- Header -->
     <header id="js-header" class="u-header u-header--sticky-top">
         <div class="u-header__section u-header__section--admin-dark g-min-height-65">
@@ -165,9 +162,6 @@ foreach (string inputFile in configItems.inputFiles)
                                 </g>
                             </g>
                         </svg>
-
-
-
                     </a>
                     <!-- End Logo -->
                     <!-- Sidebar Toggler -->
@@ -177,207 +171,8 @@ foreach (string inputFile in configItems.inputFiles)
                     <!-- End Sidebar Toggler -->
                 </div>
 
-                <!-- Top Search Bar -->
-                <form id="searchMenu" class="u-header--search col-sm g-py-12 g-ml-15--sm g-ml-20--md g-mr-10--sm" aria-labelledby="searchInvoker" action="#!">
-                    <div class="input-group g-max-width-450--sm">
-                        <input class="form-control h-100 form-control-md g-rounded-4 g-pr-40" type="text" placeholder="Enter search keywords">
-                        <button type="submit" class="btn u-btn-outline-primary g-brd-none g-bg-transparent--hover g-pos-abs g-top-0 g-right-0 d-flex g-width-40 h-100 align-items-center justify-content-center g-font-size-18 g-z-index-2">
-                            <i class="hs-admin-search"></i>
-                        </button>
-                    </div>
-                </form>
-                <!-- End Top Search Bar -->
                 <!-- Messages/Notifications/Top Search Bar/Top User -->
                 <div class="col-auto d-flex g-py-12 g-pl-40--lg ml-auto">
-                    <!-- Top Messages -->
-                    <div class="g-pos-rel g-hidden-sm-down g-mr-5">
-                        <a id="messagesInvoker" class="d-block text-uppercase u-header-icon-v1 g-pos-rel g-width-40 g-height-40 rounded-circle g-font-size-20" href="#" aria-controls="messagesMenu" aria-haspopup="true" aria-expanded="false" data-dropdown-event="click" data-dropdown-target="#messagesMenu"
-                           data-dropdown-type="css-animation" data-dropdown-duration="300" data-dropdown-animation-in="fadeIn" data-dropdown-animation-out="fadeOut">
-                            <span class="u-badge-v1 g-top-7 g-right-7 g-width-18 g-height-18 g-bg-primary g-font-size-10 g-color-white rounded-circle p-0">7</span>
-                            <i class="hs-admin-comment-alt g-absolute-centered"></i>
-                        </a>
-
-                        <!-- Top Messages List -->
-                        <div id="messagesMenu" class="g-absolute-centered--x g-width-340 g-max-width-400 g-mt-17 rounded" aria-labelledby="messagesInvoker">
-                            <div class="media u-header-dropdown-bordered-v1 g-pa-20">
-                                <h4 class="d-flex align-self-center text-uppercase g-font-size-default g-letter-spacing-0_5 g-mr-20 g-mb-0">3 new messages</h4>
-                                <div class="media-body align-self-center text-right">
-                                    <a class="g-color-secondary" href="#">View All</a>
-                                </div>
-                            </div>
-
-                            <ul class="p-0 mb-0">
-                                <!-- Top Messages List Item -->
-                                <li class="media g-pos-rel u-header-dropdown-item-v1 g-pa-20">
-                                    <div class="d-flex g-mr-15">
-                                        <img class="g-width-40 g-height-40 rounded-circle" src="../../assets/img-temp/100x100/img5.jpg" alt="Image Description">
-                                    </div>
-
-                                    <div class="media-body">
-                                        <h5 class="g-font-size-16 g-font-weight-400 g-mb-5"><a href="#">Verna Swanson</a></h5>
-                                        <p class="g-mb-10">Not so many years businesses used to grunt at using</p>
-
-                                        <em class="d-flex align-self-center align-items-center g-font-style-normal g-color-lightblue-v2">
-                                            <i class="hs-admin-time icon-clock g-mr-5"></i> <small>5 Min ago</small>
-                                        </em>
-                                    </div>
-                                    <a class="u-link-v2" href="#">Read</a>
-                                </li>
-                                <!-- End Top Messages List Item -->
-                                <!-- Top Messages List Item -->
-                                <li class="media g-pos-rel u-header-dropdown-item-v1 g-pa-20">
-                                    <div class="d-flex g-mr-15">
-                                        <img class="g-width-40 g-height-40 rounded-circle" src="../../assets/img-temp/100x100/img6.jpg" alt="Image Description">
-                                    </div>
-
-                                    <div class="media-body">
-                                        <h5 class="g-font-size-16 g-font-weight-400 g-mb-5"><a href="#">Eddie Hayes</a></h5>
-                                        <p class="g-mb-10">But today and influence of is growing right along illustration</p>
-
-                                        <em class="d-flex align-self-center align-items-center g-font-style-normal g-color-lightblue-v2">
-                                            <i class="hs-admin-time icon-clock g-mr-5"></i> <small>22 Min ago</small>
-                                        </em>
-                                    </div>
-                                    <a class="u-link-v2" href="#">Read</a>
-                                </li>
-                                <!-- End Top Messages List Item -->
-                                <!-- Top Messages List Item -->
-                                <li class="media g-pos-rel u-header-dropdown-item-v1 g-pa-20">
-                                    <div class="d-flex g-mr-15">
-                                        <img class="g-width-40 g-height-40 rounded-circle" src="../../assets/img-temp/100x100/img7.jpg" alt="Image Description">
-                                    </div>
-
-                                    <div class="media-body">
-                                        <h5 class="g-font-size-16 g-font-weight-400 g-mb-5"><a href="#">Herbert Castro</a></h5>
-                                        <p class="g-mb-10">But today, the use and influence of illustrations is growing right along</p>
-
-                                        <em class="d-flex align-self-center align-items-center g-font-style-normal g-color-lightblue-v2">
-                                            <i class="hs-admin-time icon-clock g-mr-5"></i> <small>15 Min ago</small>
-                                        </em>
-                                    </div>
-                                    <a class="u-link-v2" href="#">Read</a>
-                                </li>
-                                <!-- End Top Messages List Item -->
-                            </ul>
-                        </div>
-                        <!-- End Top Messages List -->
-                    </div>
-                    <!-- End Top Messages -->
-                    <!-- Top Notifications -->
-                    <div class="g-pos-rel g-hidden-sm-down">
-                        <a id="notificationsInvoker" class="d-block text-uppercase u-header-icon-v1 g-pos-rel g-width-40 g-height-40 rounded-circle g-font-size-20" href="#" aria-controls="notificationsMenu" aria-haspopup="true" aria-expanded="false" data-dropdown-event="click"
-                           data-dropdown-target="#notificationsMenu" data-dropdown-type="css-animation" data-dropdown-duration="300" data-dropdown-animation-in="fadeIn" data-dropdown-animation-out="fadeOut">
-                            <i class="hs-admin-bell g-absolute-centered"></i>
-                        </a>
-
-                        <!-- Top Notifications List -->
-                        <div id="notificationsMenu" class="js-custom-scroll g-absolute-centered--x g-width-340 g-max-width-400 g-height-400 g-mt-17 rounded" aria-labelledby="notificationsInvoker">
-                            <div class="media text-uppercase u-header-dropdown-bordered-v1 g-pa-20">
-                                <h4 class="d-flex align-self-center g-font-size-default g-letter-spacing-0_5 g-mr-20 g-mb-0">Notifications</h4>
-                            </div>
-
-                            <ul class="p-0 mb-0">
-                                <!-- Top Notifications List Item -->
-                                <li class="media u-header-dropdown-item-v1 g-parent g-px-20 g-py-15">
-                                    <div class="d-flex align-self-center u-header-dropdown-icon-v1 g-pos-rel g-width-55 g-height-55 g-font-size-22 rounded-circle g-mr-15">
-                                        <i class="hs-admin-bookmark-alt g-absolute-centered"></i>
-                                    </div>
-
-                                    <div class="media-body align-self-center">
-                                        <p class="mb-0">A Pocket PC is a handheld computer features</p>
-                                    </div>
-
-                                    <a class="d-flex g-color-lightblue-v2 g-font-size-12 opacity-0 g-opacity-1--parent-hover g-transition--ease-in g-transition-0_2" href="#">
-                                        <i class="hs-admin-close"></i>
-                                    </a>
-                                </li>
-                                <!-- End Top Notifications List Item -->
-                                <!-- Top Notifications List Item -->
-                                <li class="media u-header-dropdown-item-v1 g-parent g-px-20 g-py-15">
-                                    <div class="d-flex align-self-center u-header-dropdown-icon-v1 g-pos-rel g-width-55 g-height-55 g-font-size-22 rounded-circle g-mr-15">
-                                        <i class="hs-admin-blackboard g-absolute-centered"></i>
-                                    </div>
-
-                                    <div class="media-body align-self-center">
-                                        <p class="mb-0">The first is a non technical method which requires</p>
-                                    </div>
-
-                                    <a class="d-flex g-color-lightblue-v2 g-font-size-12 opacity-0 g-opacity-1--parent-hover g-transition--ease-in g-transition-0_2" href="#">
-                                        <i class="hs-admin-close"></i>
-                                    </a>
-                                </li>
-                                <!-- End Top Notifications List Item -->
-                                <!-- Top Notifications List Item -->
-                                <li class="media u-header-dropdown-item-v1 g-parent g-px-20 g-py-15">
-                                    <div class="d-flex align-self-center u-header-dropdown-icon-v1 g-pos-rel g-width-55 g-height-55 g-font-size-22 rounded-circle g-mr-15">
-                                        <i class="hs-admin-calendar g-absolute-centered"></i>
-                                    </div>
-
-                                    <div class="media-body align-self-center">
-                                        <p class="mb-0">Stu Unger is of the biggest superstarsis</p>
-                                    </div>
-
-                                    <a class="d-flex g-color-lightblue-v2 g-font-size-12 opacity-0 g-opacity-1--parent-hover g-transition--ease-in g-transition-0_2" href="#">
-                                        <i class="hs-admin-close"></i>
-                                    </a>
-                                </li>
-                                <!-- End Top Notifications List Item -->
-                                <!-- Top Notifications List Item -->
-                                <li class="media u-header-dropdown-item-v1 g-parent g-px-20 g-py-15">
-                                    <div class="d-flex align-self-center u-header-dropdown-icon-v1 g-pos-rel g-width-55 g-height-55 g-font-size-22 rounded-circle g-mr-15">
-                                        <i class="hs-admin-pie-chart g-absolute-centered"></i>
-                                    </div>
-
-                                    <div class="media-body align-self-center">
-                                        <p class="mb-0">Sony laptops are among the most well known laptops</p>
-                                    </div>
-
-                                    <a class="d-flex g-color-lightblue-v2 g-font-size-12 opacity-0 g-opacity-1--parent-hover g-transition--ease-in g-transition-0_2" href="#">
-                                        <i class="hs-admin-close"></i>
-                                    </a>
-                                </li>
-                                <!-- End Top Notifications List Item -->
-                                <!-- Top Notifications List Item -->
-                                <li class="media u-header-dropdown-item-v1 g-parent g-px-20 g-py-15">
-                                    <div class="d-flex align-self-center u-header-dropdown-icon-v1 g-pos-rel g-width-55 g-height-55 g-font-size-22 rounded-circle g-mr-15">
-                                        <i class="hs-admin-bookmark-alt g-absolute-centered"></i>
-                                    </div>
-
-                                    <div class="media-body align-self-center">
-                                        <p class="mb-0">A Pocket PC is a handheld computer features</p>
-                                    </div>
-
-                                    <a class="d-flex g-color-lightblue-v2 g-font-size-12 opacity-0 g-opacity-1--parent-hover g-transition--ease-in g-transition-0_2" href="#">
-                                        <i class="hs-admin-close"></i>
-                                    </a>
-                                </li>
-                                <!-- End Top Notifications List Item -->
-                                <!-- Top Notifications List Item -->
-                                <li class="media u-header-dropdown-item-v1 g-parent g-px-20 g-py-15">
-                                    <div class="d-flex align-self-center u-header-dropdown-icon-v1 g-pos-rel g-width-55 g-height-55 g-font-size-22 rounded-circle g-mr-15">
-                                        <i class="hs-admin-blackboard g-absolute-centered"></i>
-                                    </div>
-
-                                    <div class="media-body align-self-center">
-                                        <p class="mb-0">The first is a non technical method which requires</p>
-                                    </div>
-
-                                    <a class="d-flex g-color-lightblue-v2 g-font-size-12 opacity-0 g-opacity-1--parent-hover g-transition--ease-in g-transition-0_2" href="#">
-                                        <i class="hs-admin-close"></i>
-                                    </a>
-                                </li>
-                                <!-- End Top Notifications List Item -->
-                            </ul>
-                        </div>
-                        <!-- End Top Notifications List -->
-                    </div>
-                    <!-- End Top Notifications -->
-                    <!-- Top Search Bar (Mobi) -->
-                    <a id="searchInvoker" class="g-hidden-sm-up text-uppercase u-header-icon-v1 g-pos-rel g-width-40 g-height-40 rounded-circle g-font-size-20" href="#" aria-controls="searchMenu" aria-haspopup="true" aria-expanded="false" data-is-mobile-only="true" data-dropdown-event="click"
-                       data-dropdown-target="#searchMenu" data-dropdown-type="css-animation" data-dropdown-duration="300" data-dropdown-animation-in="fadeIn" data-dropdown-animation-out="fadeOut">
-                        <i class="hs-admin-search g-absolute-centered"></i>
-                    </a>
-                    <!-- End Top Search Bar (Mobi) -->
                     <!-- Top User -->
                     <div class="col-auto d-flex g-pt-5 g-pt-0--sm g-pl-10 g-pl-20--sm">
                         <div class="g-pos-rel g-px-10--lg">
@@ -433,360 +228,7 @@ foreach (string inputFile in configItems.inputFiles)
                     <!-- End Top User -->
                 </div>
                 <!-- End Messages/Notifications/Top Search Bar/Top User -->
-                <!-- Top Activity Toggler -->
-                <a id="activityInvoker" class="text-uppercase u-header-icon-v1 g-pos-rel g-width-40 g-height-40 rounded-circle g-font-size-20" href="#" aria-controls="activityMenu" aria-haspopup="true" aria-expanded="false" data-dropdown-event="click" data-dropdown-target="#activityMenu"
-                   data-dropdown-type="css-animation" data-dropdown-animation-in="fadeInRight" data-dropdown-animation-out="fadeOutRight" data-dropdown-duration="300">
-                    <i class="hs-admin-align-right g-absolute-centered"></i>
-                </a>
-                <!-- End Top Activity Toggler -->
             </nav>
-
-            <!-- Top Activity Panel -->
-            <div id="activityMenu" class="js-custom-scroll u-header-sidebar g-pos-fix g-top-0 g-left-auto g-right-0 g-z-index-4 g-width-300 g-width-400--sm g-height-100vh" aria-labelledby="activityInvoker">
-                <div class="u-header-dropdown-bordered-v1 g-pa-20">
-                    <a id="activityInvokerClose" class="pull-right g-color-lightblue-v2" href="#" aria-controls="activityMenu" aria-haspopup="true" aria-expanded="false" data-dropdown-event="click" data-dropdown-target="#activityMenu" data-dropdown-type="css-animation" data-dropdown-animation-in="fadeInRight"
-                       data-dropdown-animation-out="fadeOutRight" data-dropdown-duration="300">
-                        <i class="hs-admin-close"></i>
-                    </a>
-                    <h4 class="text-uppercase g-font-size-default g-letter-spacing-0_5 g-mr-20 g-mb-0">Activity</h4>
-                </div>
-
-                <!-- Activity Short Stat. -->
-                <section class="g-pa-20">
-                    <div class="media align-items-center u-link-v5 g-color-white">
-                        <div class="media-body align-self-center g-line-height-1_3 g-font-weight-300 g-font-size-40">
-                            624 <span class="g-font-size-16">+3%</span>
-                        </div>
-
-                        <div class="d-flex align-self-center g-font-size-25 g-line-height-1 g-color-secondary ml-auto">$49,000</div>
-
-                        <div class="d-flex align-self-center g-ml-8">
-                            <svg class="g-fill-white-opacity-0_5" width="12px" height="20px" viewBox="0 0 12 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                <g transform="translate(-21.000000, -751.000000)">
-                                    <g transform="translate(0.000000, 64.000000)">
-                                        <g transform="translate(20.000000, 619.000000)">
-                                            <g transform="translate(1.000000, 68.000000)">
-                                                <polygon points="6 20 0 13.9709049 0.576828937 13.3911999 5.59205874 18.430615 5.59205874 0 6.40794126 0 6.40794126 18.430615 11.4223552 13.3911999 12 13.9709049"></polygon>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </g>
-                            </svg>
-                            <svg class="g-fill-lightblue-v3" width="12px" height="20px" viewBox="0 0 12 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                <g transform="translate(-33.000000, -751.000000)">
-                                    <g transform="translate(0.000000, 64.000000)">
-                                        <g transform="translate(20.000000, 619.000000)">
-                                            <g transform="translate(1.000000, 68.000000)">
-                                                <polygon transform="translate(18.000000, 10.000000) scale(1, -1) translate(-18.000000, -10.000000)" points="18 20 12 13.9709049 12.5768289 13.3911999 17.5920587 18.430615 17.5920587 0 18.4079413 0 18.4079413 18.430615 23.4223552 13.3911999 24 13.9709049"></polygon>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </g>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <span class="g-font-size-16">Transactions</span>
-                </section>
-                <!-- End Activity Short Stat. -->
-                <!-- Activity Bars -->
-                <section class="g-pa-20 g-mb-10">
-                    <!-- Advertising Income -->
-                    <div class="g-mb-30">
-                        <div class="media u-link-v5  g-color-white g-mb-10">
-                            <span class="media-body align-self-center">Advertising Income</span>
-
-                            <span class="d-flex align-self-center">
-                                <svg class="g-fill-white-opacity-0_5" width="12px" height="20px" viewBox="0 0 12 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <g transform="translate(-21.000000, -751.000000)">
-                                        <g transform="translate(0.000000, 64.000000)">
-                                            <g transform="translate(20.000000, 619.000000)">
-                                                <g transform="translate(1.000000, 68.000000)">
-                                                    <polygon points="6 20 0 13.9709049 0.576828937 13.3911999 5.59205874 18.430615 5.59205874 0 6.40794126 0 6.40794126 18.430615 11.4223552 13.3911999 12 13.9709049"></polygon>
-                                                </g>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </svg>
-                                <svg class="g-fill-lightblue-v3" width="12px" height="20px" viewBox="0 0 12 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <g transform="translate(-33.000000, -751.000000)">
-                                        <g transform="translate(0.000000, 64.000000)">
-                                            <g transform="translate(20.000000, 619.000000)">
-                                                <g transform="translate(1.000000, 68.000000)">
-                                                    <polygon transform="translate(18.000000, 10.000000) scale(1, -1) translate(-18.000000, -10.000000)" points="18 20 12 13.9709049 12.5768289 13.3911999 17.5920587 18.430615 17.5920587 0 18.4079413 0 18.4079413 18.430615 23.4223552 13.3911999 24 13.9709049"></polygon>
-                                                </g>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </svg>
-                            </span>
-                        </div>
-
-                        <div class="progress g-height-4 g-bg-gray-light-v8 g-rounded-2">
-                            <div class="progress-bar g-bg-teal-v2 g-rounded-2" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                    <!-- End Advertising Income -->
-                    <!-- Projects Income -->
-                    <div class="g-mb-30">
-                        <div class="media u-link-v5  g-color-white g-mb-10">
-                            <span class="media-body align-self-center">Projects Income</span>
-                            <span class="d-flex align-self-center">
-                                <svg class="g-fill-red" width="12px" height="20px" viewBox="0 0 12 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <g transform="translate(-21.000000, -751.000000)">
-                                        <g transform="translate(0.000000, 64.000000)">
-                                            <g transform="translate(20.000000, 619.000000)">
-                                                <g transform="translate(1.000000, 68.000000)">
-                                                    <polygon points="6 20 0 13.9709049 0.576828937 13.3911999 5.59205874 18.430615 5.59205874 0 6.40794126 0 6.40794126 18.430615 11.4223552 13.3911999 12 13.9709049"></polygon>
-                                                </g>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </svg>
-                                <svg class="g-fill-white-opacity-0_5" width="12px" height="20px" viewBox="0 0 12 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <g transform="translate(-33.000000, -751.000000)">
-                                        <g transform="translate(0.000000, 64.000000)">
-                                            <g transform="translate(20.000000, 619.000000)">
-                                                <g transform="translate(1.000000, 68.000000)">
-                                                    <polygon transform="translate(18.000000, 10.000000) scale(1, -1) translate(-18.000000, -10.000000)" points="18 20 12 13.9709049 12.5768289 13.3911999 17.5920587 18.430615 17.5920587 0 18.4079413 0 18.4079413 18.430615 23.4223552 13.3911999 24 13.9709049"></polygon>
-                                                </g>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </svg>
-                            </span>
-                        </div>
-
-                        <div class="progress g-height-4 g-bg-gray-light-v8 g-rounded-2">
-                            <div class="progress-bar g-bg-lightblue-v3 g-rounded-2" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                    <!-- End Projects Income -->
-                    <!-- Template Sales -->
-                    <div>
-                        <div class="media u-link-v5  g-color-white g-mb-10">
-                            <span class="media-body align-self-center">Template Sales</span>
-                            <span class="d-flex align-self-center">
-                                <svg class="g-fill-white-opacity-0_5" width="12px" height="20px" viewBox="0 0 12 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <g transform="translate(-21.000000, -751.000000)">
-                                        <g transform="translate(0.000000, 64.000000)">
-                                            <g transform="translate(20.000000, 619.000000)">
-                                                <g transform="translate(1.000000, 68.000000)">
-                                                    <polygon points="6 20 0 13.9709049 0.576828937 13.3911999 5.59205874 18.430615 5.59205874 0 6.40794126 0 6.40794126 18.430615 11.4223552 13.3911999 12 13.9709049"></polygon>
-                                                </g>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </svg>
-                                <svg class="g-fill-lightblue-v3" width="12px" height="20px" viewBox="0 0 12 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <g transform="translate(-33.000000, -751.000000)">
-                                        <g transform="translate(0.000000, 64.000000)">
-                                            <g transform="translate(20.000000, 619.000000)">
-                                                <g transform="translate(1.000000, 68.000000)">
-                                                    <polygon transform="translate(18.000000, 10.000000) scale(1, -1) translate(-18.000000, -10.000000)" points="18 20 12 13.9709049 12.5768289 13.3911999 17.5920587 18.430615 17.5920587 0 18.4079413 0 18.4079413 18.430615 23.4223552 13.3911999 24 13.9709049"></polygon>
-                                                </g>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </svg>
-                            </span>
-                        </div>
-
-                        <div class="progress g-height-4 g-bg-gray-light-v8 g-rounded-2">
-                            <div class="progress-bar g-bg-darkblue-v2 g-rounded-2" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                    <!-- End Template Sales -->
-                </section>
-                <!-- End Activity Bars -->
-                <!-- Activity Accounts -->
-                <section class="g-pa-20">
-                    <h5 class="text-uppercase g-font-size-default g-letter-spacing-0_5 g-mb-10">My accounts</h5>
-
-                    <div class="media u-header-dropdown-bordered-v2 g-py-10">
-                        <div class="d-flex align-self-center g-mr-12">
-                            <span class="u-badge-v2--sm g-pos-stc g-transform-origin--top-left g-bg-teal-v2"></span>
-                        </div>
-
-                        <div class="media-body align-self-center">Credit Card</div>
-
-                        <div class="d-flex text-right">$12.240</div>
-                    </div>
-
-                    <div class="media u-header-dropdown-bordered-v2 g-py-10">
-                        <div class="d-flex align-self-center g-mr-12">
-                            <span class="u-badge-v2--sm g-pos-stc g-transform-origin--top-left g-bg-lightblue-v3"></span>
-                        </div>
-
-                        <div class="media-body align-self-center">Debit Card</div>
-
-                        <div class="d-flex text-right">$228.110</div>
-                    </div>
-
-                    <div class="media g-py-10">
-                        <div class="d-flex align-self-center g-mr-12">
-                            <span class="u-badge-v2--sm g-pos-stc g-transform-origin--top-left g-bg-darkblue-v2"></span>
-                        </div>
-
-                        <div class="media-body align-self-center">Savings Account</div>
-
-                        <div class="d-flex text-right">$128.248.000</div>
-                    </div>
-                </section>
-                <!-- End Activity Accounts -->
-                <!-- Activity Transactions -->
-                <section class="g-pa-20">
-                    <h5 class="text-uppercase g-font-size-default g-letter-spacing-0_5 g-mb-10">Transactions</h5>
-
-                    <!-- Transaction Item -->
-                    <div class="u-header-dropdown-bordered-v2 g-py-20">
-                        <div class="media g-pos-rel">
-                            <div class="d-flex align-self-start g-pt-3 g-mr-12">
-                                <i class="hs-admin-plus g-color-lightblue-v3"></i>
-                            </div>
-
-                            <div class="media-body align-self-start">
-                                <strong class="d-block g-font-size-17 g-font-weight-400 g-line-height-1">$240.00</strong>
-                                <p class="mb-0 g-mt-5">Addiction When Gambling Becomes</p>
-                            </div>
-
-                            <em class="d-flex align-items-center g-pos-abs g-top-0 g-right-0 g-font-style-normal g-color-lightblue-v2">
-                                <i class="hs-admin-time icon-clock g-font-size-default g-mr-8"></i> <small>5 Min ago</small>
-                            </em>
-                        </div>
-                    </div>
-                    <!-- End Transaction Item -->
-                    <!-- Transaction Item -->
-                    <div class="u-header-dropdown-bordered-v2 g-py-20">
-                        <div class="media g-pos-rel">
-                            <div class="d-flex align-self-start g-pt-3 g-mr-12">
-                                <i class="hs-admin-minus g-color-red"></i>
-                            </div>
-
-                            <div class="media-body align-self-start">
-                                <strong class="d-block g-font-size-17 g-font-weight-400 g-line-height-1">$126.00</strong>
-                                <p class="mb-0 g-mt-5">Make Myspace Your</p>
-                            </div>
-
-                            <em class="d-flex align-items-center g-pos-abs g-top-0 g-right-0 g-font-style-normal g-color-lightblue-v2">
-                                <i class="hs-admin-time icon-clock g-font-size-default g-mr-8"></i> <small>25 Nov 2017</small>
-                            </em>
-                        </div>
-                    </div>
-                    <!-- End Transaction Item -->
-                    <!-- Transaction Item -->
-                    <div class="u-header-dropdown-bordered-v2 g-py-20">
-                        <div class="media g-pos-rel">
-                            <div class="d-flex align-self-start g-pt-3 g-mr-12">
-                                <i class="hs-admin-plus g-color-lightblue-v3"></i>
-                            </div>
-
-                            <div class="media-body align-self-start">
-                                <strong class="d-block g-font-size-17 g-font-weight-400 g-line-height-1">$560.00</strong>
-                                <p class="mb-0 g-mt-5">Writing A Good Headline</p>
-                            </div>
-
-                            <em class="d-flex align-items-center g-pos-abs g-top-0 g-right-0 g-font-style-normal g-color-lightblue-v2">
-                                <i class="hs-admin-time icon-clock g-font-size-default g-mr-8"></i> <small>22 Nov 2017</small>
-                            </em>
-                        </div>
-                    </div>
-                    <!-- End Transaction Item -->
-                    <!-- Transaction Item -->
-                    <div class="u-header-dropdown-bordered-v2 g-py-20">
-                        <div class="media g-pos-rel">
-                            <div class="d-flex align-self-start g-pt-3 g-mr-12">
-                                <i class="hs-admin-plus g-color-lightblue-v3"></i>
-                            </div>
-
-                            <div class="media-body align-self-start">
-                                <strong class="d-block g-font-size-17 g-font-weight-400 g-line-height-1">$6.00</strong>
-                                <p class="mb-0 g-mt-5">Buying Used Electronic Equipment</p>
-                            </div>
-
-                            <em class="d-flex align-items-center g-pos-abs g-top-0 g-right-0 g-font-style-normal g-color-lightblue-v2">
-                                <i class="hs-admin-time icon-clock g-font-size-default g-mr-8"></i> <small>13 Oct 2017</small>
-                            </em>
-                        </div>
-                    </div>
-                    <!-- End Transaction Item -->
-                    <!-- Transaction Item -->
-                    <div class="u-header-dropdown-bordered-v2 g-py-20">
-                        <div class="media g-pos-rel">
-                            <div class="d-flex align-self-start g-pt-3 g-mr-12">
-                                <i class="hs-admin-plus g-color-lightblue-v3"></i>
-                            </div>
-
-                            <div class="media-body align-self-start">
-                                <strong class="d-block g-font-size-17 g-font-weight-400 g-line-height-1">$320.00</strong>
-                                <p class="mb-0 g-mt-5">Gambling Becomes A Problem</p>
-                            </div>
-
-                            <em class="d-flex align-items-center g-pos-abs g-top-0 g-right-0 g-font-style-normal g-color-lightblue-v2">
-                                <i class="hs-admin-time icon-clock g-font-size-default g-mr-8"></i> <small>27 Jul 2017</small>
-                            </em>
-                        </div>
-                    </div>
-                    <!-- End Transaction Item -->
-                    <!-- Transaction Item -->
-                    <div class="u-header-dropdown-bordered-v2 g-py-20">
-                        <div class="media g-pos-rel">
-                            <div class="d-flex align-self-start g-pt-3 g-mr-12">
-                                <i class="hs-admin-minus g-color-red"></i>
-                            </div>
-
-                            <div class="media-body align-self-start">
-                                <strong class="d-block g-font-size-17 g-font-weight-400 g-line-height-1">$28.00</strong>
-                                <p class="mb-0 g-mt-5">Baby Monitor Technology</p>
-                            </div>
-
-                            <em class="d-flex align-items-center g-pos-abs g-top-0 g-right-0 g-font-style-normal g-color-lightblue-v2">
-                                <i class="hs-admin-time icon-clock g-font-size-default g-mr-8"></i> <small>05 Mar 2017</small>
-                            </em>
-                        </div>
-                    </div>
-                    <!-- End Transaction Item -->
-                    <!-- Transaction Item -->
-                    <div class="u-header-dropdown-bordered-v2 g-py-20">
-                        <div class="media g-pos-rel">
-                            <div class="d-flex align-self-start g-pt-3 g-mr-12">
-                                <i class="hs-admin-plus g-color-lightblue-v3"></i>
-                            </div>
-
-                            <div class="media-body align-self-start">
-                                <strong class="d-block g-font-size-17 g-font-weight-400 g-line-height-1">$490.00</strong>
-                                <p class="mb-0 g-mt-5">Adwords Keyword Research For Beginners</p>
-                            </div>
-
-                            <em class="d-flex align-items-center g-pos-abs g-top-0 g-right-0 text-uppercase g-font-size-11 g-letter-spacing-0_5 g-font-style-normal g-color-lightblue-v2">
-                                <i class="hs-admin-time icon-clock g-font-size-default g-mr-8"></i> 09 Feb 2017
-                            </em>
-                        </div>
-                    </div>
-                    <!-- End Transaction Item -->
-                    <!-- Transaction Item -->
-                    <div class="u-header-dropdown-bordered-v2 g-py-20">
-                        <div class="media g-pos-rel">
-                            <div class="d-flex align-self-start g-pt-3 g-mr-12">
-                                <i class="hs-admin-minus g-color-red"></i>
-                            </div>
-
-                            <div class="media-body align-self-start">
-                                <strong class="d-block g-font-size-17 g-font-weight-400 g-line-height-1">$14.20</strong>
-                                <p class="mb-0 g-mt-5">A Good Autoresponder</p>
-                            </div>
-
-                            <em class="d-flex align-items-center g-pos-abs g-top-0 g-right-0 text-uppercase g-font-size-11 g-letter-spacing-0_5 g-font-style-normal g-color-lightblue-v2">
-                                <i class="hs-admin-time icon-clock g-font-size-default g-mr-8"></i> 09 Feb 2017
-                            </em>
-                        </div>
-                    </div>
-                    <!-- End Transaction Item -->
-                </section>
-                <!-- End Activity Transactions -->
-            </div>
-            <!-- End Top Activity Panel -->
-
         </div>
     </header>
     <!-- End Header -->
@@ -795,475 +237,441 @@ foreach (string inputFile in configItems.inputFiles)
         <div class="row no-gutters g-pos-rel g-overflow-x-hidden">
             <!-- Sidebar Nav -->
             <div id="sideNav" class="col-auto u-sidebar-navigation-v1 u-sidebar-navigation--dark">
-                <ul id="sideNavMenu" class="u-sidebar-navigation-v1-menu u-side-nav--top-level-menu g-min-height-100vh mb-0">
-                    <!-- Dashboards -->
-                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--top-level-menu-item has-active">
-                        <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="/admin#!/dashboard">
-                            <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
-                                <i class="hs-admin-pie-chart"></i>
-                            </span>
-                            <span class="media-body align-self-center">Thống kê</span>
-                        </a>
-                    </li>
-                    <!-- End Dashboards -->
-                    <!-- Common -->
-                    @if (User.IsInRole("admin"))
-                    {
-        <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
-            <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="javascript:void(0)" data-hssm-target="#commonSubMenu">
-                <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
-                    <i class="hs-admin-server"></i>
-                </span>
-                <span class="media-body align-self-center">Quản lý chung</span>
-                <span class="d-flex align-self-center u-side-nav--control-icon">
-                    <i class="hs-admin-angle-right"></i>
-                </span>
-                <span class="u-side-nav--has-sub-menu__indicator"></span>
-            </a>
-            <ul id="commonSubMenu" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
-                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="users">
-                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                            <i class="hs-admin-infinite"></i>
-                        </span>
-                        <span class="media-body align-self-center">Người dùng</span>
-                    </a>
-                </li>
-                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="vendors">
-                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                            <i class="hs-admin-blackboard"></i>
-                        </span>
-                        <span class="media-body align-self-center">Nhà cung cấp</span>
-                    </a>
-                </li>
-                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="customergroups">
-                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                            <i class="hs-admin-harddrive"></i>
-                        </span>
-                        <span class="media-body align-self-center">Nhóm khách hàng</span>
-                    </a>
-                </li>
-                @*<li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="reviews">
-                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                            <i class="hs-admin-harddrive"></i>
-                        </span>
-                        <span class="media-body align-self-center">Reviews</span>
-                    </a>
-                </li>
-                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="review-replies">
-                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                            <i class="hs-admin-harddrive"></i>
-                        </span>
-                        <span class="media-body align-self-center">Phản hồi reviews</span>
-                    </a>
-                </li>*@
-                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="comments">
-                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                            <i class="hs-admin-harddrive"></i>
-                        </span>
-                        <span class="media-body align-self-center">Bình luận</span>
-                    </a>
-                </li>
-                @*<li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="contact-area">
-                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                            <i class="hs-admin-harddrive"></i>
-                        </span>
-                        <span class="media-body align-self-center">Vùng liên hệ</span>
-                    </a>
-                </li>
-                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="contact">
-                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                            <i class="hs-admin-harddrive"></i>
-                        </span>
-                        <span class="media-body align-self-center">Quản lý liên hệ</span>
-                    </a>
-                </li>*@
-            </ul>
-        </li>
-}
-                    <!-- End Common -->
-                    <!-- Category -->
-                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
-                        <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="javascript:void(0)" data-hssm-target="#categorySubMenu">
-                            <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
-                                <i class="hs-admin-server"></i>
-                            </span>
-                            <span class="media-body align-self-center">Danh mục</span>
-                            <span class="d-flex align-self-center u-side-nav--control-icon">
-                                <i class="hs-admin-angle-right"></i>
-                            </span>
-                            <span class="u-side-nav--has-sub-menu__indicator"></span>
-                        </a>
-                        <ul id="categorySubMenu" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="product">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-infinite"></i>
+                <div class="js-custom-scroll u-sidebar-navigation-v1-inner">
+                    <ul id="sideNavMenu" class="u-sidebar-navigation-v1-menu u-side-nav--top-level-menu g-min-height-100vh mb-0">
+                        <!-- Dashboards -->
+                        <li class="u-sidebar-navigation-v1-menu-item u-side-nav--top-level-menu-item has-active">
+                            <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="/admin#!/dashboard">
+                                <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
+                                    <i class="hs-admin-pie-chart"></i>
+                                </span>
+                                <span class="media-body align-self-center">Thống kê</span>
+                            </a>
+                        </li>
+                        <!-- End Dashboards -->
+                        <!-- Common -->
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
+                                <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="javascript:void(0)" data-hssm-target="#commonSubMenu">
+                                    <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
+                                        <i class="hs-admin-view-list-alt"></i>
                                     </span>
-                                    <span class="media-body align-self-center">Sản phẩm</span>
-                                </a>
-                            </li>
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="product-prices">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-blackboard"></i>
+                                    <span class="media-body align-self-center">Quản lý chung</span>
+                                    <span class="d-flex align-self-center u-side-nav--control-icon">
+                                        <i class="hs-admin-angle-right"></i>
                                     </span>
-                                    <span class="media-body align-self-center">Giá</span>
+                                    <span class="u-side-nav--has-sub-menu__indicator"></span>
                                 </a>
+                                <ul id="commonSubMenu" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
+                                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                        <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="users">
+                                            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                                <i class="fa fa-users" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="media-body align-self-center">Người dùng</span>
+                                        </a>
+                                    </li>
+                                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                        <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="vendors">
+                                            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                                <i class="hs-admin-user"></i>
+                                            </span>
+                                            <span class="media-body align-self-center">Nhà cung cấp</span>
+                                        </a>
+                                    </li>
+                                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                        <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="customergroups">
+                                            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                                <i class="fa fa-users" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="media-body align-self-center">Nhóm khách hàng</span>
+                                        </a>
+                                    </li>
+                                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                        <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="reviews">
+                                            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                                <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="media-body align-self-center">Reviews</span>
+                                        </a>
+                                    </li>
+                                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                        <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="review-replies">
+                                            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                                <i class="fa fa-comments-o" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="media-body align-self-center">Phản hồi reviews</span>
+                                        </a>
+                                    </li>
+                                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                        <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="comments">
+                                            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                                <i class="fa fa-comments" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="media-body align-self-center">Bình luận</span>
+                                        </a>
+                                    </li>
+                                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                        <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="contact-area">
+                                            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                                <i class="fa fa-address-book" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="media-body align-self-center">Vùng liên hệ</span>
+                                        </a>
+                                    </li>
+                                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                        <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="contact">
+                                            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                                <i class="fa fa-address-book-o" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="media-body align-self-center">Quản lý liên hệ</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
-                            @if (User.IsInRole("admin"))
-                            {
-                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="category">
-                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                            <i class="hs-admin-harddrive"></i>
-                        </span>
-                        <span class="media-body align-self-center">Danh mục</span>
-                    </a>
-                </li>
+                        }
+                        <!-- End Common -->
+                        <!-- Category -->
+                        <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
+                            <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="javascript:void(0)" data-hssm-target="#categorySubMenu">
+                                <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
+                                    <i class="fa fa-th-list" aria-hidden="true"></i>
+                                </span>
+                                <span class="media-body align-self-center">Danh mục</span>
+                                <span class="d-flex align-self-center u-side-nav--control-icon">
+                                    <i class="hs-admin-angle-right"></i>
+                                </span>
+                                <span class="u-side-nav--has-sub-menu__indicator"></span>
+                            </a>
+                            <ul id="categorySubMenu" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
                                 <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="brand">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="product">
                                         <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                            <i class="hs-admin-harddrive"></i>
+                                            <i class="fa fa-cube" aria-hidden="true"></i>
                                         </span>
-                                        <span class="media-body align-self-center">Nhãn hiệu</span>
+                                        <span class="media-body align-self-center">Sản phẩm</span>
                                     </a>
                                 </li>
-                                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="product-option">
-                                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                                            <i class="hs-admin-harddrive"></i>
-                                                        </span>
-                                                        <span class="media-body align-self-center">Tủy chọn sản phẩm</span>
-                                                    </a>
-                                                </li>
-                                                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="product-attribute-group">
-                                                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                                                            <i class="hs-admin-harddrive"></i>
-                                                                        </span>
-                                                                        <span class="media-body align-self-center">Nhóm thuộc tính</span>
-                                                                    </a>
-                                                                </li>
-                                                                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                                                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="product-attribute">
-                                                                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                                                                            <i class="hs-admin-harddrive"></i>
-                                                                                        </span>
-                                                                                        <span class="media-body align-self-center">Thuộc tính sản phẩm</span>
-                                                                                    </a>
-                                                                                </li>
-                                                                                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                                                                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="product-template">
-                                                                                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                                                                                            <i class="hs-admin-harddrive"></i>
-                                                                                                        </span>
-                                                                                                        <span class="media-body align-self-center">Mẫu sản phẩm</span>
-                                                                                                    </a>
-                                                                                                </li>
-}
-                        </ul>
-                    </li>
-                    <!-- End Category -->
-                    <!-- Sales -->
-                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
-                        <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="javascript:void(0)" data-hssm-target="#salesSubMenu">
-                            <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
-                                <i class="hs-admin-server"></i>
-                            </span>
-                            <span class="media-body align-self-center">Bán hàng</span>
-                            <span class="d-flex align-self-center u-side-nav--control-icon">
-                                <i class="hs-admin-angle-right"></i>
-                            </span>
-                            <span class="u-side-nav--has-sub-menu__indicator"></span>
-                        </a>
-                        <ul id="salesSubMenu" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="order">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-infinite"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Bán hàng</span>
-                                </a>
-                            </li>
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="shipments">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-blackboard"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Vận chuyển</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- End Sales -->
-                    <!-- Inventory -->
-                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
-                        <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="javascript:void(0)" data-hssm-target="#inventorySubMenu">
-                            <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
-                                <i class="hs-admin-server"></i>
-                            </span>
-                            <span class="media-body align-self-center">Quản lý kho</span>
-                            <span class="d-flex align-self-center u-side-nav--control-icon">
-                                <i class="hs-admin-angle-right"></i>
-                            </span>
-                            <span class="u-side-nav--has-sub-menu__indicator"></span>
-                        </a>
-                        <ul id="inventorySubMenu" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="stocks">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-infinite"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Quản lý hàng trong kho</span>
-                                </a>
-                            </li>
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="warehouses">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-blackboard"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Danh sách kho</span>
-                                </a>
-                            </li>
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="warehouse-manage-products">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-blackboard"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Quản lý sản phẩm trong kho</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- End Inventory -->
-                    <!-- Promotions -->
-                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
-                        <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="javascript:void(0)" data-hssm-target="#promotionsSubMenu">
-                            <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
-                                <i class="hs-admin-server"></i>
-                            </span>
-                            <span class="media-body align-self-center">Khuyến mại</span>
-                            <span class="d-flex align-self-center u-side-nav--control-icon">
-                                <i class="hs-admin-angle-right"></i>
-                            </span>
-                            <span class="u-side-nav--has-sub-menu__indicator"></span>
-                        </a>
-                        <ul id="promotionsSubMenu" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="cart-rules">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-infinite"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Theo giá giỏ hàng</span>
-                                </a>
-                            </li>
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="cart-rule-usages">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-blackboard"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Áp dụng khuyến mại</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- End Promotions -->
-                    <!-- Content -->
-                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
-                        <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="javascript:void(0)" data-hssm-target="#contentSubMenu">
-                            <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
-                                <i class="hs-admin-server"></i>
-                            </span>
-                            <span class="media-body align-self-center">Nội dung</span>
-                            <span class="d-flex align-self-center u-side-nav--control-icon">
-                                <i class="hs-admin-angle-right"></i>
-                            </span>
-                            <span class="u-side-nav--has-sub-menu__indicator"></span>
-                        </a>
-                        <ul id="contentSubMenu" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="page">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-infinite"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Bài viết</span>
-                                </a>
-                            </li>
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="menus">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-blackboard"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Menus</span>
-                                </a>
-                            </li>
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="widget">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-blackboard"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Widgets</span>
-                                </a>
-                            </li>
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="news-categories">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-blackboard"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Quản lý danh mục mới</span>
-                                </a>
-                            </li>
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="news-items">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-blackboard"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Quản lý sản phẩm mới</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- End Content -->
-                    <!-- System -->
-                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
-                        <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="javascript:void(0)" data-hssm-target="#systemSubMenu">
-                            <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
-                                <i class="hs-admin-server"></i>
-                            </span>
-                            <span class="media-body align-self-center">Cài đặt hệ thống</span>
-                            <span class="d-flex align-self-center u-side-nav--control-icon">
-                                <i class="hs-admin-angle-right"></i>
-                            </span>
-                            <span class="u-side-nav--has-sub-menu__indicator"></span>
-                        </a>
-                        <ul id="systemSubMenu" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="themes">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-infinite"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Giao diện</span>
-                                </a>
-                            </li>
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="countries">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-blackboard"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Quốc gia</span>
-                                </a>
-                            </li>
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="states-provinces">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-blackboard"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Tỉnh</span>
-                                </a>
-                            </li>
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="tax-classes">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-blackboard"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Loại thuế</span>
-                                </a>
-                            </li>
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="tax-rates">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-blackboard"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Tỉ lệ thuế</span>
-                                </a>
-                            </li>
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="shipping-providers">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-blackboard"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Phương thức vận chuyển</span>
-                                </a>
-                            </li>
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="payment-providers">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-blackboard"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Phương thức thanh toán</span>
-                                </a>
-                            </li>
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="configuration">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-blackboard"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Cài đặt</span>
-                                </a>
-                            </li>
-                            <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                                <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="localization">
-                                    <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                                        <i class="hs-admin-blackboard"></i>
-                                    </span>
-                                    <span class="media-body align-self-center">Dịch</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- End System -->
-                </ul>
-            </div>
-            <!-- End Sidebar Nav -->
-            <div class="col g-ml-45 g-ml-0--lg g-pb-65--md">
-
-                <!-- Content -->
-                <div class="g-pa-20">
-                    <div ui-view></div>
-                </div>
-                <!-- End Content -->
-                <!-- Footer -->
-                <footer id="footer" class="u-footer--bottom-sticky g-bg-white g-color-gray-dark-v6 g-brd-top g-brd-gray-light-v7 g-pa-20">
-                    <div class="row align-items-center">
-                        <!-- Footer Nav -->
-                        <div class="col-md-8 g-mb-10 g-mb-0--md">
-                            <ul class="list-inline text-center text-md-left mb-0">
-                                <li class="list-inline-item">
-                                    <a class="g-color-gray-dark-v6 g-color-secondary--hover" href="#">FAQ</a>
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="product-prices">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-money" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Giá</span>
+                                    </a>
                                 </li>
-                                <li class="list-inline-item">
-                                    <span class="g-color-gray-dark-v6">|</span>
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                        <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="category">
+                                            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                                <i class="fa fa-cubes" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="media-body align-self-center">Danh mục sản phẩm</span>
+                                        </a>
+                                    </li>
+                                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                        <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="brand">
+                                            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                                <i class="fa fa-amazon" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="media-body align-self-center">Nhãn hiệu</span>
+                                        </a>
+                                    </li>
+                                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                        <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="product-option">
+                                            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                                <i class="hs-admin-archive"></i>
+                                            </span>
+                                            <span class="media-body align-self-center">Tủy chọn sản phẩm</span>
+                                        </a>
+                                    </li>
+                                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                        <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="product-attribute-group">
+                                            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                                <i class="fa fa-columns" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="media-body align-self-center">Nhóm thuộc tính</span>
+                                        </a>
+                                    </li>
+                                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                        <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="product-attribute">
+                                            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                                <i class="fa fa-table" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="media-body align-self-center">Thuộc tính sản phẩm</span>
+                                        </a>
+                                    </li>
+                                    <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                        <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="product-template">
+                                            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                                <i class="fa fa-clone" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="media-body align-self-center">Mẫu sản phẩm</span>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                        <!-- End Category -->
+                        <!-- Sales -->
+                        <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
+                            <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="javascript:void(0)" data-hssm-target="#salesSubMenu">
+                                <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
+                                    <i class="fa fa-sellsy" aria-hidden="true"></i>
+                                </span>
+                                <span class="media-body align-self-center">Bán hàng</span>
+                                <span class="d-flex align-self-center u-side-nav--control-icon">
+                                    <i class="hs-admin-angle-right"></i>
+                                </span>
+                                <span class="u-side-nav--has-sub-menu__indicator"></span>
+                            </a>
+                            <ul id="salesSubMenu" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="order">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Đơn hàng</span>
+                                    </a>
                                 </li>
-                                <li class="list-inline-item">
-                                    <a class="g-color-gray-dark-v6 g-color-secondary--hover" href="#">Support</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <span class="g-color-gray-dark-v6">|</span>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="g-color-gray-dark-v6 g-color-secondary--hover" href="#">Contact Us</a>
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="shipments">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-truck" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Vận chuyển</span>
+                                    </a>
                                 </li>
                             </ul>
-                        </div>
-                        <!-- End Footer Nav -->
-                       
-                        <!-- Footer Copyrights -->
-                        <div class="col-md-4 text-center text-md-right">
-                            <small class="d-block g-font-size-default">Công ty Cổ phần Giải pháp Hà Minh.</small>
-                        </div>
-                        <!-- End Footer Copyrights -->
-                    </div>
-                </footer>
-                <!-- End Footer -->
+                        </li>
+                        <!-- End Sales -->
+                        <!-- Inventory -->
+                        <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
+                            <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="javascript:void(0)" data-hssm-target="#inventorySubMenu">
+                                <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
+                                    <i class="fa fa-university" aria-hidden="true"></i>
+                                </span>
+                                <span class="media-body align-self-center">Quản lý kho</span>
+                                <span class="d-flex align-self-center u-side-nav--control-icon">
+                                    <i class="hs-admin-angle-right"></i>
+                                </span>
+                                <span class="u-side-nav--has-sub-menu__indicator"></span>
+                            </a>
+                            <ul id="inventorySubMenu" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="stocks">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-cube" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Quản lý hàng trong kho</span>
+                                    </a>
+                                </li>
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="warehouses">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-server" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Danh sách kho</span>
+                                    </a>
+                                </li>
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="warehouse-manage-products">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-cubes" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Quản lý sản phẩm trong kho</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- End Inventory -->
+                        <!-- Promotions -->
+                        <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
+                            <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="javascript:void(0)" data-hssm-target="#promotionsSubMenu">
+                                <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
+                                    <i class="fa fa-product-hunt" aria-hidden="true"></i>
+                                </span>
+                                <span class="media-body align-self-center">Khuyến mại</span>
+                                <span class="d-flex align-self-center u-side-nav--control-icon">
+                                    <i class="hs-admin-angle-right"></i>
+                                </span>
+                                <span class="u-side-nav--has-sub-menu__indicator"></span>
+                            </a>
+                            <ul id="promotionsSubMenu" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="cart-rules">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Theo giá giỏ hàng</span>
+                                    </a>
+                                </li>
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="cart-rule-usages">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-play" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Áp dụng khuyến mại</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- End Promotions -->
+                        <!-- Content -->
+                        <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
+                            <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="javascript:void(0)" data-hssm-target="#contentSubMenu">
+                                <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
+                                    <i class="fa fa-clipboard" aria-hidden="true"></i>
+                                </span>
+                                <span class="media-body align-self-center">Nội dung</span>
+                                <span class="d-flex align-self-center u-side-nav--control-icon">
+                                    <i class="hs-admin-angle-right"></i>
+                                </span>
+                                <span class="u-side-nav--has-sub-menu__indicator"></span>
+                            </a>
+                            <ul id="contentSubMenu" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="page">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Trang</span>
+                                    </a>
+                                </li>
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="menus">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-bars" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Menus</span>
+                                    </a>
+                                </li>
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="widget">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-sticky-note" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Widgets</span>
+                                    </a>
+                                </li>
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="news-categories">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-cubes" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Danh mục bài viết</span>
+                                    </a>
+                                </li>
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="news-items">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-cubes" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Bài viết</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- End Content -->
+                        <!-- System -->
+                        <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
+                            <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="javascript:void(0)" data-hssm-target="#systemSubMenu">
+                                <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
+                                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                                </span>
+                                <span class="media-body align-self-center">Cài đặt hệ thống</span>
+                                <span class="d-flex align-self-center u-side-nav--control-icon">
+                                    <i class="hs-admin-angle-right"></i>
+                                </span>
+                                <span class="u-side-nav--has-sub-menu__indicator"></span>
+                            </a>
+                            <ul id="systemSubMenu" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
+                                @*<li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                        <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="themes">
+                                            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                                <i class="hs-admin-infinite"></i>
+                                            </span>
+                                            <span class="media-body align-self-center">Giao diện</span>
+                                        </a>
+                                    </li>*@
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="countries">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-language" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Quốc gia</span>
+                                    </a>
+                                </li>
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="states-provinces">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Tỉnh</span>
+                                    </a>
+                                </li>
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="tax-classes">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="hs-admin-blackboard"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Loại thuế</span>
+                                    </a>
+                                </li>
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="tax-rates">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="hs-admin-blackboard"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Tỉ lệ thuế</span>
+                                    </a>
+                                </li>
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="shipping-providers">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-truck" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Phương thức vận chuyển</span>
+                                    </a>
+                                </li>
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="payment-providers">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-usd" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Phương thức thanh toán</span>
+                                    </a>
+                                </li>
+                                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="configuration">
+                                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                            <i class="fa fa-cogs" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="media-body align-self-center">Cài đặt</span>
+                                    </a>
+                                </li>
+                                @*<li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                                        <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" ui-sref="localization">
+                                            <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                                               <i class="fa fa-language" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="media-body align-self-center">Dịch</span>
+                                        </a>
+                                    </li>*@
+                            </ul>
+                        </li>
+                        <!-- End System -->
+                    </ul>
+                </div>
             </div>
+            <!-- End Sidebar Nav -->
+            <!-- Content -->
+            <div class="col g-ml-45 g-ml-3--md">
+                <div ui-view></div>
+            </div>
+            <!-- End Content -->
         </div>
     </main>
 
@@ -1300,7 +708,7 @@ foreach (string inputFile in configItems.inputFiles)
     <script src="~/assets/js/hs.core.js"></script>
     <script src="~/admin-assets/js/components/hs.side-nav.js"></script>
     <script src="~/assets/js/helpers/hs.hamburgers.js"></script>
-    <script src="~/admin-assets/js/components/hs.range-datepicker.js"></script>
+
     <script src="~/assets/js/components/hs.datepicker.js"></script>
     <script src="~/assets/js/components/hs.dropdown.js"></script>
     <script src="~/assets/js/components/hs.scrollbar.js"></script>
@@ -1309,6 +717,7 @@ foreach (string inputFile in configItems.inputFiles)
     <script src="~/admin-assets/js/components/hs.bar-chart.js"></script>
     <script src="~/assets/js/helpers/hs.focus-state.js"></script>
     <script src="~/admin-assets/js/components/hs.popup.js"></script>
+    <script src="~/admin-assets/js/components/hs.range-datepicker.js"></script>
 
     <!-- JS Custom -->
     <script src="~/assets/js/custom.js"></script>
@@ -1317,7 +726,13 @@ foreach (string inputFile in configItems.inputFiles)
     <script>
         $(document).ready(function () {
             $('.js-select').selectpicker();
+            $('.js-select').on('shown.bs.select', function (e) {
+                $(this).addClass('opened');
+            });
 
+            $('.js-select').on('hidden.bs.select', function (e) {
+                $(this).removeClass('opened');
+            });
             // initialization of hamburger
             $.HSCore.helpers.HSHamburgers.init('.hamburger');
 
@@ -1343,9 +758,6 @@ foreach (string inputFile in configItems.inputFiles)
                     }, 400);
                 }
             });
-
-            // initialization of range datepicker
-            $.HSCore.components.HSRangeDatepicker.init('#rangeDatepicker, #rangeDatepicker2, #rangeDatepicker3');
 
             // initialization of datepicker
             $.HSCore.components.HSDatepicker.init('#datepicker', {

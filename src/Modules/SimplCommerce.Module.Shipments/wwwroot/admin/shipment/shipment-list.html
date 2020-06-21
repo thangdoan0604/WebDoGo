@@ -1,59 +1,43 @@
-﻿<div class="page-header">
-    <div class="row">
-        <div class="col-md-8">
-            <h2>{{::vm.translate.get('Shipments')}}</h2>
+﻿<div class="card rounded-0">
+    <div class="row card-header g-brd-transparent rounded-0 mb-0 mx-0">
+        <div class="col-8 px-0">
+            <h3 class="table-title">
+                Vận chuyển
+            </h3>
         </div>
     </div>
+    <div class="table-responsive">
+        <table class="table table-hover u-table--v1 mb-0" st-pipe="vm.getShipments" st-table="vm.shipments">
+            <thead>
+                <tr>
+                    <th st-sort="Id" class="sortable">Mã</th>
+                    <th st-sort="TrackingNumber" class="sortable">Số theo dõi</th>
+                    <th>Mã đơn hàng</th>
+                    <th>Kho</th>
+                    <th st-sort="CreatedOn" class="sortable">Tạo lúc</th>
+                    <th class="text-center" style="min-width: 80px; max-width: 80px">Tùy chọn</th>
+                </tr>
+            </thead>
+            <tbody ng-show="!vm.isLoading">
+                <tr ng-repeat="item in vm.shipments">
+                    <td>{{item.id}}</td>
+                    <td>{{item.trackingNumber}}</td>
+                    <td><a ui-sref="order-detail({id: item.orderId})" title="View"># {{item.orderId}}</a></td>
+                    <td>{{item.warehouseName}}</td>
+                    <td>{{item.createdOn | date:'dd/MM/yyyy hh:mm' }}</td>
+                    <td class="text-center">
+                        <a ui-sref="shipment-details({id: item.id})" class="js-edit u-link-v5 g-color-gray-light-v6 g-color-secondary--hover" title="Sửa">
+                            <i class="hs-admin-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="text-center" st-pagination="" st-items-by-page="50" st-displayed-pages="10" colspan="4"></td>
+                    <td ng-show="!vm.isLoading">Tìm thấy {{vm.tableStateRef.pagination.totalItemCount || '0'}} kết quả</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
-
-<table class="table table-striped" st-pipe="vm.getShipments" st-table="vm.shipments">
-    <thead>
-        <tr>
-            <th st-sort="Id" class="sortable">{{::vm.translate.get('Shipment Id')}}</th>
-            <th st-sort="TrackingNumber" class="sortable">{{::vm.translate.get('Tracking Number')}}</th>
-            <th>{{::vm.translate.get('Order Id')}}</th>
-            <th>{{::vm.translate.get('Warehouse')}}</th>
-            <th st-sort="CreatedOn" class="sortable">{{::vm.translate.get('Created On')}}</th>
-            <th>{{::vm.translate.get('Actions')}}</th>
-        </tr>
-        <tr>
-            <th></th>
-            <th>
-                <div class="form-group">
-                    <input class="form-control" st-search="TrackingNumber" />
-                </div>
-            </th>
-            <th>
-                <div class="form-group">
-                    <input class="form-control" st-search="OrderId" />
-                </div>
-            </th>
-            <th></th>
-            <th><st-date-range predicate="CreatedOn" before="query.before" after="query.after"></st-date-range></th>
-            <th></th>
-        </tr>
-        <tr>
-            <th ng-show="!vm.isLoading" colspan="6">{{vm.tableStateRef.pagination.totalItemCount | number:0}} {{::vm.translate.get('records found')}}</th>
-        </tr>
-    </thead>
-    <tbody ng-show="!vm.isLoading">
-        <tr ng-repeat="item in vm.shipments">
-            <td>{{item.id}}</td>
-            <td>{{item.trackingNumber}}</td>
-            <td><a ui-sref="order-detail({id: item.orderId})" title="View"># {{item.orderId}}</a></td>
-            <td>{{item.warehouseName}}</td>
-            <td>{{item.createdOn | date:'medium' }}</td>
-            <td><a ui-sref="shipment-details({id: item.id})" title="View" class="btn btn-primary btn-xs"> <span class="glyphicon glyphicon-eye-open"></span></a></td>
-        </tr>
-    </tbody>
-    <tbody ng-show="vm.isLoading">
-        <tr>
-            <td colspan="6" class="text-center">Loading ... </td>
-        </tr>
-    </tbody>
-    <tfoot>
-        <tr>
-            <td class="text-center" st-pagination="" st-items-by-page="50" st-displayed-pages="10" colspan="6"></td>
-        </tr>
-    </tfoot>
-</table>	

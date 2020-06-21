@@ -2,12 +2,11 @@
 (function () {
     angular
         .module('simplAdmin.core')
-        .controller('ThemeListCtrl', ['themeService', 'translateService', ThemeListCtrl]);
+        .controller('ThemeListCtrl', ['themeService', ThemeListCtrl]);
 
-    function ThemeListCtrl(themeService, translateService) {
+    function ThemeListCtrl(themeService) {
         var vm = this;
         vm.themes = [];
-        vm.translate = translateService;
 
         vm.getThemes = function getThemes() {
             themeService.getThemes().then(function (result) {

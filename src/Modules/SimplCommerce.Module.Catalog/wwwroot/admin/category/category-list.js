@@ -1,12 +1,10 @@
-﻿/*global angular, confirm*/
-(function () {
+﻿(function () {
     angular
         .module('simplAdmin.catalog')
-        .controller('CategoryListCtrl', ['categoryService', 'translateService', '$window', CategoryLitsCtrl]);
+        .controller('CategoryListCtrl', ['categoryService', '$window', CategoryLitsCtrl]);
 
-    function CategoryLitsCtrl(categoryService, translateService, $window) {
+    function CategoryLitsCtrl(categoryService, $window) {
         var vm = this;
-        vm.translate = translateService;
         vm.categories = [];
         vm.enableCultures = $window.Global_EnableCultures;
 
@@ -17,12 +15,12 @@
         };
 
         vm.deleteCategory = function deleteCategory(category) {
-            bootbox.confirm('Are you sure you want to delete this ' + category.name, function (result) {
+            bootbox.confirm("Bạn có chắc chắn muốn xóa?", function (result) {
                 if (result) {
                     categoryService.deleteCategory(category)
-                       .then(function (result) {
-                           vm.getCategories();
-                           toastr.success(category.name + 'Have been deleted');
+                        .then(function (result) {
+                            vm.getCategories();
+                            toastr.success("Đã xóa thành công!");
                         })
                         .catch(function (response) {
                             toastr.error(response.data.error);

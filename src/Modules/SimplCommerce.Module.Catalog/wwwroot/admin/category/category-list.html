@@ -1,37 +1,41 @@
-﻿<div class="page-header">
-    <div class="row">
-        <div class="col-md-8">
-            <h2>{{::vm.translate.get('Categories')}}</h2>
+﻿<div class="card rounded-0">
+    <div class="row card-header g-brd-transparent rounded-0 mb-0 mx-0">
+        <div class="col-8 px-0">
+            <h3 class="table-title">
+                Danh mục sản phẩm
+            </h3>
         </div>
-        <div class="col-md-4 text-right">
-            <a ui-sref="category-create" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> {{::vm.translate.get('Create Category')}}</a>
+        <div class="col-4 px-0 text-right">
+            <a ui-sref="category-create" title="Thêm" class="btn btn-md u-btn-pink px-1 pt-0 pb-0"><i class="hs-admin-plus"></i></a>
         </div>
     </div>
+    <div class="table-responsive">
+        <table class="table table-hover u-table--v1 mb-0" st-pipe="vm.getUsers" st-table="vm.users">
+            <thead>
+                <tr>
+                    <th style="min-width:200px">Tên danh mục</th>
+                    <th style="min-width:200px" class="text-center">Hiển thị trong menu</th>
+                    <th style="min-width:200px" class="text-center">Thứ tự hiển thị</th>
+                    <th style="min-width:200px" class="text-center">Phát hành</th>
+                    <th class="text-center" style="min-width: 80px; max-width: 80px">Tùy chọn</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="category in vm.categories">
+                    <td>{{category.name}}</td>
+                    <td class="text-center"><i ng-attr-class="{{category.includeInMenu && 'hs-admin-check' || 'hs-admin-check-o'}}"></i></td>
+                    <td class="text-center">{{category.displayOrder}}</td>
+                    <td class="text-center"><i ng-attr-class="{{category.isPublished && 'hs-admin-check' || 'hs-admin-check-o'}}"></i></td>
+                    <td class="text-center">
+                        <a ui-sref="category-edit({id: category.id})" class="js-edit u-link-v5 g-color-gray-light-v6 g-color-secondary--hover" title="Sửa">
+                            <i class="hs-admin-pencil"></i>
+                        </a>
+                        <a ng-click="vm.deleteCategory(category)" class="u-link-v5 g-color-gray-light-v6 g-color-secondary--hover g-text-underline--none--hover g-ml-12" title="Xóa">
+                            <i class="hs-admin-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>{{::vm.translate.get('Name')}}</th>
-        <th class="text-center">{{::vm.translate.get('Include in menu')}}</th>
-        <th>{{::vm.translate.get('Display order')}}</th>
-        <th class="text-center">{{::vm.translate.get('Is Published')}}</th>
-        <th>{{::vm.translate.get('Actions')}}</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="category in vm.categories">
-        <td>{{category.name}}</td>
-        <td class="text-center"><i ng-attr-class="{{category.includeInMenu && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
-        <td>{{category.displayOrder}}</td>
-        <td class="text-center"><i ng-attr-class="{{category.isPublished && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
-        <td>
-            <a ui-sref="category-edit({id: category.id})" title="Edit" class="btn btn-primary btn-xs"> <span class="glyphicon glyphicon-pencil"></span></a>
-            <button ng-click="vm.deleteCategory(category)" class="btn btn-danger btn-xs delete"> <span class="glyphicon glyphicon-remove"></span></button>
-            <a ui-sref="category-translation({id: category.id, culture: culture})" class="btn btn-default btn-xs btn-translate" ng-repeat="culture in vm.enableCultures"> 
-                <span class="flag flag-{{culture.substr(culture.length - 2).toLowerCase()}}" alt="{{culture}}" title="{{culture}}"></span>
-            </a>
-        </td>
-    </tr>
-    </tbody>
-</table>

@@ -1,12 +1,12 @@
-<table class="table table-striped">
+﻿<table class="table table-striped">
     <thead>
         <tr>
-            <th>{{::vm.translate.get('Customer')}}</th>
-            <th>{{::vm.translate.get('Entity Name')}}</th>
-            <th>{{::vm.translate.get('Review Title')}}</th>
-            <th>{{::vm.translate.get('Comment')}}</th>
-            <th>{{::vm.translate.get('Created On')}}</th>
-            <th>{{::vm.translate.get('Status')}}</th>
+            <th>Khách hàng</th>
+            <th>Sản phẩm</th>
+            <th>Tiêu đề</th>
+            <th>Bình luận</th>
+            <th>Tạo lúc</th>
+            <th>Trạng thái</th>
         </tr>
     </thead>
     <tbody>
@@ -15,7 +15,7 @@
             <td><a href="/{{reply.entitySlug}}">{{reply.entityName}}</a></td>
             <td>{{reply.reviewTitle}}</td>
             <td>{{reply.comment}}</td>
-            <td>{{reply.createdOn | date:'medium'}}</td>
+            <td>{{reply.createdOn | date:'dd/MM/yyyy hh:mm'}}</td>
             <td>{{reply.status }}</td>
         </tr>
     </tbody>

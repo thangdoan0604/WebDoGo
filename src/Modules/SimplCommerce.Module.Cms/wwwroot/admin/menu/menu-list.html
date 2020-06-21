@@ -1,32 +1,39 @@
-﻿<div class="page-header">
-    <div class="row">
-        <div class="col-md-8">
-            <h2>{{::vm.translate.get('Menus')}}</h2>
+﻿<div class="card rounded-0">
+    <div class="row card-header g-brd-transparent rounded-0 mb-0 mx-0">
+        <div class="col-8 px-0">
+            <h3 class="table-title">
+                Menu
+            </h3>
         </div>
-        <div class="col-md-4 text-right">
-            <a ui-sref="menus-create" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> {{::vm.translate.get('Create Menu')}}</a>
+        <div class="col-4 px-0 text-right">
+            <a ui-sref="menus-create" title="Thêm" class="btn btn-md u-btn-pink px-1 pt-0 pb-0"><i class="hs-admin-plus"></i></a>
         </div>
     </div>
+    <div class="table-responsive">
+        <table class="table table-hover u-table--v1 mb-0">
+            <thead>
+                <tr>
+                    <th style="min-width:400px">Tên</th>
+                    <th class="text-center" style="min-width:200px">Thuộc hệ thống</th>
+                    <th class="text-center" style="min-width:200px">Phát hành</th>
+                    <th class="text-center" style="min-width: 80px; max-width: 80px">Tùy chọn</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="menu in vm.menus">
+                    <td>{{menu.name}}</td>
+                    <td class="text-center"><i ng-attr-class="{{menu.isSystem && 'hs-admin-check' || 'hs-admin-check-o'}}"></i></td>
+                    <td class="text-center"><i ng-attr-class="{{menu.isPublished && 'hs-admin-check' || 'hs-admin-check-o'}}"></i></td>
+                    <td class="text-center">
+                        <a ui-sref="menus-edit({id: menu.id})" class="js-edit u-link-v5 g-color-gray-light-v6 g-color-secondary--hover" title="Sửa">
+                            <i class="hs-admin-pencil"></i>
+                        </a>
+                        <a ng-click="vm.deleteMenu(menu)" class="u-link-v5 g-color-gray-light-v6 g-color-secondary--hover g-text-underline--none--hover g-ml-12" title="Xóa">
+                            <i class="hs-admin-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>{{::vm.translate.get('Name')}}</th>
-        <th>{{::vm.translate.get('IsSystem')}}</th>
-        <th class="text-center">{{::vm.translate.get('Is Published')}}</th>
-        <th>{{::vm.translate.get('Actions')}}</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="menu in vm.menus">
-        <td>{{menu.name}}</td>
-        <td>{{menu.isSystem}}</td>
-        <td class="text-center"><i ng-attr-class="{{menu.isPublished && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
-        <td>
-            <a ui-sref="menus-edit({id: menu.id})" title="Edit" class="btn btn-primary btn-xs"> <span class="glyphicon glyphicon-pencil"></span></a>
-            <button ng-click="vm.deleteMenu(menu)" class="btn btn-danger btn-xs delete"> <span class="glyphicon glyphicon-remove"></span></button>
-        </td>
-    </tr>
-    </tbody>
-</table>

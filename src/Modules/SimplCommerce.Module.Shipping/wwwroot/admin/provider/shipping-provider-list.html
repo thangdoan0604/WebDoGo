@@ -1,28 +1,34 @@
-﻿<div class="page-header">
-    <div class="row">
-        <div class="col-md-8">
-            <h2>{{::vm.translate.get('Shipping providers')}}</h2>
+﻿<div class="card rounded-0">
+    <div class="row card-header g-brd-transparent rounded-0 mb-0 mx-0">
+        <div class="col-8 px-0">
+            <h3 class="table-title">
+                Dịch vụ vận chuyển
+            </h3>
         </div>
     </div>
+    <div class="table-responsive">
+        <table class="table table-hover u-table--v1 mb-0" st-pipe="vm.getUsers" st-table="vm.users">
+            <thead>
+                <tr>
+                    <th style="min-width:400px">Tên dịch vụ</th>
+                    <th class="text-center" style="min-width:200px">Cho phép</th>
+                    <th class="text-center" style="min-width: 80px; max-width: 80px">Tùy chọn</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="provider in vm.shippingProviders">
+                    <td>{{provider.name}}</td>
+                    <td class="text-center"><i ng-attr-class="{{provider.isEnabled && 'hs-admin-check' || 'hs-admin-check-o'}}"></i></td>
+                    <td class="text-center">
+                        <a ng-click="vm.updateProviderStatus(provider)" class="u-link-v5 g-color-gray-light-v6 g-color-secondary--hover" title="{{provider.isEnabled && 'Ẩn' || 'Hiện'}}">
+                            <i ng-attr-class="{{provider.isEnabled && 'hs-admin-control-stop' || 'hs-admin-control-play'}}"></i>
+                        </a>
+                        <a ng-if="provider.configureUrl" ui-sref="{{provider.configureUrl}}" class="u-link-v5 g-color-gray-light-v6 g-color-secondary--hover g-text-underline--none--hover g-ml-12" title="Cài đặt">
+                            <i class="hs-admin-settings"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>{{::vm.translate.get('Name')}}</th>
-        <th class="text-center">{{::vm.translate.get('IsEnabled')}}</th>
-        <th>{{::vm.translate.get('Configure')}}</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="provider in vm.shippingProviders">
-        <td>{{provider.name}}</td>
-        <td class="text-center"><i ng-attr-class="{{provider.isEnabled && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
-        <td>
-            <button ng-if="provider.isEnabled" title="Disable" ng-click="vm.disableProvider(provider)" class="btn btn-primary btn-xs"> <span class="glyphicon glyphicon-pause"></span></button>
-            <button ng-if="!provider.isEnabled" title="Enable" ng-click="vm.enableProvider(provider)" class="btn btn-primary btn-xs"> <span class="glyphicon glyphicon-play"></span></button>
-            <a ng-if="provider.configureUrl" ui-sref="{{provider.configureUrl}}" title="Configure" class="btn btn-primary btn-xs"> <span class="glyphicon glyphicon-cog"></span></a>
-        </td>
-    </tr>
-    </tbody>
-</table>
