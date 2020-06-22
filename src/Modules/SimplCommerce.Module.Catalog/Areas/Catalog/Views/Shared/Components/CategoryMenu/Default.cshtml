@@ -28,17 +28,17 @@
                                 if (childItem.ChildItems.Any())
                                 {
                                     <li class="dropdown-item hs-has-sub-menu">
-                                        <a id="nav-link--pages--list-filter" class="nav-link g-color-gray-dark-v4" href="#"
+                                        <a id="nav-link--pages--list-filter" class="nav-link g-color-gray-dark-v4" href="@childItem.Slug"
                                            aria-haspopup="true"
                                            aria-expanded="false"
                                            aria-controls="nav-submenu--pages--list-filter">
-                                            List Filter
+                                            @childItem.Name
                                         </a>
 
                                         <!-- Submenu (level 2) -->
                                         <ul id="nav-submenu--pages--list-filter" class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2"
                                             aria-labelledby="nav-link--pages--list-filter">
-                                            @foreach (var childChildItem in item.ChildItems)
+                                            @foreach (var childChildItem in childItem.ChildItems)
                                             {
                                                 <li class="dropdown-item">
                                                     <a class="nav-link g-color-gray-dark-v4" href="/@childChildItem.Slug">@childChildItem.Name</a>

@@ -1,58 +1,52 @@
-﻿<div class="page-header">
-    <div class="row">
-        <div class="col-md-8">
-            <h2>News Item List</h2>
+﻿<div class="card rounded-0">
+    <div class="row card-header g-brd-transparent rounded-0 mb-0 mx-0">
+        <div class="col-8 px-0">
+            <h3 class="table-title">
+                Danh sách tin tức
+            </h3>
         </div>
-        <div class="col-md-4 text-right">
-            <a ui-sref="news-items-create" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Create News Item</a>
+        <div class="col-4 px-0 text-right">
+            <a ui-sref="news-items-create" title="Thêm" class="btn btn-md u-btn-pink px-1 pt-0 pb-0"><i class="hs-admin-plus"></i></a>
         </div>
     </div>
+    <div class="table-responsive">
+        <table class="table table-hover u-table--v1 mb-0" st-pipe="vm.getNewsItems" st-table="vm.newsItems">
+            <thead>
+                <tr>
+                    <th style="min-width:200px">Tên tin tức</th>
+                    <th style="min-width:200px" class="text-center">Đường dẫn</th>
+                    <th style="min-width:200px" class="text-center">Phát hành</th>
+                    <th style="min-width:200px" class="text-center">Ngày tạo</th>
+                    <th class="text-center" style="min-width: 80px; max-width: 80px">Tùy chọn</th>
+                </tr>
+            </thead>
+            <tbody ng-show="!vm.isLoading">
+                <tr ng-repeat="newsItem in vm.newsItems">
+                    <td>{{newsItem.name}}</td>
+                    <td>{{newsItem.slug}}</td>
+                    <td class="text-center"><i ng-attr-class="{{newsItem.isPublished && 'hs-admin-check' || 'hs-admin-check-o'}}"></i></td>
+                    <td>{{newsItem.createdOn | date:'dd/MM/yyyy hh:mm'}}</td>
+                    <td class="text-center">
+                        <a ui-sref="news-items-edit({id: newsItem.id})" class="js-edit u-link-v5 g-color-gray-light-v6 g-color-secondary--hover" title="Sửa">
+                            <i class="hs-admin-pencil"></i>
+                        </a>
+                        <a ng-click="vm.deleteNewsItem(newsItem)" class="u-link-v5 g-color-gray-light-v6 g-color-secondary--hover g-text-underline--none--hover g-ml-12" title="Xóa">
+                            <i class="hs-admin-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody ng-show="vm.isLoading">
+                <tr>
+                    <td colspan="5" class="text-center">Loading ... </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="text-center" st-pagination="" st-items-by-page="50" st-displayed-pages="10" colspan="3"></td>
+                    <td>Tìm thấy {{vm.tableStateRef.pagination.totalItemCount | number:0}} kết quả</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
-
-<table class="table table-striped" st-pipe="vm.getNewsItems" st-table="vm.newsItems">
-    <thead>
-        <tr>
-            <th st-sort="Name" class="sortable">{{ ::vm.translate.get('Name')}}</th>
-            <th>Url</th>
-            <th class="text-center">{{::vm.translate.get('Is Published')}}</th>
-            <th st-sort="CreatedOn" class="sortable">{{ ::vm.translate.get('CreatedOn')}}</th>
-            <th>Actions</th>
-        </tr>
-        <tr>
-            <th>
-                <div class="form-group">
-                    <input class="form-control" st-search="Name" />
-                </div>
-            </th>
-            <th></th>
-            <th></th>
-            <th><st-date-range predicate="CreatedOn" before="query.before" after="query.after"></st-date-range></th>
-            <th></th>
-        </tr>
-        <tr>
-            <th ng-show="!vm.isLoading" colspan="5">{{vm.tableStateRef.pagination.totalItemCount | number:0}} {{::vm.translate.get('records found')}}</th>
-        </tr>
-    </thead>
-    <tbody ng-show="!vm.isLoading">
-        <tr ng-repeat="newsItem in vm.newsItems">
-            <td>{{newsItem.name}}</td>
-            <td>{{newsItem.slug}}</td>
-            <td class="text-center"><i ng-attr-class="{{newsItem.isPublished && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
-            <td>{{newsItem.createdOn | date:'medium'}}</td>
-            <td>
-                <a ui-sref="news-items-edit({id: newsItem.id})" title="Edit" class="btn btn-primary btn-xs"> <span class="glyphicon glyphicon-pencil"></span></a>
-                <button ng-click="vm.deleteNewsItem(newsItem)" class="btn btn-danger btn-xs delete"> <span class="glyphicon glyphicon-remove"></span></button>
-            </td>
-        </tr>
-    </tbody>
-    <tbody ng-show="vm.isLoading">
-        <tr>
-            <td colspan="5" class="text-center">Loading ... </td>
-        </tr>
-    </tbody>
-    <tfoot>
-        <tr>
-            <td class="text-center" st-pagination="" st-items-by-page="50" st-displayed-pages="10" colspan="5"></td>
-        </tr>
-    </tfoot>
-</table>

@@ -31,7 +31,7 @@
         }
 
         function deleteProductOption(productOption) {
-            return $http.delete('admin/product-options/' + productOption.id);
+            return $http.delete('api/product-options/' + productOption.id);
         }
     }
 })();

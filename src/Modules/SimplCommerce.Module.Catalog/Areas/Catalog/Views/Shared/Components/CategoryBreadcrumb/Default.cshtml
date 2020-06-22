@@ -2,5 +2,9 @@
 
 @foreach (var item in Model)
 {
-    <li class="breadcrumb-item"><a href="~/@item.Url">@item.Text</a></li>
+    <li class="list-inline-item g-color-primary">
+        <a href="~/@item.Url">@item.Text</a>
+    <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
+</li>
+@*<li class="breadcrumb-item"><a href="~/@item.Url">@item.Text</a></li>*@
 }

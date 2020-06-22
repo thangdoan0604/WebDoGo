@@ -1,60 +1,56 @@
-﻿<div class="page-header">
-    <div class="row">
-        <div class="col-md-8">
-            <h2>{{::vm.translate.get('Cart Price Rule Usages')}}</h2>
+﻿<div class="card rounded-0">
+    <div class="row card-header g-brd-transparent rounded-0 mb-0 mx-0">
+        <div class="col-12 px-0">
+            <h3 class="table-title">
+                Khuyến mại đã áp dụng
+            </h3>
         </div>
     </div>
+    <div class="table-responsive">
+        <table class="table table-hover u-table--v1 mb-0" st-pipe="vm.getCartRules" st-table="vm.cartRules">
+            <thead>
+                <tr>
+                    <th style="min-width: 250px;">Tên chương trình</th>
+                    <th class="text-center" style="min-width: 130px;">Mã giảm giá</th>
+                    <th style="min-width: 130px;">Khách hàng</th>
+                    <th style="min-width: 130px;">Mã đơn hàng</th>
+                    <th style="min-width: 150px;" st-sort="CreatedOn" class="sortable">Tạo lúc</th>
+                </tr>
+                <tr>
+                    <th>
+                        <div class="form-group">
+                            <input class="form-control" st-search="RuleName" placeholder="Tìm theo tên chương trình" />
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-group">
+                            <input class="form-control" st-search="CouponCode" placeholder="Tìm theo mã giảm giá" />
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-group">
+                            <input class="form-control" st-search="FullName" placeholder="Tìm theo tên khách hàng" />
+                        </div>
+                    </th>
+                    <th></th>
+                    <th><!--<st-date-range predicate="CreatedOn" before="query.before" after="query.after"></st-date-range>--></th>
+                </tr>
+            </thead>
+            <tbody ng-show="!vm.isLoading">
+                <tr ng-repeat="item in vm.cartRuleUsages">
+                    <td><a ui-sref="cart-rule-edit({id: item.cartRuleId})">{{item.cartRuleName}}</a></td>
+                    <td>{{item.couponCode}}</td>
+                    <td><a ui-sref="user-edit({id: item.userId})">{{item.fullName}}</a></td>
+                    <td><a ui-sref="order-detail({id: item.orderId})">#{{item.orderId}}</a></td>
+                    <td>{{item.createdOn | date:'dd/MM/yyyy hh:mm' }}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="text-center" st-pagination="" st-items-by-page="50" st-displayed-pages="10" colspan="3"></td>
+                    <td>Tìm thấy {{vm.tableStateRef.pagination.totalItemCount || '0'}} kết quả</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
-
-<table class="table table-striped" st-pipe="vm.getCartRuleUsages" st-table="vm.cartRuleUsages">
-    <thead>
-        <tr>
-            <th>{{::vm.translate.get('Rule Name')}}</th>
-            <th>{{::vm.translate.get('Coupon code')}}</th>
-            <th>{{::vm.translate.get('Customer')}}</th>
-            <th>{{::vm.translate.get('Order')}}</th>
-            <th st-sort="CreatedOn" class="sortable">{{::vm.translate.get('Created On')}}</th>
-        </tr>
-        <tr>
-            <th>
-                <div class="form-group">
-                    <input class="form-control" st-search="RuleName" />
-                </div>
-            </th>
-            <th>
-                <div class="form-group">
-                    <input class="form-control" st-search="CouponCode" />
-                </div>
-            </th>
-            <th>
-                <div class="form-group">
-                    <input class="form-control" st-search="FullName" />
-                </div>
-            </th>
-            <th></th>
-            <th><st-date-range predicate="CreatedOn" before="query.before" after="query.after"></st-date-range></th>
-        </tr>
-        <tr>
-            <th ng-show="!vm.isLoading" colspan="5">{{vm.tableStateRef.pagination.totalItemCount | number:0}} {{::vm.translate.get('records found')}}</th>
-        </tr>
-    </thead>
-    <tbody ng-show="!vm.isLoading">
-        <tr ng-repeat="item in vm.cartRuleUsages">
-            <td><a ui-sref="cart-rule-edit({id: item.cartRuleId})">{{item.cartRuleName}}</a></td>
-            <td>{{item.couponCode}}</td>
-            <td><a ui-sref="user-edit({id: item.userId})">{{item.fullName}}</a></td>
-            <td><a ui-sref="order-detail({id: item.orderId})">#{{item.orderId}}</a></td>
-            <td>{{item.createdOn | date:'medium' }}</td>
-        </tr>
-    </tbody>
-    <tbody ng-show="vm.isLoading">
-        <tr>
-            <td colspan="5" class="text-center">Loading ... </td>
-        </tr>
-    </tbody>
-    <tfoot>
-        <tr>
-            <td class="text-center" st-pagination="" st-items-by-page="50" st-displayed-pages="10" colspan="5"></td>
-        </tr>
-    </tfoot>
-</table>	

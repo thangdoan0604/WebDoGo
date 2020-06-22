@@ -1,29 +1,29 @@
-﻿<div class="page-header">
-    <div class="row">
-        <div class="col-md-8">
-            <h2>{{::vm.translate.get('Stock History')}}</h2>
+﻿<div class="card rounded-0">
+    <div class="row card-header g-brd-transparent rounded-0 mb-0 mx-0">
+        <div class="col-8 px-0">
+            <h3 class="table-title">
+                Lịch sử kho
+            </h3>
         </div>
     </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-body">
-        <table class="table table-striped order-item-list">
+    <div class="table-responsive">
+        <table class="table table-hover u-table--v1 mb-0">
             <thead>
                 <tr>
-                    <th>{{::vm.translate.get('Product Name')}}</th>
-                    <th>{{::vm.translate.get('Created On')}}</th>
-                    <th>{{::vm.translate.get('Created By')}}</th>
-                    <th>{{::vm.translate.get('Adjusted Quantity')}}</th>
-                    <th>{{::vm.translate.get('Note')}}</th>
+                    <th style="min-width:200px">Tên sản phẩm</th>
+                    <th style="min-width:200px">Tạo lúc</th>
+                    <th style="min-width:200px">Tạo bởi</th>
+                    <th style="min-width:200px">Số lượng</th>
+                    <th style="min-width:200px">Ghi chú</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="item in vm.history">
-                    <td >{{item.name}}</td>
-                    <td >{{item.createdOn | date:'medium'}}</td>
-                    <td >{{item.fullName}}</td>
-                    <td >{{item.adjustedQuantity}}</td>
-                    <td >{{item.note}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.createdOn | date:'dd/MM/yyyy hh:mm'}}</td>
+                    <td>{{item.fullName}}</td>
+                    <td>{{item.adjustedQuantity}}</td>
+                    <td>{{item.note}}</td>
                 </tr>
             </tbody>
         </table>
@@ -31,5 +31,5 @@
 </div>
 
 <div>
-    <button ui-sref="stocks" class="btn btn-default">{{::vm.translate.get('Back')}}</button>
+    <button style="margin-left: 15px; margin-bottom: 15px;" ui-sref="stocks" class="btn btn-default">Quay về</button>
 </div>

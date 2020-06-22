@@ -1,30 +1,37 @@
-﻿<div class="page-header">
-    <div class="row">
-        <div class="col-md-8">
-            <h2>News Category List</h2>
+﻿<div class="card rounded-0">
+    <div class="row card-header g-brd-transparent rounded-0 mb-0 mx-0">
+        <div class="col-8 px-0">
+            <h3 class="table-title">
+                Danh mục bài viết
+            </h3>
         </div>
-        <div class="col-md-4 text-right">
-            <a ui-sref="news-categories-create" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Create News Category</a>
+        <div class="col-4 px-0 text-right">
+            <a ui-sref="news-categories-create" title="Thêm" class="btn btn-md u-btn-pink px-1 pt-0 pb-0"><i class="hs-admin-plus"></i></a>
         </div>
     </div>
+    <div class="table-responsive">
+        <table class="table table-hover u-table--v1 mb-0" st-pipe="vm.getUsers" st-table="vm.users">
+            <thead>
+                <tr>
+                    <th style="min-width:400px">Tên khu vực</th>
+                    <th class="text-center">Đang phát hành</th>
+                    <th class="text-center" style="min-width: 80px; max-width: 80px">Tùy chọn</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="newsCategory in vm.newsCategorys">
+                    <td>{{newsCategory.name}}</td>
+                    <td class="text-center"><i ng-attr-class="{{newsCategory.isPublished && 'hs-admin-check' || 'hs-admin-check-o'}}"></i></td>
+                    <td class="text-center">
+                        <a ui-sref="news-categories-edit({id: newsCategory.id})" class="js-edit u-link-v5 g-color-gray-light-v6 g-color-secondary--hover" title="Sửa">
+                            <i class="hs-admin-pencil"></i>
+                        </a>
+                        <a ng-click="vm.deleteNewsCategory(newsCategory)" class="u-link-v5 g-color-gray-light-v6 g-color-secondary--hover g-text-underline--none--hover g-ml-12" title="Xóa">
+                            <i class="hs-admin-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th class="text-center">Is Published</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="newsCategory in vm.newsCategorys">
-        <td>{{newsCategory.name}}</td>
-        <td class="text-center"><i ng-attr-class="{{newsCategory.isPublished && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
-        <td>
-            <a ui-sref="news-categories-edit({id: newsCategory.id})" title="Edit" class="btn btn-primary btn-xs"> <span class="glyphicon glyphicon-pencil"></span></a>
-            <button ng-click="vm.deleteNewsCategory(newsCategory)" class="btn btn-danger btn-xs delete"> <span class="glyphicon glyphicon-remove"></span></button>
-        </td>
-    </tr>
-    </tbody>
-</table>

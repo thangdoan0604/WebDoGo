@@ -1,71 +1,71 @@
-﻿<div class="page-header">
-    <div class="row">
-        <div class="col-md-8">
-            <h2>{{::vm.translate.get('Orders')}}</h2>
+﻿<div class="card rounded-0">
+    <div class="row card-header g-brd-transparent rounded-0 mb-0 mx-0">
+        <div class="col-8 px-0">
+            <h3 class="table-title">
+                Đơn hàng
+            </h3>
         </div>
-        <div class="col-md-4 text-right">
-            <a ui-sref="order-create" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> {{::vm.translate.get('Create Order')}}</a>
-            <button ng-click="vm.getOrdersExport()" class="btn btn-info">{{::vm.translate.get('Export Orders')}}</button>
-            <button ng-click="vm.getOrderLinesExport()" class="btn btn-info">{{::vm.translate.get('Export Orders with Order Lines')}}</button>
+        <div class="col-4 px-0 text-right">
+            <a style="color: white;" ng-click="vm.getOrdersExport()" title="Export " class="btn btn-md u-btn-pink px-1 pt-0 pb-0"><i class="hs-admin-export"></i></a>
+            <a style="color: white;" ng-click="vm.getOrderLinesExport()" title="Export lines" class="btn btn-md u-btn-pink px-1 pt-0 pb-0"><i class="hs-admin-export"></i></a>
+            <a ui-sref="order-create" title="Thêm" class="btn btn-md u-btn-pink px-1 pt-0 pb-0"><i class="hs-admin-plus"></i></a>
         </div>
     </div>
+    <div class="table-responsive">
+        <table class="table table-hover u-table--v1 mb-0" st-pipe="vm.getOrders" st-table="vm.orders">
+            <thead>
+                <tr>
+                    <th st-sort="Id" style="min-width:100px" class="sortable">Mã đơn hàng</th>
+                    <th style="min-width:100px">Trạng thái</th>
+                    <th style="min-width:200px">Khách hàng</th>
+                    <th style="min-width:200px" st-sort="CreatedOn" class="sortable">Tạo lúc</th>
+                    <th style="min-width:200px" st-sort="SubTotal" class="sortable">Giá trị</th>
+                    <th class="text-center" style="min-width: 80px; max-width: 80px">Tùy chọn</th>
+                </tr>
+                <tr>
+                    <th>
+                        <div class="form-group">
+                            <input type="number" class="form-control" st-search="Id" />
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-group">
+                            <select class="form-control" st-search="Status">
+                                <option value="">All</option>
+                                <option ng-repeat="status in vm.orderStatus" value="{{status.id}}">{{status.name}}</option>
+                            </select>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-group">
+                            <input class="form-control" st-search="CustomerName" />
+                        </div>
+                    </th>
+                    <th><!--<st-date-range predicate="CreatedOn" before="query.before" after="query.after"></st-date-range>--></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody ng-show="!vm.isLoading">
+                <tr ng-repeat="order in vm.orders">
+                    <td>{{order.id}}</td>
+                    <td>{{order.orderStatus}}</td>
+                    <td>{{order.customerName}}</td>
+                    <td>{{order.createdOn | date:'dd/MM/yyyy hh:mm'}}</td>
+                    <td>{{order.orderTotalString }}</td>
+                    <td class="text-center">
+                        <a ui-sref="order-detail({id: order.id})" class="js-edit u-link-v5 g-color-gray-light-v6 g-color-secondary--hover" title="Xem chi tiết">
+                            <i class="hs-admin-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="text-center" st-pagination="" st-items-by-page="50" st-displayed-pages="10" colspan="4"></td>
+                    <td colspan="1">Tìm thấy {{vm.tableStateRef.pagination.totalItemCount || '0'}} kết quả</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
-
-<table class="table table-striped" st-pipe="vm.getOrders" st-table="vm.orders">
-    <thead>
-        <tr>
-            <th st-sort="Id" class="sortable">{{::vm.translate.get('OrderId')}}</th>
-            <th>{{::vm.translate.get('Order Status')}}</th>
-            <th>{{::vm.translate.get('Customer')}}</th>
-            <th st-sort="CreatedOn" class="sortable">{{::vm.translate.get('Created On')}}</th>
-            <th st-sort="SubTotal" class="sortable">{{::vm.translate.get('Order Total')}}</th>
-            <th>{{::vm.translate.get('Actions')}}</th>
-        </tr>
-        <tr>
-            <th>
-                <div class="form-group">
-                    <input type="number" class="form-control" st-search="Id" />
-                </div>
-            </th>
-            <th>
-                <div class="form-group">
-                    <select class="form-control" st-search="Status">
-                        <option value="">All</option>
-                        <option ng-repeat="status in vm.orderStatus" value="{{status.id}}">{{status.name}}</option>
-                    </select>
-                </div>
-            </th>
-            <th>
-                <div class="form-group">
-                    <input class="form-control" st-search="CustomerName" />
-                </div>
-            </th>
-            <th><st-date-range predicate="CreatedOn" before="query.before" after="query.after"></st-date-range></th>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr>
-            <th ng-show="!vm.isLoading" colspan="6">{{vm.tableStateRef.pagination.totalItemCount | number:0}} {{::vm.translate.get('records found')}}</th>
-        </tr>
-    </thead>
-    <tbody ng-show="!vm.isLoading">
-        <tr ng-repeat="order in vm.orders">
-            <td>{{order.id}}</td>
-            <td>{{order.orderStatus}}</td>
-            <td>{{order.customerName}}</td>
-            <td>{{order.createdOn | date:'medium'}}</td>
-            <td>{{order.orderTotalString }}</td>
-            <td><a ui-sref="order-detail({id: order.id})" title="View" class="btn btn-primary btn-xs"> <span class="glyphicon glyphicon-eye-open"></span></a></td>
-        </tr>
-    </tbody>
-    <tbody ng-show="vm.isLoading">
-        <tr>
-            <td colspan="6" class="text-center">Loading ... </td>
-        </tr>
-    </tbody>
-    <tfoot>
-        <tr>
-            <td class="text-center" st-pagination="" st-items-by-page="50" st-displayed-pages="10" colspan="6"></td>
-        </tr>
-    </tfoot>
-</table>

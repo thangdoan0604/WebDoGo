@@ -12,6 +12,7 @@
     <EnableDefaultContentItems>false</EnableDefaultContentItems>
     <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <ApplicationIcon></ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,6 +23,7 @@
 
   <ItemGroup>
     <None Remove="wwwroot\admin-assets\css\custom.css" />
+    <None Remove="wwwroot\assets\img\logo\logo.jpg" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,98 @@
+﻿@using SimplCommerce.Module.Core.Models
+
+@model SimplCommerce.Module.Catalog.Areas.Catalog.ViewModels.ProductThumbnail
+@inject SignInManager<User> SignInManager
+<div class="col-6 col-lg-4 g-mb-30">
+    <!-- Product -->
+    <figure class="g-pos-rel g-mb-20">
+        <img class="img-fluid" src="@Model.ThumbnailUrl" alt="@Model.Name">
+        @if (Model.CalculatedProductPrice.PercentOfSaving < 1)
+        {
+            <span class="u-ribbon-v1 g-width-35 g-bg-lightred g-height-35 g-color-white g-font-size-12 text-center text-uppercase g-rounded-50x g-top-10 g-right-minus-10 g-px-2 g-py-10">
+                New
+            </span>
+        }
+        else
+        {
+            <span class="u-ribbon-v1 g-width-35 g-bg-lightred g-height-35 g-color-white g-font-size-12 text-center text-uppercase g-rounded-50x g-top-10 g-right-minus-10 g-px-2 g-py-10">
+                -@(Model.CalculatedProductPrice.PercentOfSaving)%
+            </span>
+        }
+    </figure>
+
+    <div class="media">
+        <!-- Product Info -->
+        <div class="d-flex flex-column">
+            <h6 class="h6-color-black mb-1">
+                <a class="u-link-v5 g-color-black g-color-primary--hover" href="~/@Model.Slug">
+                    @Model.Name
+                </a>
+            </h6>
+            @*<a class="d-inline-block g-color-gray-dark-v5 g-font-size-13" href="#">Man</a>*@
+
+            @if (Model.IsCallForPricing)
+            {
+                <span class="d-block g-color-black g-font-size-17">
+                    Giá liên hệ
+                </span>
+            }
+            else
+            {
+                <span class="d-block g-color-black g-font-size-17">
+                    @Model.CalculatedProductPrice.PriceString
+                </span>
+            }
+
+        </div>
+        <!-- End Product Info -->
+        <!-- Products Icons -->
+        <div class="add-to-cart">
+            <form class="inline">
+                <input type="hidden" name="productId" value="@Model.Id" />
+                <ul class="add-to-lists list-inline media-body text-right">
+                    <li class="list-inline-item align-middle mx-0">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <a class="btn-add-cart u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle"
+                               data-toggle="tooltip"
+                               data-placement="top"
+                               title="Add to Cart">
+                                <i class=icon-finance-100 u-line-icon-pro"></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="btn-add-cart u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle"
+                               data-toggle="tooltip"
+                               data-placement="top"
+                               title="Add to Cart"
+                               asp-area="Core" asp-controller="Account" asp-action="Login" asp-route-returnurl="@($"{Context.Request.Path}{Context.Request.QueryString}")">
+                                <i class=icon-finance-100 u-line-icon-pro"></i>
+                            </a>
+                        }
+                    </li>
+                    <li class="wishlist-in list-inline-item align-middle mx-0">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <a class="add-to-wishlist u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle"
+                               data-toggle="tooltip"
+                               data-placement="top"
+                               title="Add to Wishlist">
+                                <i class="icon-medical-022 u-line-icon-pro"></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle"
+                               title="Add to Wishlist" asp-area="Core" asp-controller="Account" asp-action="Login" asp-route-returnurl="@($"{Context.Request.Path}{Context.Request.QueryString}")">
+                                <i class="icon-medical-022 u-line-icon-pro"></i>
+                            </a>
+                        }
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <!-- End Products Icons -->
+    </div>
+    <!-- End Product -->
+</div>

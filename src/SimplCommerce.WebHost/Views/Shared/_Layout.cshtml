@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>@ViewData["Title"] - Đồ Gỗ</title>
+    <title>@ViewData["Title"] - Đồ Gỗ Phúc Tấn</title>
     @RenderSection("additionalMeta", false)
 
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,500,700,900">
@@ -19,9 +19,11 @@
     <link rel="stylesheet" href="~/assets/vendor/slick-carousel/slick/slick.css">
     <link rel="stylesheet" href="~/assets/vendor/icon-hs/style.css">
     <link rel="stylesheet" href="~/assets/vendor/hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" href="~/lib/toastr/build/toastr.min.css" />
     <link rel="stylesheet" href="~/assets/vendor/hs-megamenu/src/hs.megamenu.css">
     <link rel="stylesheet" href="~/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css">
     <link rel="stylesheet" href="~/assets/vendor/animate.css">
+    <link rel="stylesheet" href="~/assets/vendor/icon-line/css/simple-line-icons.css">
 
     <!-- Revolution Slider -->
     <link rel="stylesheet" href="~/assets/vendor/revolution-slider/revolution/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
@@ -40,10 +42,12 @@
     <script src="~/lib/jquery/jquery-migrate-1.4.1.min.js"></script>
 
     <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/_content/SimplCommerce.Module.ShoppingCart/shoppingcart-list.js"></script>
+    <script src="~/_content/SimplCommerce.Module.ShoppingCart/shoppingcart-service.js"></script>
 
     @RenderSection("head", required: false)
 </head>
-<body>
+<body ng-app="simpl.shoppingCart">
     <main>
         <!-- Header -->
         <header id="js-header" class="u-header u-header--static u-shadow-v19">
@@ -74,7 +78,7 @@
                         <div class="col-sm-auto g-pos-rel g-py-14">
                             <!-- List -->
                             <ul class="list-inline g-overflow-hidden g-pt-1 g-mx-minus-4 mb-0">
-                                
+
 
                                 <!-- Account -->
                                 <partial name="_LoginPartial" />
@@ -113,8 +117,8 @@
                         </button>
                         <!-- End Responsive Toggle Button -->
                         <!-- Logo -->
-                        <a class="navbar-brand" href="/">
-                            <img src="/assets/img/logo/logo-1.png" alt="Logo">
+                        <a class="navbar-brand" href="/" >
+                            <img style="height:80px;" src="/assets/img/logo/logo.jpg" alt="Logo">
                         </a>
                         <!-- End Logo -->
                         <!-- Navigation -->
@@ -136,46 +140,25 @@
                 <div class="container g-pt-100">
                     <div class="row justify-content-start g-mb-30 g-mb-0--md">
                         <div class="col-md-5 g-mb-30">
-                            <h2 class="h5 g-color-gray-light-v3 mb-4">Dich vu</h2>
+                            <h2 class="h5 g-color-gray-light-v3 mb-4">Dịch Vụ</h2>
                             <vc:menu menu-id="1"></vc:menu>
                         </div>
 
-                        
+                        <div class="col-sm-5 col-md-3 ml-auto g-mb-30 g-mb-0--sm">
+                            <h2 class="h5 g-color-gray-light-v3 mb-4">Thông Tin</h2>
+                            <vc:menu menu-id="3"></vc:menu>
+                        </div>
 
                         <div class="col-sm-5 col-md-3 ml-auto g-mb-30 g-mb-0--sm">
-                            <h2 class="h5 g-color-gray-light-v3 mb-4">Contacts</h2>
-
-                            <!-- Links -->
-                            <ul class="list-unstyled g-color-gray-dark-v5 g-font-size-13">
-                                <li class="media my-3">
-                                    <i class="d-flex mt-1 mr-3 icon-hotel-restaurant-235 u-line-icon-pro"></i>
-                                    <div class="media-body">
-                                        Unit 25 Suite 3, 925 Prospect
-                                        <br>
-                                        PI New York Avenue
-                                    </div>
-                                </li>
-                                <li class="media my-3">
-                                    <i class="d-flex mt-1 mr-3 icon-communication-062 u-line-icon-pro"></i>
-                                    <div class="media-body">
-                                        htmlstream@support.com
-                                    </div>
-                                </li>
-                                <li class="media my-3">
-                                    <i class="d-flex mt-1 mr-3 icon-communication-033 u-line-icon-pro"></i>
-                                    <div class="media-body">
-                                        +32 333 444 555
-                                    </div>
-                                </li>
-                            </ul>
-                            <!-- End Links -->
+                            <h2 class="h5 g-color-gray-light-v3 mb-4">Liên Hệ</h2>
+                            <vc:menu menu-id="2"></vc:menu>
                         </div>
                     </div>
 
                     <!-- Secondary Content -->
                     <div class="row">
                         <div class="col-md-4 g-mb-50">
-                            <h2 class="h5 g-color-gray-light-v3 mb-4">Subscribe</h2>
+                            <h2 class="h5 g-color-gray-light-v3 mb-4">Đăng ký</h2>
 
                             <!-- Subscribe Form -->
                             <form class="input-group u-shadow-v19 rounded">
@@ -190,7 +173,7 @@
                         </div>
 
                         <div class="col-6 col-md-3 offset-lg-1 g-mb-30">
-                            <h2 class="h5 g-color-gray-light-v3 mb-4">Language/Currency:</h2>
+                            <h2 class="h5 g-color-gray-light-v3 mb-4">Ngôn ngữ/Tiền tệ:</h2>
 
                             <!-- Large Button Group -->
                             <div class="btn-group dropup">
@@ -293,7 +276,7 @@
                         </div>
 
                         <div class="col-6 col-md-3 ml-auto g-mb-30">
-                            <h2 class="h5 g-color-gray-light-v3 mb-4">Follow Us On:</h2>
+                            <h2 class="h5 g-color-gray-light-v3 mb-4">Mạng xã hội:</h2>
 
                             <!-- Social Icons -->
                             <ul class="list-inline mb-50">
@@ -422,6 +405,25 @@
         <!-- End Modal Window -->
     </main>
     <div class="u-outer-spaces-helper"></div>
+    <!-- Back to top -->
+    <div class="btn-back-to-top" id="myBtn">
+        <span class="symbol-btn-back-to-top">
+            <i class="zmdi zmdi-chevron-up"></i>
+        </span>
+    </div>
+
+    <div id="shopModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <div id="productOverview" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
     <script>
             window.simplGlobalSetting = {};
             window.simplGlobalSetting.lang = '@CultureInfo.CurrentCulture.Name';
@@ -435,6 +437,13 @@
     <script src="~/assets/vendor/jquery.countdown.min.js"></script>
     <script src="~/assets/vendor/slick-carousel/slick/slick.js"></script>
     <script src="~/assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+    <script src="~/assets/vendor/jquery-ui/ui/widget.js"></script>
+    <script src="~/assets/vendor/jquery-ui/ui/widgets/menu.js"></script>
+    <script src="~/assets/vendor/jquery-ui/ui/widgets/mouse.js"></script>
+    <script src="~/assets/vendor/jquery-ui/ui/widgets/slider.js"></script>
+    <script src="~/assets/vendor/dzsparallaxer/dzsparallaxer.js"></script>
+    <script src="~/assets/vendor/dzsparallaxer/dzsscroller/scroller.js"></script>
+    <script src="~/assets/vendor/dzsparallaxer/advancedscroller/plugin.js"></script>
     <script src="~/assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="~/assets/vendor/appear.js"></script>
 
@@ -465,6 +474,7 @@
     <script src="~/assets/js/components/hs.go-to.js"></script>
     <script src="~/assets/js/components/hs.count-qty.js"></script>
 
+    <script src="~/assets/js/components/hs.slider.js"></script>
     <!-- JS Customization -->
     <script src="~/assets/js/custom.js"></script>
 
@@ -474,7 +484,7 @@
             // initialization of carousel
             $.HSCore.components.HSCarousel.init('[class*="js-carousel"]');
 
-            $('#carouselCus1').slick('setOption', 'responsive', [{
+            $('.carouselCus1').slick('setOption', 'responsive', [{
                 breakpoint: 1200,
                 settings: {
                     slidesToShow: 4
@@ -623,6 +633,8 @@
         function navTo(url) {
             window.location.href = url;
         }
+
+        $.HSCore.components.HSSlider.init('#rangeSlider1');
     </script>
 
     @*<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -635,7 +647,8 @@
 
     @if (CultureInfo.CurrentCulture.Name != SimplCommerce.Infrastructure.GlobalConfiguration.DefaultCulture)
     {
-<script simpl-append-version="true" src="~/lib/bootstrap-star-rating/js/locales/@(CultureInfo.CurrentCulture.Name).js"></script>}
+        <script simpl-append-version="true" src="~/lib/bootstrap-star-rating/js/locales/@(CultureInfo.CurrentCulture.Name).js"></script>
+    }
     <script simpl-append-version="true" src="~/_content/SimplCommerce.Module.Core/main.js"></script>
     <script simpl-append-version="true" src="~/_content/SimplCommerce.Module.ShoppingCart/add-to-cart.js"></script>
     <script simpl-append-version="true" src="~/_content/SimplCommerce.Module.ProductComparison/product-comparison.js"></script>

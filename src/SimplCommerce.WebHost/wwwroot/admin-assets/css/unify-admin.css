@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*------------------------------------
   Variables
 ------------------------------------*/
@@ -74,9 +74,9 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #e62154;
 }
 
-::selection {
-  color: #fff;
-  background-color: #e62154;
+::selection :not(.note-table) {
+    color: #fff;
+    background-color: #e62154;
 }
 
 .g-bg-primary ::-moz-selection {
@@ -27354,9 +27354,9 @@ img.u-block-hover__main--magnifier-top-left {
   background-color: #f7f7f7;
 }
 
-.table-striped tbody td {
+/*.table-striped tbody td {
   border-top: none;
-}
+}*/
 
 @media (min-width: 768px) {
   .btn-group {
@@ -27385,7 +27385,7 @@ img.u-block-hover__main--magnifier-top-left {
   display: none;
 }
 
-.dropdown-toggle::after {
+/*.dropdown-toggle::after {
   content: "\e900";
   position: relative;
   top: 0.21429rem;
@@ -27395,7 +27395,7 @@ img.u-block-hover__main--magnifier-top-left {
   border: none;
   margin-left: 0.5rem;
 }
-
+*/
 .dropdown-item {
   padding: 0.21429rem 1.07143rem;
 }

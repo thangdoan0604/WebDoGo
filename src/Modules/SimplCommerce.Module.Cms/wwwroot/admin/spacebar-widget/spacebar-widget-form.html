@@ -1,7 +1,7 @@
 ﻿<div class="panel panel-default">
     <div class="panel-heading">
-        <h2 ng-if="!vm.isEditMode">{{::vm.translate.get('Create SpaceBar Widget')}}</h2>
-        <h2 ng-if="vm.isEditMode">{{::vm.translate.get('Edit SpaceBar Widget')}}</h2>
+        <h2 ng-if="!vm.isEditMode">Thêm widget trống</h2>
+        <h2 ng-if="vm.isEditMode">Sửa widget trống</h2>
     </div>
     <div class="panel-body">
         <form name="pageForm" class="form-horizontal">
@@ -11,23 +11,23 @@
                 </ul>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Widget Name')}}</label>
+                <label class="col-sm-2 control-label">Tên widget</label>
                 <div class="col-sm-10">
                     <input name="name" ng-model="vm.widgetInstance.name" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Widget Zone')}}</label>
+                <label class="col-sm-2 control-label">Khu vực hiển thị</label>
                 <div class="col-sm-10">
                     <select ng-model="vm.widgetInstance.widgetZoneId" class="form-control"
                             ng-options="zone.id as zone.name for zone in vm.widgetZones"></select>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Publish Start')}}</label>
+                <label class="col-sm-2 control-label">Bắt đầu hiển thị</label>
                 <div class="col-sm-10">
                     <p class="input-group">
-                        <input type="text" class="form-control" datetime-picker="dd MMM yyyy HH:mm" ng-model="vm.widgetInstance.publishStart" is-open="vm.datePickerPublishStart.open" datepicker-options="vm.datePickerPublishStart.datepickerOptions" />
+                        <input type="text" class="form-control" datetime-picker="dd/MM/yyyy HH:mm" ng-model="vm.widgetInstance.publishStart" is-open="vm.datePickerPublishStart.open" datepicker-options="vm.datePickerPublishStart.datepickerOptions" />
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="vm.openCalendar($event, 'datePickerPublishStart')"><i class="fa fa-calendar"></i></button>
                         </span>
@@ -35,10 +35,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Publish End')}}</label>
+                <label class="col-sm-2 control-label">Kết thúc hiển thị</label>
                 <div class="col-sm-10">
                     <p class="input-group">
-                        <input type="text" class="form-control" datetime-picker="dd MMM yyyy HH:mm" ng-model="vm.widgetInstance.publishEnd" is-open="vm.datePickerPublishEnd.open" datepicker-options="vm.datePickerPublishEnd.datepickerOptions" />
+                        <input type="text" class="form-control" datetime-picker="dd/MM/yyyy HH:mm" ng-model="vm.widgetInstance.publishEnd" is-open="vm.datePickerPublishEnd.open" datepicker-options="vm.datePickerPublishEnd.datepickerOptions" />
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="vm.openCalendar($event, 'datePickerPublishEnd')"><i class="fa fa-calendar"></i></button>
                         </span>
@@ -46,19 +46,19 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Display Order')}}</label>
+                <label class="col-sm-2 control-label">Thứ tự hiển thị</label>
                 <div class="col-sm-10">
                     <select ng-model="vm.widgetInstance.displayOrder" class="form-control"
                             ng-options="n for n in vm.numberOfWidgets"></select>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('Items')}}</label>
+                <label class="col-sm-2 control-label">Mục con</label>
                 <div class="col-sm-10">
                     <div class="form-group row tabbable-panel-line" ng-repeat="item in vm.widgetInstance.items">
                         <div class="col-md-11">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">{{::vm.translate.get('Image')}}</label>
+                                <label class="col-sm-2 control-label">Hình ảnh</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" type="file" ngf-select ng-model="item.uploadImage" name="images" ngf-accept="'image/*'">
                                     <img ngf-src="item.uploadImage" ngf-resize="{width: 100, height: 100, quality: 0.9}">
@@ -66,19 +66,19 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">{{::vm.translate.get('Icon:')}}</label>
+                                <label class="col-sm-2 control-label">Biểu tượng</label>
                                 <div class="col-sm-10">
                                     <input ng-model="item.iconHtml" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">{{::vm.translate.get('Title:')}}</label>
+                                <label class="col-sm-2 control-label">Tiêu đề</label>
                                 <div class="col-sm-10">
                                     <input ng-model="item.title" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">{{::vm.translate.get('Description:')}}</label>
+                                <label class="col-sm-2 control-label">Mô tả</label>
                                 <div class="col-sm-10">
                                     <input ng-model="item.description" class="form-control" />
                                 </div>
@@ -91,14 +91,14 @@
                         </div>
                     </div>
                     <button ng-click="vm.addItem()" type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-plus"></span> {{::vm.translate.get('Add more')}}
+                        <span class="glyphicon glyphicon-plus"></span> Thêm
                     </button>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button class="btn btn-primary" ng-click="vm.save()"><span class="glyphicon glyphicon-ok"></span> {{::vm.translate.get('Save')}}</button>
-                    <button ui-sref="widget" class="btn btn-default">{{::vm.translate.get('Cancel')}}</button>
+                    <button class="btn btn-primary" ng-click="vm.save()">Lưu lại</button>
+                    <button ui-sref="widget" class="btn btn-default">Hủy bỏ</button>
                 </div>
             </div>
         </form>

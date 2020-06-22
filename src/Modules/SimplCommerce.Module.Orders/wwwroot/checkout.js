@@ -41,7 +41,7 @@
             selectedShippingMethodName: $('input[name=ShippingMethod]:checked').val(),
             newShippingAddress: {
                 countryId: $('#NewAddressForm_CountryId').val(),
-                stateOrProvinceId: Number($('#NewAddressForm_StateOrProvinceId').val()) || 0,
+                stateOrProvinceId: Number($('#NewAddressForm_StateOrProvinceId').val()) ,
                 districtId: Number($('#NewAddressForm_DistrictId').val()),
                 zipCode: $('#NewAddressForm_ZipCode').val()
             }

@@ -34,6 +34,7 @@ $(function () {
             data: JSON.stringify({ productId: Number(productId), quantity: Number(quantity) }),
             contentType: "application/json"
         }).done(function (data) {
+            console.log(data);
             if (data.error) {
                 $('#shopModal').find('.modal-content').html(cartLockedError);
             } else {

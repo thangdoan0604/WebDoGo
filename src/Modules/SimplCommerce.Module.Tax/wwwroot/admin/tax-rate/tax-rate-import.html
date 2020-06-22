@@ -1,6 +1,6 @@
 ﻿<div class="panel panel-default">
     <div class="panel-heading">
-        <h2>{{::vm.translate.get('Import Tax Rate')}}</h2>
+        <h2>Nhập dữ liệu thuế</h2>
     </div>
     <div class="panel-body">
         <form name="taxRateImportForm" class="form-horizontal">
@@ -13,7 +13,7 @@
                 <p>TaxClassId(*), CountryId(*), StateOrProvinceName, ZipCode, Rate(*)</p>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('CSV Delimiter')}}</label>
+                <label class="col-sm-2 control-label">Dấu phân cách CSV</label>
                 <div class="col-sm-10">
                     <input name="csvDelimiter" ng-model="vm.taxRateImport.csvDelimiter" class="form-control" />
                 </div>
@@ -22,13 +22,13 @@
                 <div class="col-sm-offset-2 col-sm-10">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" ng-model="vm.taxRateImport.includeHeader">{{::vm.translate.get('Header Included')}}
+                            <input type="checkbox" ng-model="vm.taxRateImport.includeHeader">Gồm cả tiêu đế
                         </label>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{::vm.translate.get('CSV File')}}</label>
+                <label class="col-sm-2 control-label">File CSV</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="file" ngf-select ng-model="vm.taxRateImport.csvFile" name="csvFile" ngf-accept="'.csv'">
                     <span ng-show="vm.taxRateImport.csvFile">{{vm.taxRateImport.csvFile.name}}</span>
@@ -36,8 +36,8 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button class="btn btn-primary" ng-click="vm.save()"><span class="glyphicon glyphicon-ok"></span> {{::vm.translate.get('Save')}}</button>
-                    <button ui-sref="tax-rates" class="btn btn-default">{{::vm.translate.get('Cancel')}}</button>
+                    <button class="btn btn-primary" ng-click="vm.save()">Lưu lại</button>
+                    <button ui-sref="tax-rates" class="btn btn-default">Hủy bỏ</button>
                 </div>
             </div>
         </form>

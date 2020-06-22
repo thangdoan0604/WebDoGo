@@ -35,10 +35,12 @@
         }
 
         function editUser(user) {
+            console.log(user);
             return $http.put('api/users/' + user.id, user);
         }
 
         function deleteUser(user) {
+            console.log(user);
             return $http.delete('api/users/' + user.id, null);
         }
 

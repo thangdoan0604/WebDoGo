@@ -2,11 +2,10 @@
 (function () {
     angular
         .module('simplAdmin.contacts')
-        .controller('ContactAreaListCtrl', ['contactAreaService', 'translateService', '$window', ContactAreaListCtrl]);
+        .controller('ContactAreaListCtrl', ['contactAreaService', '$window', ContactAreaListCtrl]);
 
-    function ContactAreaListCtrl(contactAreaService, translateService, $window) {
-        var vm = this;
-        vm.translate = translateService;
+    function ContactAreaListCtrl(contactAreaService, $window) {
+        var vm = this
         vm.contactAreas = [];
         vm.enableCultures = $window.Global_EnableCultures;
 
@@ -17,12 +16,12 @@
         };
 
         vm.deleteContactArea = function deleteContactArea(contactArea) {
-            bootbox.confirm('Are you sure you want to delete this Contact Area: ' + contactArea.name, function (result) {
+            bootbox.confirm('Bạn có chắc chắn muốn xóa khu vực: ' + contactArea.name, function (result) {
                 if (result) {
                     contactAreaService.deleteContactArea(contactArea)
                        .then(function (result) {
                            vm.getContactAreas();
-                           toastr.success(contactArea.name + ' has been deleted');
+                           toastr.success("Đã xóa khu vực thành công!");
                        })
                        .catch(function (response) {
                            toastr.error(response.data.error);

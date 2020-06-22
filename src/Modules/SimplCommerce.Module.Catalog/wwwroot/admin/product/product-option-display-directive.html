@@ -9,10 +9,10 @@
                 <form class="form-horizontal">
                     <div class="form-group text-center">
                         <label class="radio-inline">
-                            <input type="radio" ng-model="vm.option.displayType" value="text"> Display text
+                            <input type="radio" ng-model="vm.option.displayType" value="text"> Hiển thị tên
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" ng-model="vm.option.displayType" value="color"> Display color
+                            <input type="radio" ng-model="vm.option.displayType" value="color"> Hiển thị màu
                         </label>
                     </div>
                     <div ng-repeat="val in vm.option.values">
@@ -21,7 +21,7 @@
                             <div class="col-sm-9">
                                 <input class="form-control" ng-show="vm.option.displayType == 'text'" type="text" ng-model="val.display" />
                                 <div ng-show="vm.option.displayType == 'color'" class="form-inline">
-                                    <span class="form-control" style="display:inline-block;width:20px;background-color: {{val.display}}"></span>
+                                    <span class="form-control" style="display:inline-block;width:20px;"></span>
                                     <input type="text" class="form-control" colorpicker ng-model="val.display">
                                 </div>
                             </div>

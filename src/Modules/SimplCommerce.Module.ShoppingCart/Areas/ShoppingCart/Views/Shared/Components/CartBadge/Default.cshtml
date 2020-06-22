@@ -1,6 +1,6 @@
 ﻿@model int
 
-<div class="u-basket d-inline-block g-z-index-3" ng-app="simpl.shoppingCart" ng-controller="shoppingCartListCtrl as vm" ng-cloak>
+<div class="u-basket d-inline-block g-z-index-3" ng-controller="shoppingCartListCtrl as vm" ng-cloak>
     <div class="g-py-10 g-px-6">
         <a href="#" id="basket-bar-invoker" class="u-icon-v1 g-color-white-opacity-0_8 g-color-primary--hover g-font-size-17 g-text-underline--none--hover"
            aria-controls="basket-bar"
@@ -64,16 +64,14 @@
 
         <div class="g-pa-20" ng-if="vm.cart.items.length">
             <div class="text-center g-mb-15">
-                <a class="text-uppercase g-color-primary g-color-main--hover g-font-weight-400 g-font-size-13 g-text-underline--none--hover" href="page-checkout-1.html">
+                <a class="text-uppercase g-color-primary g-color-main--hover g-font-weight-400 g-font-size-13 g-text-underline--none--hover" href="/cart">
                     Xem giỏ đồ
                     <i class="ml-2 icon-finance-100 u-line-icon-pro"></i>
                 </a>
             </div>
-            <a class="btn btn-block u-btn-black g-brd-primary--hover g-bg-primary--hover g-font-size-12 text-uppercase rounded g-py-10" href="page-checkout-1.html">Thanh toán</a>
+            <a class="btn btn-block u-btn-black g-brd-primary--hover g-bg-primary--hover g-font-size-12 text-uppercase rounded g-py-10" href="/checkout/shipping">Thanh toán</a>
         </div>
     </div>
 </div>
 
-<script src="~/_content/SimplCommerce.Module.ShoppingCart/shoppingcart-list.js"></script>
-<script src="~/_content/SimplCommerce.Module.ShoppingCart/shoppingcart-service.js"></script>
 

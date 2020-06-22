@@ -1,11 +1,11 @@
 ﻿<div class="panel panel-default">
     <div class="panel-heading">
-        <h2 ng-if="!vm.isEditMode">{{::vm.translate.get('Create Category')}}</h2>
-        <h2 ng-if="vm.isEditMode">{{::vm.translate.get('Edit Category')}}</h2>
+        <h2 ng-if="!vm.isEditMode">Thêm danh mục</h2>
+        <h2 ng-if="vm.isEditMode">Cập nhật thông tin danh mục</h2>
     </div>
     <div class="panel-body">
         <uib-tabset>
-            <uib-tab index="0" heading="{{::vm.translate.get('General Information')}}">
+            <uib-tab index="0" heading="Thông tin chung">
                 <form name="categoryForm" class="form-horizontal">
                     <div class="col-sm-offset-2 bg-danger" ng-show="vm.validationErrors">
                         <ul>
@@ -13,37 +13,37 @@
                         </ul>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Name')}}</label>
+                        <label class="col-sm-2 control-label">Tên</label>
                         <div class="col-sm-10">
                             <input name="name" ng-model="vm.category.name" ng-change="vm.updateSlug()" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Slug')}}</label>
+                        <label class="col-sm-2 control-label">Đường dẫn</label>
                         <div class="col-sm-10">
                             <input name="slug" ng-model="vm.category.slug" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Meta Title')}}</label>
+                        <label class="col-sm-2 control-label">Tiêu đề</label>
                         <div class="col-sm-10">
                             <input name="metaTitle" ng-model="vm.category.metaTitle" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Meta Keywords')}}</label>
+                        <label class="col-sm-2 control-label">Từ khóa</label>
                         <div class="col-sm-10">
                             <textarea name="metaKeywords" ng-model="vm.category.metaKeywords" class="form-control" rows="2"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Meta Description')}}</label>
+                        <label class="col-sm-2 control-label">Mô tả meta</label>
                         <div class="col-sm-10">
                             <textarea name="metaDescription" ng-model="vm.category.metaDescription" class="form-control" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Parent Category')}}</label>
+                        <label class="col-sm-2 control-label">Danh mục cha</label>
                         <div class="col-sm-10">
                             <select class="form-control" ng-model="vm.category.parentId"
                                     ng-options="category.id as category.name for category in vm.categories">
@@ -52,19 +52,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Description')}}</label>
+                        <label class="col-sm-2 control-label">Mô tả</label>
                         <div class="col-sm-10">
                             <textarea name="description" ng-model="vm.category.description" rows="3" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Display order')}}</label>
+                        <label class="col-sm-2 control-label">Thứ tự hiển thị</label>
                         <div class="col-sm-10">
                             <input type="number" name="displayOrder" ng-model="vm.category.displayOrder" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{::vm.translate.get('Thumbnail')}}</label>
+                        <label class="col-sm-2 control-label">Hình đại diện</label>
                         <div class="col-sm-10">
                             <input class="form-control" type="file" ngf-select ng-model="vm.category.thumbnailImage" name="thumbnailImage" ngf-accept="'image/*'">
                             <img ngf-src="vm.category.thumbnailImage" ngf-resize="{width: 100, height: 100, quality: 0.9}">
@@ -75,7 +75,7 @@
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" ng-model="vm.category.includeInMenu">{{::vm.translate.get('Include in Menu')}}
+                                    <input type="checkbox" ng-model="vm.category.includeInMenu">Thêm vào menu
                                 </label>
                             </div>
                         </div>
@@ -84,28 +84,28 @@
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" ng-model="vm.category.isPublished">{{::vm.translate.get('Is Published')}}
+                                    <input type="checkbox" ng-model="vm.category.isPublished">Hiển thị
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button class="btn btn-primary" ng-click="vm.save()"><span class="glyphicon glyphicon-ok"></span> {{::vm.translate.get('Save')}}</button>
-                            <button ui-sref="category" class="btn btn-default">{{::vm.translate.get('Cancel')}}</button>
+                            <button class="btn btn-primary" ng-click="vm.save()">Lưu lại</button>
+                            <button ui-sref="category" class="btn btn-default">Hủy bỏ</button>
                         </div>
                     </div>
                 </form>
             </uib-tab>
-            <uib-tab index="1" heading="{{::vm.translate.get('Products')}}">
+            <uib-tab index="1" heading="Sản phẩm">
                 <table class="table table-striped" st-pipe="vm.getProducts" st-table="vm.products">
                     <thead>
                         <tr>
-                            <th>{{::vm.translate.get('Name')}}</th>
-                            <th class="text-center">{{::vm.translate.get('Is Product Published')}}</th>
-                            <th st-sort="IsFeaturedProduct" class="text-center sortable">{{::vm.translate.get('Is Featured in this Category')}}</th>
-                            <th st-sort="DisplayOrder" class="text-center sortable">{{::vm.translate.get('Display Order')}}</th>
-                            <th class="text-center">{{::vm.translate.get('Actions')}}</th>
+                            <th>Tên</th>
+                            <th class="text-center">Sản phẩm đang hiển thị</th>
+                            <th st-sort="IsFeaturedProduct" class="text-center sortable">Là sản phẩm nổi bật</th>
+                            <th st-sort="DisplayOrder" class="text-center sortable">Thứ tự hiển thị</th>
+                            <th class="text-center"></th>
                         </tr>
                         <tr>
                             <th>
@@ -117,9 +117,9 @@
                             <th>
                                 <div class="form-group">
                                     <select class="form-control" st-search="IsFeaturedProduct">
-                                        <option value="">{{::vm.translate.get('All')}}</option>
-                                        <option value="true">{{::vm.translate.get('Yes')}}</option>
-                                        <option value="false">{{::vm.translate.get('No')}}</option>
+                                        <option value="">Tất cả</option>
+                                        <option value="true">Có</option>
+                                        <option value="false">Không</option>
                                     </select>
                                 </div>
                             </th>
@@ -134,7 +134,10 @@
                             <td class="text-center"><i ng-attr-class="{{product.isFeaturedProduct && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
                             <td class="text-center">{{product.displayOrder}}</td>
                             <td class="text-center">
-                                <a ng-show="!product.isEditing" ng-click="vm.editProduct(product)" title="Edit" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-pencil"></span></a>
+                                <a g-show="!product.isEditing" ng-click="vm.editProduct(product)" class="u-link-v5 g-color-gray-light-v6 g-color-secondary--hover g-text-underline--none--hover g-ml-12" title="Xóa">
+                                    <i class="hs-admin-pencil"></i>
+                                </a>
+                                <!--<a ng-show="!product.isEditing" ng-click="vm.editProduct(product)" title="Edit" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-pencil"></span></a>-->
                             </td>
                         </tr>
                         <tr ng-if="product.isEditing" ng-repeat-end>
@@ -142,12 +145,12 @@
                                 <form class="form-inline">
                                     <div class="checkbox">
                                         <label>
-                                            {{::vm.translate.get('Is Featured in this Category')}}
+                                            Là sản phẩm nổi bật
                                             <input ng-model="product.editingIsFeaturedProduct" type="checkbox">
                                         </label>
                                     </div>
                                     <div class="form-group">
-                                        <label style="font-weight:normal; margin-left:20px;">{{::vm.translate.get('Display Order')}}</label>
+                                        <label style="font-weight:normal; margin-left:20px;">Thứ tự hiển thị</label>
                                         <input type="number" ng-model="product.editingDisplayOrder" class="form-control" />
                                     </div>
                                     <button type="button" class="btn btn-default" ng-click="vm.saveProduct(product)">Save</button>

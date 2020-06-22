@@ -25,7 +25,7 @@
         }
 
         function initPriceSlider() {
-            var priceSlider = document.getElementById('priceSlider');
+            var priceSlider = document.getElementById('rangeSlider1');
             if (!priceSlider) {
                 return;
             }

@@ -1,0 +1,115 @@
+﻿@model SimplCommerce.Module.Orders.Areas.Orders.ViewModels.DeliveryInformationVm
+
+@{
+    ViewBag.Title = "Shipping Information";
+}
+
+<div class="container g-pt-100 g-pb-70">
+    <div class="row g-mt-55" style="width: 100%">
+        <div class="col-md-8 g-mb-30">
+            <form asp-area="Orders" asp-controller="Checkout" asp-action="Shipping" method="POST" id="checkout-delivery-address">
+                <h3>Địa chỉ giao hàng</h3>
+                <div class="row">
+                    @foreach (var address in Model.ExistingShippingAddresses)
+                    {
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="ShippingAddressId" value="@address.UserAddressId" checked="@(Model.ShippingAddressId == address.UserAddressId ? "checked" : null)">
+                                <strong>@address.ContactName </strong><br />
+                                @address.AddressLine1 <br />
+                                @address.AddressLine2 <br />
+                                Phone: @address.Phone
+                            </label>
+                        </div>
+                    }
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="ShippingAddressId" checked="@(Model.ShippingAddressId == 0 ? "checked" : null)" value="0" />
+                            @Localizer["Add another address"]
+                        </label>
+                    </div>
+                </div>
+                <div class="create-shipping-address collapse">
+                    <div class="row">
+                        <div class="col-sm-8 g-mb-20">
+                            <div class="form-group">
+                                <label class="d-block g-color-gray-dark-v2 g-font-size-13">Họ tên</label>
+                                <input asp-for="NewAddressForm.ContactName" type="text" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="firstName" placeholder="Nguyễn Văn A" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-8 g-mb-20">
+                            <div class="form-group">
+                                <label class="d-block g-color-gray-dark-v2 g-font-size-13">Quốc gia</label>
+                                <select asp-for="NewAddressForm.CountryId" asp-items="Model.NewAddressForm.ShipableContries" class="form-control js-custom-select u-select-v1 g-brd-gray-light-v2 g-color-gray-light-v1 g-py-12" style="width: 100%;" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
+                                    <option value="">Chọn quốc gia</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-8 g-mb-20">
+                            <div class="form-group">
+                                <label class="d-block g-color-gray-dark-v2 g-font-size-13">Tỉnh/Thành phố</label>
+                                <select asp-for="NewAddressForm.StateOrProvinceId" asp-items="Model.NewAddressForm.StateOrProvinces" class="form-control js-custom-select u-select-v1 g-brd-gray-light-v2 g-color-gray-light-v1 g-py-12" style="width: 100%;" data-placeholder="Choose your Country" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
+                                    <option value="">Chọn Tỉnh/Thành phố</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-8 g-mb-20">
+                            <div class="form-group">
+                                <label class="d-block g-color-gray-dark-v2 g-font-size-13">Quận/Huyện</label>
+                                <select asp-for="NewAddressForm.DistrictId" asp-items="Model.NewAddressForm.Districts" class="form-control js-custom-select u-select-v1 g-brd-gray-light-v2 g-color-gray-light-v1 g-py-12" style="width: 100%;" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-8 g-mb-20">
+                            <div class="form-group">
+                                <label class="d-block g-color-gray-dark-v2 g-font-size-13">Địa chỉ</label>
+                                <input asp-for="NewAddressForm.AddressLine1" type="text" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" placeholder="Số 1 Nguyễn Trãi, Thanh Xuân, Hà Nội" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-8 g-mb-20">
+                            <div class="form-group">
+                                <label class="d-block g-color-gray-dark-v2 g-font-size-13">Phone Number</label>
+                                <input asp-for="NewAddressForm.Phone" type="text" class="form-control u-form-control g-placeholder-gray-light-v1 rounded-0 g-py-15" name="phoneNumber" placeholder="+01 (00) 555 666 77" required data-msg="This field is mandatory" data-error-class="u-has-error-v1" data-success-class="u-has-success-v1">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-order u-btn-primary g-font-size-13 text-uppercase g-px-100 g-py-15 " disabled>Thanh Toán</button>
+                </div>
+
+            </form>
+            <div>
+                <form asp-area="Order" asp-controller="Checkout" asp-action="Cancel" method="post" id="logoutForm">
+                    <button type="submit" class="btn btn-secondary active u-btn-outline-black g-brd-gray-light-v1 g-bg-black--hover g-font-size-13 text-uppercase g-px-100 mb-4 g-py-15">Hủy</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-4 g-mb-30">
+            @await Component.InvokeAsync("OrderSummary")
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script simpl-append-version="true" src="~/_content/SimplCommerce.Module.Orders/checkout.js"></script>
+}

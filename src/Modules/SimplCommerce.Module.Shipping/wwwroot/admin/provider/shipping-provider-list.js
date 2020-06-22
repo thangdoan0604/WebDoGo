@@ -2,17 +2,24 @@
 (function () {
     angular
         .module('simplAdmin.shippings')
-        .controller('ShippingProviderListCtrl', ['shippingProviderService', 'translateService', ShippingProviderListCtrl]);
+        .controller('ShippingProviderListCtrl', ['shippingProviderService', ShippingProviderListCtrl]);
 
-    function ShippingProviderListCtrl(shippingProviderService, translateService) {
+    function ShippingProviderListCtrl(shippingProviderService) {
         var vm = this;
-        vm.translate = translateService;
         vm.shippingProviders = [];
 
         function getShippingProviders() {
             shippingProviderService.getShippingProviders().then(function (result) {
                 vm.shippingProviders = result.data;
             });
+        }
+
+        vm.updateProviderStatus = function updateProviderStatus(provider) {
+            if (provider.isEnabled) {
+                vm.disableProvider(provider);
+            } else {
+                vm.enableProvider(provider);
+            }
         }
 
         vm.enableProvider = function enableProvider(provider) {

@@ -86,6 +86,7 @@ namespace SimplCommerce.Module.Catalog.Areas.Catalog.Controllers
             }
 
             _productOptionRepository.Remove(productOption);
+            _productOptionRepository.SaveChanges();
             return Json(true);
         }
     }
