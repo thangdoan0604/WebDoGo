@@ -13,171 +13,322 @@
     <link simpl-append-version="true" rel="stylesheet" href="~/lib/nouislider/distribute/nouislider.min.css" />
 }
 
-<nav>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="~/">Home</a></li>
-        @if (Model.ParentCategorId.HasValue)
-        {
-            @await Component.InvokeAsync("CategoryBreadcrumb", new { categoryId = Model.ParentCategorId.Value })
-        }
-        <li class="breadcrumb-item active">@Model.CategoryName</li>
-    </ol>
-</nav>
-<div class="row">
-    <div class="col-md-3 product-list-filters">
-        <h3>@Localizer["Filter by"]</h3>
-        <form id="productFilter" name="productFilter" method="GET" action="~/@Model.CategorySlug">
-        @if (Model.FilterOption.Categories.Where(x => x.ParentId == Model.CategoryId).Any())
+<section class="g-brd-bottom g-brd-gray-light-v4 g-py-30">
+    <div class="container">
+        <ul class="u-list-inline">
+            <li class="list-inline-item g-mr-5">
+                <a href="~/">Trang chủ</a>
+                <i class="g-color-gray-light-v2 g-ml-5 fa fa-angle-right"></i>
+            </li>
+            @if (Model.ParentCategorId.HasValue)
             {
-            <div id="accordion-category">
-                <div class="card">
-                    <div class="card-header" id="cardHeaderCategory">
-                        <h5 class="mb-0">
-                            <a data-toggle="collapse" href="#collapse-category" aria-expanded="true" aria-controls="collapse-category">
-                                @Localizer["Category"]
-                                <i class="fa fa-angle-down"></i>
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapse-category" class="collapse show" aria-labelledby="cardHeaderCategory" data-parent="#accordion-category">
-                        <div class="card-body">
-                            <ul class="list-unstyled checkbox-list">
-                        @foreach (var category in Model.FilterOption.Categories.Where(x => x.ParentId == Model.CategoryId))
-                        {
-                                <li>
-                                    <label class="checkbox">
-                                        <input type="checkbox" value="@category.Slug" name="category" checked="@Model.CurrentSearchOption.GetCategories().Contains(category.Slug)">
-                                        @category.Name
-                                        <small>(@category.Count)</small>
-                                    </label>
-                            @{ var children = Model.FilterOption.Categories.Where(x => x.ParentId == category.Id); }
-                            @if (children.Any())
-                            {
-                                    <ul class="list-unstyled checkbox-list">
-                                @foreach (var child in children)
-                                {
-                                        <li>
-                                            <label class="checkbox">
-                                                <input type="checkbox" value="@child.Slug" name="category" checked="@Model.CurrentSearchOption.GetCategories().Contains(child.Slug)">
-                                                @child.Name
-                                                <small>(@child.Count)</small>
-                                            </label>
-                                        </li>
-                                }
-                                    </ul>
-                            }
-                                </li>
-                        }
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-            <div id="accordion-brand" class="mt-4">
-                <div class="card">
-                    <div class="card-header" id="cardBrandHeader">
-                        <h5 class="mb-0">
-                            <a data-toggle="collapse" href="#collapse-brand" aria-expanded="true" aria-controls="collapse-brand">
-                                @Localizer["Brand"]
-                                <i class="fa fa-angle-down"></i>
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapse-brand" class="collapse show" aria-labelledby="cardBrandHeader" data-parent="#accordion-brand">
-                        <div class="card-body">
-                            <ul class="list-unstyled checkbox-list">
-                                @foreach (var brand in Model.FilterOption.Brands)
-                                {
-                                    <li>
-                                        <label class="checkbox">
-                                            <input type="checkbox" value="@brand.Slug" name="brand" checked="@Model.CurrentSearchOption.GetBrands().Contains(brand.Slug)">
-                                            @brand.Name
-                                            <small>(@brand.Count)</small>
-                                        </label>
-                                    </li>
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @if (Model.FilterOption.Price.MaxPrice != Model.FilterOption.Price.MinPrice)
-            {
-                <div id="accordion-price" class="mt-4">
-                    <div class="card">
-                        <div class="card-header" id="cardHeaderPrice">
-                            <h5 class="mb-0">
-                                <a data-toggle="collapse" href="#collapse-price" aria-expanded="true" aria-controls="collapse-price">
-                                    @Localizer["Price"]
-                                    <i class="fa fa-angle-down"></i>
-                                </a>
-                            </h5>
-                        </div>
-                        <div id="collapse-price" class="collapse show" aria-labelledby="cardHeaderPrice" data-parent="#accordion-price">
-                            <div class="card-body">
-                                <div id="priceSlider"></div>
-                                <div>
-                                    <input type="hidden" id="originMinPrice" value="@Model.FilterOption.Price.MinPrice.ToString("F0")" />
-                                    <input type="hidden" id="originMaxPrice" value="@Model.FilterOption.Price.MaxPrice.ToString("F0")" />
-                                    <span id="minPrice"></span>
-                                    <span id="maxPrice"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        </form>
+                @await Component.InvokeAsync("CategoryBreadcrumb", new { categoryId = Model.ParentCategorId.Value })}
+            <li class="list-inline-item g-color-primary">
+                <span>@Model.CategoryName</span>
+            </li>
+        </ul>
     </div>
-    <div class="col-md-9">
-        <div class="row mb-3">
-            <div class="col-sm-6 category-result">
-                <h2>@Model.CategoryName</h2>
-                <small class="badge-results">@Model.TotalProduct @Localizer["results"]</small>
-            </div>
-            <div class="col-sm-6">
-                <ul class="list-inline clear-both product-list-display-options">
-                    <li class="sort-by">
-                        <label>@Localizer["Sort by:"]</label>
-                        <div class="btn-group">
-                            <select asp-for="CurrentSearchOption.Sort" asp-items="Model.AvailableSortOptions" class="form-control"></select>
-                        </div>
-                    </li>
-                    @*<li class="pagination-option">
-                            <label>Show :</label>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    20 <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">All</a></li>
-                                    <li><a href="#">50</a></li>
-                                    <li><a href="#">30</a></li>
-                                </ul>
-                            </div>
-                        </li>*@
-                </ul>
+</section>
+<div class="col-md-3 order-md-1 g-brd-right--lg g-brd-gray-light-v4 g-pt-40">
+    <div class="g-pr-15--lg g-pt-60">
+        <!-- Categories -->
+        <div class="g-mb-30">
+            <h3 class="h5 mb-3">Categories</h3>
+
+            <ul class="list-unstyled">
+                <li class="my-3">
+                    <a class="d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#">
+                        Clothes
+                        <span class="float-right g-font-size-12">202</span>
+                    </a>
+                </li>
+                <li class="my-3">
+                    <a class="d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#">
+                        T-shirts
+                        <span class="float-right g-font-size-12">44</span>
+                    </a>
+                </li>
+                <li class="my-3">
+                    <a class="d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#">
+                        Shirts
+                        <span class="float-right g-font-size-12">398</span>
+                    </a>
+                </li>
+                <li class="my-3">
+                    <a class="d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#">
+                        Shorts
+                        <span class="float-right g-font-size-12">56</span>
+                    </a>
+                </li>
+                <li class="my-3">
+                    <a class="d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#">
+                        Jackets
+                        <span class="float-right g-font-size-12">71</span>
+                    </a>
+                </li>
+                <li class="my-3">
+                    <a class="d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#">
+                        Shoes
+                        <span class="float-right g-font-size-12">943</span>
+                    </a>
+                </li>
+                <li class="my-3">
+                    <a class="d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#">
+                        Glasses
+                        <span class="float-right g-font-size-12">109</span>
+                    </a>
+                </li>
+                <li class="my-3">
+                    <a class="d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#">
+                        Classic
+                        <span class="float-right g-font-size-12">88</span>
+                    </a>
+                </li>
+                <li class="my-3">
+                    <a class="d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#">
+                        Trending
+                        <span class="float-right g-font-size-12">111</span>
+                    </a>
+                </li>
+                <li class="my-3">
+                    <a class="d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#">
+                        Accessories
+                        <span class="float-right g-font-size-12">5</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- End Categories -->
+
+        <hr>
+
+        <!-- Pricing -->
+        <div class="g-mb-30">
+            <h3 class="h5 mb-3">Pricing</h3>
+
+            <div class="text-center">
+                <span class="d-block g-color-primary mb-4">$(<span id="rangeSliderAmount3">0</span>)</span>
+                <div id="rangeSlider1" class="u-slider-v1-3"
+                     data-result-container="rangeSliderAmount3"
+                     data-range="true"
+                     data-default="180, 320"
+                     data-min="0"
+                     data-max="500"></div>
             </div>
         </div>
-        <div class="row product-list">
-            @foreach (var product in Model.Products)
-            {
-                <div class="col-xs-6 col-md-4">
-                    <partial name="_ProductThumbnail" model="product" />
-                </div>
-            }
+        <!-- End Pricing -->
+
+        <hr>
+
+        <!-- Brand -->
+        <div class="g-mb-30">
+            <h3 class="h5 mb-3">Brand</h3>
+
+            <ul class="list-unstyled">
+                <li class="my-2">
+                    <label class="form-check-inline u-check d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover g-pl-30">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                        <span class="d-block u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                            <i class="fa" data-check-icon="&#xf00c"></i>
+                        </span>
+                        Mango <span class="float-right g-font-size-13">24</span>
+                    </label>
+                </li>
+                <li class="my-2">
+                    <label class="form-check-inline u-check d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover g-pl-30">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox" checked>
+                        <span class="d-block u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                            <i class="fa" data-check-icon="&#xf00c"></i>
+                        </span>
+                        Gucci <span class="float-right g-font-size-13">334</span>
+                    </label>
+                </li>
+                <li class="my-2">
+                    <label class="form-check-inline u-check d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover g-pl-30">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                        <span class="d-block u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                            <i class="fa" data-check-icon="&#xf00c"></i>
+                        </span>
+                        Adidas <span class="float-right g-font-size-13">18</span>
+                    </label>
+                </li>
+                <li class="my-2">
+                    <label class="form-check-inline u-check d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover g-pl-30">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox" checked>
+                        <span class="d-block u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                            <i class="fa" data-check-icon="&#xf00c"></i>
+                        </span>
+                        Nike <span class="float-right g-font-size-13">6</span>
+                    </label>
+                </li>
+                <li class="my-2">
+                    <label class="form-check-inline u-check d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover g-pl-30">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                        <span class="d-block u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                            <i class="fa" data-check-icon="&#xf00c"></i>
+                        </span>
+                        Puma <span class="float-right g-font-size-13">71</span>
+                    </label>
+                </li>
+                <li class="my-2">
+                    <label class="form-check-inline u-check d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover g-pl-30">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                        <span class="d-block u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                            <i class="fa" data-check-icon="&#xf00c"></i>
+                        </span>
+                        Zara <span class="float-right g-font-size-13">9</span>
+                    </label>
+                </li>
+            </ul>
         </div>
-        <div class="row">
-            <div class="col-md-12 text-right">
-                <cs-pager cs-paging-pagesize="@Model.CurrentSearchOption.PageSize"
-                          cs-paging-pagenumber="@Model.CurrentSearchOption.Page"
-                          cs-paging-totalitems="@Model.TotalProduct"
-                          cs-pagenumber-param="page"
-                          asp-basehref="~/@Model.CategorySlug"
-                          asp-all-route-data="@Model.CurrentSearchOption.ToDictionary()"></cs-pager>
+        <!-- End Brand -->
+
+        <hr>
+
+        <!-- Size -->
+        <div class="g-mb-30">
+            <h3 class="h5 mb-3">Size</h3>
+
+            <ul class="list-unstyled">
+                <li class="my-2">
+                    <label class="form-check-inline u-check d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover g-pl-30">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                        <span class="d-block u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                            <i class="fa" data-check-icon="&#xf00c"></i>
+                        </span>
+                        S <span class="float-right g-font-size-13">24</span>
+                    </label>
+                </li>
+                <li class="my-2">
+                    <label class="form-check-inline u-check d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover g-pl-30">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox" checked>
+                        <span class="d-block u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                            <i class="fa" data-check-icon="&#xf00c"></i>
+                        </span>
+                        M <span class="float-right g-font-size-13">334</span>
+                    </label>
+                </li>
+                <li class="my-2">
+                    <label class="form-check-inline u-check d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover g-pl-30">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                        <span class="d-block u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                            <i class="fa" data-check-icon="&#xf00c"></i>
+                        </span>
+                        L <span class="float-right g-font-size-13">18</span>
+                    </label>
+                </li>
+                <li class="my-2">
+                    <label class="form-check-inline u-check d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover g-pl-30">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                        <span class="d-block u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                            <i class="fa" data-check-icon="&#xf00c"></i>
+                        </span>
+                        XL <span class="float-right g-font-size-13">6</span>
+                    </label>
+                </li>
+                <li class="my-2">
+                    <label class="form-check-inline u-check d-block u-link-v5 g-color-gray-dark-v4 g-color-primary--hover g-pl-30">
+                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                        <span class="d-block u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                            <i class="fa" data-check-icon="&#xf00c"></i>
+                        </span>
+                        XXL <span class="float-right g-font-size-13">71</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <!-- End Size -->
+
+        <hr>
+
+        <!-- Color -->
+        <div class="g-mb-30">
+            <h3 class="h5 mb-3">Color</h3>
+
+            <!-- Checkbox -->
+            <div>
+                <label class="form-check-inline u-check m-0">
+                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="radInline1_1" type="radio">
+                    <span class="d-block u-check-icon-checkbox-v4 g-brd-transparent g-brd-gray-dark-v4--checked rounded-circle">
+                        <i class="d-block g-absolute-centered g-width-16 g-height-16 g-bg-primary rounded-circle"></i>
+                    </span>
+                </label>
+                <label class="form-check-inline u-check mb-0 mr-0 g-ml-5">
+                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="radInline1_1" type="radio">
+                    <span class="d-block u-check-icon-checkbox-v4 g-brd-transparent g-brd-gray-dark-v4--checked rounded-circle">
+                        <i class="d-block g-absolute-centered g-width-16 g-height-16 g-bg-beige rounded-circle"></i>
+                    </span>
+                </label>
+                <label class="form-check-inline u-check mb-0 mr-0 g-ml-5">
+                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="radInline1_1" type="radio">
+                    <span class="d-block u-check-icon-checkbox-v4 g-brd-transparent g-brd-gray-dark-v4--checked rounded-circle">
+                        <i class="d-block g-absolute-centered g-width-16 g-height-16 g-bg-black rounded-circle"></i>
+                    </span>
+                </label>
+                <label class="form-check-inline u-check mb-0 mr-0 g-ml-5">
+                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="radInline1_1" type="radio">
+                    <span class="d-block u-check-icon-checkbox-v4 g-brd-transparent g-brd-gray-dark-v4--checked rounded-circle">
+                        <i class="d-block g-absolute-centered g-width-16 g-height-16 g-bg-yellow rounded-circle"></i>
+                    </span>
+                </label>
+                <label class="form-check-inline u-check mb-0 mr-0 g-ml-5">
+                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="radInline1_1" type="radio">
+                    <span class="d-block u-check-icon-checkbox-v4 g-brd-transparent g-brd-gray-dark-v4--checked rounded-circle">
+                        <i class="d-block g-absolute-centered g-width-16 g-height-16 g-bg-blue rounded-circle"></i>
+                    </span>
+                </label>
+                <label class="form-check-inline u-check mb-0 mr-0 g-ml-5">
+                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="radInline1_1" type="radio">
+                    <span class="d-block u-check-icon-checkbox-v4 g-brd-transparent g-brd-gray-dark-v4--checked rounded-circle">
+                        <i class="d-block g-absolute-centered g-width-16 g-height-16 g-bg-purple rounded-circle"></i>
+                    </span>
+                </label>
+                <label class="form-check-inline u-check mb-0 mr-0 g-ml-5">
+                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="radInline1_1" type="radio">
+                    <span class="d-block u-check-icon-checkbox-v4 g-brd-transparent g-brd-gray-dark-v4--checked rounded-circle">
+                        <i class="d-block g-absolute-centered g-width-16 g-height-16 g-bg-brown rounded-circle"></i>
+                    </span>
+                </label>
+                <label class="form-check-inline u-check mb-0 mr-0 g-ml-5">
+                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" name="radInline1_1" type="radio">
+                    <span class="d-block u-check-icon-checkbox-v4 g-brd-transparent g-brd-gray-dark-v4--checked rounded-circle">
+                        <i class="d-block g-absolute-centered g-width-16 g-height-16 g-bg-gray-dark-v4 rounded-circle"></i>
+                    </span>
+                </label>
             </div>
+            <!-- End Checkbox -->
         </div>
+        <!-- End Color -->
+
+        <hr>
+
+        <!-- Rating -->
+        <div class="g-mb-30">
+            <h3 class="h5 mb-3">Rating</h3>
+
+            <ul class="js-rating u-rating-v1 g-line-height-1 g-font-size-20 g-color-gray-light-v3 mb-0" data-hover-classes="g-color-primary">
+                <li class="g-color-primary click">
+                    <i class="fa fa-star"></i>
+                </li>
+                <li class="g-color-primary click">
+                    <i class="fa fa-star"></i>
+                </li>
+                <li class="g-color-primary click">
+                    <i class="fa fa-star"></i>
+                </li>
+                <li class="g-color-primary click">
+                    <i class="fa fa-star"></i>
+                </li>
+                <li>
+                    <i class="fa fa-star"></i>
+                </li>
+            </ul>
+        </div>
+        <!-- End Rating -->
+
+        <hr>
+
+        <button class="btn btn-block u-btn-black g-font-size-12 text-uppercase g-py-12 g-px-25" type="button">Reset</button>
     </div>
 </div>
 
@@ -192,7 +343,7 @@
             min: @Model.FilterOption.Price.MinPrice.ToString("F0"),
             max: @Model.FilterOption.Price.MaxPrice.ToString("F0"),
             currentMin: @((Model.CurrentSearchOption.MinPrice ?? Model.FilterOption.Price.MinPrice).ToString("F0")),
-            currentMax: @((Model.CurrentSearchOption.MaxPrice ?? Model.FilterOption.Price.MaxPrice).ToString("F0"))
+            currentMax: @((Model.CurrentSearchOption.MaxPrice ?? Model.FilterOption.Price.MaxPrice).ToString("F0")),
         };
     </script>
     <script simpl-append-version="true" src="~/_content/SimplCommerce.Module.Catalog/product-filter.js"></script>

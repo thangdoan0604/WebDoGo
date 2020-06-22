@@ -8,60 +8,62 @@
         </li>
         @if (Model.Any() && Model.Count() > 0)
         {
-    @foreach (var item in Model)
-    {
-        if (item.ChildItems.Any())
-        {
-    <li class="nav-item hs-has-sub-menu g-mx-10--lg g-mx-15--xl">
-        <a id="nav-link--pages" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="/@item.Slug"
-           aria-haspopup="true"
-           aria-expanded="false"
-           aria-controls="nav-submenu--pages">
-            @item.Name
-        </a>
-
-        <!-- Submenu -->
-        <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-min-width-220 g-brd-top g-brd-primary g-brd-top-2 g-mt-17" id="nav-submenu--pages"
-            aria-labelledby="nav-link--pages">
-            @foreach (var childItem in item.ChildItems)
+            @foreach (var item in Model)
             {
-                if (childItem.ChildItems.Any())
+                if (item.ChildItems.Any())
                 {
-    <li class="dropdown-item hs-has-sub-menu">
-        <a id="nav-link--pages--list-filter" class="nav-link g-color-gray-dark-v4" href="#"
-           aria-haspopup="true"
-           aria-expanded="false"
-           aria-controls="nav-submenu--pages--list-filter">
-            List Filter
-        </a>
+                    <li class="nav-item hs-has-sub-menu g-mx-10--lg g-mx-15--xl">
+                        <a id="nav-link--pages" class="nav-link text-uppercase g-color-primary--hover g-px-5 g-py-20" href="/@item.Slug"
+                           aria-haspopup="true"
+                           aria-expanded="false"
+                           aria-controls="nav-submenu--pages">
+                            @item.Name
+                        </a>
 
-        <!-- Submenu (level 2) -->
-        <ul id="nav-submenu--pages--list-filter" class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2"
-            aria-labelledby="nav-link--pages--list-filter">
-            @foreach (var childChildItem in item.ChildItems)
-            {
-    <li class="dropdown-item">
-        <a class="nav-link g-color-gray-dark-v4" href="/@childChildItem.Slug">@childChildItem.Name</a>
-    </li>
-}
-        </ul>
-    </li>
- }
-else
-{
-    <li class="dropdown-item">
-        <a class="nav-link g-color-gray-dark-v4" href="/@childItem.Slug">@childItem.Name</a>
-    </li>}
+                        <!-- Submenu -->
+                        <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-min-width-220 g-brd-top g-brd-primary g-brd-top-2 g-mt-17" id="nav-submenu--pages"
+                            aria-labelledby="nav-link--pages">
+                            @foreach (var childItem in item.ChildItems)
+                            {
+                                if (childItem.ChildItems.Any())
+                                {
+                                    <li class="dropdown-item hs-has-sub-menu">
+                                        <a id="nav-link--pages--list-filter" class="nav-link g-color-gray-dark-v4" href="#"
+                                           aria-haspopup="true"
+                                           aria-expanded="false"
+                                           aria-controls="nav-submenu--pages--list-filter">
+                                            List Filter
+                                        </a>
+
+                                        <!-- Submenu (level 2) -->
+                                        <ul id="nav-submenu--pages--list-filter" class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2"
+                                            aria-labelledby="nav-link--pages--list-filter">
+                                            @foreach (var childChildItem in item.ChildItems)
+                                            {
+                                                <li class="dropdown-item">
+                                                    <a class="nav-link g-color-gray-dark-v4" href="/@childChildItem.Slug">@childChildItem.Name</a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="dropdown-item">
+                                        <a class="nav-link g-color-gray-dark-v4" href="/@childItem.Slug">@childItem.Name</a>
+                                    </li>
+                                }
                             }
 
-        </ul>
-    </li> }
-                        else
-                        {
-    <li class="nav-item g-ml-25--lg g-mx-30--lg g-mx-35--xl">
-        <a class="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="/@item.Slug">@item.Name</a>
-    </li>
-}
-}}
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item g-ml-25--lg g-mx-30--lg g-mx-35--xl">
+                        <a class="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="/@item.Slug">@item.Name</a>
+                    </li>
+                }
+            }}
     </ul>
 </div>

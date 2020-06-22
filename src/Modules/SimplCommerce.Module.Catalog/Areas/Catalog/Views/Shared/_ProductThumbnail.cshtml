@@ -1,37 +1,65 @@
 ﻿@model SimplCommerce.Module.Catalog.Areas.Catalog.ViewModels.ProductThumbnail
 
-<div class="card mb-4">
+<div class="js-slide">
     <input type="hidden" id="productId" value="@Model.Id" />
-    <a href="~/@Model.Slug">
-        <img alt="@Model.Name" class="card-img-top" src="@Model.ThumbnailUrl">
-        <div class="card-body">
-            <h5 class="card-title product-name">@Model.Name</h5>
-            <p class="card-text product-price">
-                @if (Model.IsCallForPricing)
-                {
-                    @Localizer["Call for pricing"]
-                }
-                else
-                {
-                    @Model.CalculatedProductPrice.PriceString
-                    if (Model.CalculatedProductPrice.PercentOfSaving > 0)
-                    {
-                        <span class="product-price-saving">-@(Model.CalculatedProductPrice.PercentOfSaving)%</span>
-                        <br />
-                        <span class="product-price-regular">@Model.CalculatedProductPrice.OldPriceString</span>
-                    }
-                }
-            </p>
-            <ul class="list-inline product-ratings">
-                <li><input type="hidden" value="@Model.RatingAverage" readonly="readonly" class="rating-loading" step="1" data-size="xs" data-show-clear="false" data-show-caption="false" /></li>
-                @if (Model.ReviewsCount > 0)
-                {
-                    <li class="product-review-list">
-                        <span>(@Model.ReviewsCount @Localizer["reviews"])</span>
-                    </li>
-                }
-            </ul>
+    <div class="g-px-10">
+        <!-- Product -->
+        <figure class="g-pos-rel g-mb-10">
+            <img class="img-fluid" data-lazy="@Model.ThumbnailUrl" alt="@Model.Name">
+            @if (Model.CalculatedProductPrice.PercentOfSaving < 1)
+            {
+                <span class="u-ribbon-v1 g-width-35 g-bg-lightred g-height-35 g-color-white g-font-size-12 text-center text-uppercase g-rounded-50x g-top-10 g-right-minus-10 g-px-2 g-py-10">
+                    New
+                </span>
+            }
+            else
+            {
+                <span class="u-ribbon-v1 g-width-35 g-bg-lightred g-height-35 g-color-white g-font-size-12 text-center text-uppercase g-rounded-50x g-top-10 g-right-minus-10 g-px-2 g-py-10">
+                    -@(Model.CalculatedProductPrice.PercentOfSaving)%
+                </span>
+            }
+        </figure>
 
+        <div class="media">
+            <!-- Product Info -->
+            <div class="d-flex flex-column">
+                <h4 class="h6 g-color-black mb-1">
+                    <a class="u-link-v5 g-color-black g-color-primary--hover" href="~/@Model.Slug">
+                        @Model.Name
+                    </a>
+                </h4>
+                <a class="d-inline-block g-color-gray-dark-v5 g-font-size-13" href="#">Woman</a>
+                <span class="d-block g-color-black g-font-size-17">
+                    @if (Model.IsCallForPricing)
+                    {
+                        @Localizer["Call for pricing"] }
+                    else
+                    {
+                        @Model.CalculatedProductPrice.PriceString}
+                </span>
+            </div>
+            <!-- End Product Info -->
+            <!-- Products Icons -->
+            <ul class="list-inline media-body text-right">
+                <li class="list-inline-item align-middle mx-0">
+                    <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
+                       data-toggle="tooltip"
+                       data-placement="top"
+                       title="Add to Cart">
+                        <i class="icon-finance-100 u-line-icon-pro"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item align-middle mx-0">
+                    <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-color-primary--hover g-font-size-15 rounded-circle" href="#"
+                       data-toggle="tooltip"
+                       data-placement="top"
+                       title="Add to Wishlist">
+                        <i class="icon-medical-022 u-line-icon-pro"></i>
+                    </a>
+                </li>
+            </ul>
+            <!-- End Products Icons -->
         </div>
-    </a>
+        <!-- End Product -->
+    </div>
 </div>
